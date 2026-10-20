@@ -1,50 +1,34 @@
-# Landing Page Modular — GitHub Pages
+# Forma Studio — construtor principal
 
-Repositório preparado para publicação como site estático no GitHub Pages.
+Este pacote corrige a organização da entrega anterior. O `index.html` da raiz é o **Forma Studio**. A landing enviada é material de origem, guardado em `fontes/landing/`, e suas **14 seções foram integradas como blocos editáveis**.
 
-## Estrutura esperada
+## Abrir
 
-O arquivo `index.html` deve ficar na raiz do repositório, junto com as pastas principais:
+Execute `npm run dev` nesta pasta e abra `http://localhost:4173/`. O endereço `/COMECE-AQUI.html` também abre o construtor. Requer Node.js 20 ou superior e não precisa instalar dependências.
 
-```txt
-index.html
-blog.html
-.nojekyll
-assets/
-blog/
-css/
-js/
-sections/
-servicos/
-```
+## Encontrar as seções da landing enviada
 
-## Como publicar
+Na aba **Blocos**, escolha **Landing IA · Repositório enviado** no filtro de referência. São 14 opções: cabeçalho, abertura com pato amarelo, guias editoriais, problema, benefícios, processo, caso de uso, comparação, serviços, diagnóstico, FAQ, chamada final, rodapé e pilares do blog.
 
-1. Suba todos os arquivos para a branch `main`.
-2. No GitHub, acesse `Settings > Pages`.
-3. Em `Build and deployment`, selecione:
-   - Source: `Deploy from a branch`
-   - Branch: `main`
-   - Folder: `/root`
-4. Salve e aguarde o link do GitHub Pages.
+Para inserir a landing completa, selecione a prancheta e escolha **Landing IA · Repositório decomposto** em **Inserir modelo completo**. O modelo reúne as 13 seções da página inicial; os pilares do blog são uma opção adicional.
 
-## Observações
+Também é possível importar `examples/landing-ia.forma.json`, já com as 13 pranchetas conectadas em uma página. A primeira aparece no mapa; as demais ficam guardadas no menu e podem ser abertas pelo nome.
 
-- O projeto não depende de React, Vite ou npm.
-- Não é necessário rodar build.
-- As seções são carregadas dinamicamente por `js/include-sections.js`.
-- A seção Problema usa o SVG do pato em `assets/icons/pato.svg`.
+O construtor mantém os ajustes de conexão lateral por elemento, desconexão por arraste e ocultação de pranchetas no menu. No total há **96 blocos e 19 modelos**, incluindo as dez referências visuais reconstruídas anteriormente.
 
+## Estrutura
 
-## Biblioteca das dez referências
+- `index.html`, `editor.js`, `editor.css`: construtor principal.
+- `blocks/landing-ia-*.html`: 14 seções decompostas do repositório enviado.
+- `landing-sections.css`: CSS da landing adaptado e limitado a `.lp-section`, incluindo suporte aos IDs renomeados durante a exportação.
+- `landing-runtime.js`: interações adaptadas de menu, pilares e formulário. O conteúdo é incorporado em `runtime.js` para funcionar na exportação local.
+- `fontes/landing/`: cópia do repositório de origem para consulta e para os links de páginas de serviço/blog.
+- `biblioteca/`: galeria opcional das dez referências visuais; a entrada principal continua sendo o construtor.
 
-Foram acrescentadas 54 seções HTML, com SVGs locais, galeria de opções e integração ao Forma Studio. A landing original continua em `index.html`.
+As fotografias do pato e o SVG original acompanham os blocos. Os pilares do blog conservam as URLs externas já presentes no repositório; podem ser trocadas por arquivos enviados pelo editor. O formulário integrado é demonstrativo e não transmite dados. O menu recebe links estáticos editáveis em vez de depender da montagem global do JavaScript original.
 
-Execute `npm run dev` (Node.js 20+; sem instalação adicional para esse servidor) e abra `http://localhost:4173/COMECE-AQUI.html`.
+## Validação
 
-- `biblioteca/index.html`: opções, prévias, código e composição por seções.
-- `forma-studio/index.html`: editor com 82 blocos e 18 modelos completos.
-- `docs/ANALISE_REFERENCIAS.md`: análise de cada imagem, inventário e aproximações.
-- `npm run check`: 25 testes e checagens de sintaxe.
+`npm run check`: 22 testes, incluindo entrada principal, registro dos 14 blocos, arquivos da exportação e montagem das 13 seções em uma página. Também foram conferidas a sintaxe do código novo e a estrutura dos SVGs. A inspeção visual no navegador permanece pendente neste ambiente.
 
-Ao publicar a raiz no GitHub Pages, a biblioteca e o editor ficam disponíveis em suas respectivas subpastas. Os scripts de desenvolvimento e testes não são necessários na hospedagem estática.
+Para publicar o construtor no GitHub Pages, use o conteúdo desta pasta na raiz do repositório. O workflow existente prepara o editor em `dist/`; a landing de referência não substitui a página inicial do construtor.
