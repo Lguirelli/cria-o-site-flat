@@ -1,10 +1,10 @@
-import {VERSION,uid,escapeHTML as esc,slugify,fileFor,validateProject,removePage,setLink} from './lib/project.js';
+import {VERSION,uid,escapeHTML as esc,slugify,fileFor,validateProject,removePage,setLink,setSequence,composeProject,rootOf} from './lib/project.js';
 import {buildDocument} from './lib/document.js';
 import {bridgeSource} from './lib/bridge.js';
 import {makeZip} from './lib/zip.js';
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
-const STORAGE='forma-studio-project-v1';
-let catalog,project,active,selection=null,mode='design',zoom=.4,metrics=new Map(),history=[],future=[],dragLink=null,noticeTimer,previewPage;
+const STORAGE='forma-studio-floating-v2';
+let catalog,project,active,selection=null,mode='design',zoom=.3,metrics=new Map(),history=[],future=[],dragLink=null,noticeTimer,previewPage;
 const cache=new Map();
 function notify(message){$('#notice').textContent=message;$('#notice').hidden=false;clearTimeout(noticeTimer);noticeTimer=setTimeout(()=>$('#notice').hidden=true,5000)}
 async function request(path){const r=await fetch(path);if(!r.ok)throw Error(`Falha ao carregar ${path}: ${r.status}`);return r}
@@ -32,7 +32,7 @@ function normalize(markup){
  return t.innerHTML;
 }
 async function instance(id){const def=definition(id);if(!cache.has(id))cache.set(id,await(await request(def.file)).text());return{id:uid(),blockId:id,html:normalize(cache.get(id))}}
-async function makePage(preset,index){return{id:uid(),name:preset?.name||'Nova página',slug:preset?slugify(preset.name):'pagina-'+(index+1),x:100+index*1420,y:130,width:1200,blocks:preset?await Promise.all(preset.blocks.map(instance)):[]}}
+async function makePage(preset,index){return{id:uid(),name:preset?.name||'Nova página',slug:preset?slugify(preset.name):'pagina-'+(index+1),x:100+(index%4)*1500,y:130+Math.floor(index/4)*2600,width:1200,blocks:preset?await Promise.all(preset.blocks.map(instance)):[]}}
 function uniqueSlug(value,exclude){const base=slugify(value);let slug=base,i=2;while(project.pages.some(p=>p.id!==exclude&&p.slug===slug)||(slug==='index'&&exclude!==project.home))slug=base+'-'+i++;return slug}
 function setActive(id){active=id;selection=null;renderPanels();$$('.artboard').forEach(b=>b.classList.toggle('active',b.dataset.page===id));drawConnections()}
 function render(){
@@ -40,7 +40,7 @@ function render(){
 }
 function renderPanels(){renderPages();renderLayers();renderInspector();updateHistory()}
 function renderPages(){
- $('#pages-list').innerHTML=project.pages.map(p=>`<div class="page-item ${p.id===active?'active':''}"><button data-page-select="${esc(p.id)}"><span class="icon">${p.id===project.home?'home':'web_asset'}</span><span>${esc(p.name)}<small>${esc(fileFor(project,p.id))}</small></span></button></div>`).join('');
+ $('#pages-list').innerHTML=project.pages.map(p=>`<div class="page-item ${p.id===active?'active':''}"><button data-page-select="${esc(p.id)}"><span class="icon">${p.id===project.home?'home':'web_asset'}</span><span>${esc(p.name)}<small>${esc(fileFor(composeProject(project),rootOf(project,p.id)))}${rootOf(project,p.id)!==p.id?' · continuação':''}</small></span></button></div>`).join('');
  $$('[data-page-select]').forEach(b=>b.onclick=()=>{setActive(b.dataset.pageSelect);focusPage()});
 }
 function renderLayers(){
@@ -58,23 +58,27 @@ function renderBoards(){
  for(const p of project.pages){
   const board=document.createElement('section');board.className='artboard'+(p.id===active?' active':'');board.dataset.page=p.id;board.style.cssText=`left:${p.x}px;top:${p.y}px;width:${p.width}px`;
   const title=document.createElement('div');title.className='artboard-title';title.innerHTML=`<span class="icon">${p.id===project.home?'home':'web_asset'}</span><strong>${esc(p.name)}</strong><small>${p.width}px</small>`;
-  const frame=document.createElement('iframe');frame.title='Prancheta '+p.name;frame.setAttribute('sandbox','allow-scripts');frame.style.height='900px';frame.srcdoc=buildDocument(project,p,catalog,{base:new URL('.',location.href).href,editor:true,bridge:bridgeSource(p.id,mode)});
-  board.append(title,frame);$('#artboards').append(board);title.onclick=()=>setActive(p.id);dragBoard(title,board,p);
+  const frame=document.createElement('iframe');frame.loading='lazy';frame.title='Prancheta '+p.name;frame.setAttribute('sandbox','allow-scripts');frame.style.height='900px';frame.srcdoc=buildDocument(project,p,catalog,{base:new URL('.',location.href).href,editor:true,bridge:bridgeSource(p.id,mode)});
+  const footer=document.createElement('div');footer.className='board-sequence';
+  const next=(project.sequences||[]).find(e=>e.from===p.id)?.to;
+  footer.innerHTML=`<button class="sequence-port" title="Arraste para conectar o próximo bloco da mesma página" aria-label="Conectar sequência de ${esc(p.name)}"><span class="icon">south</span></button><span>MESMA PÁGINA</span><select aria-label="Próximo bloco de ${esc(p.name)}"><option value="">Conectar próximo bloco…</option>${project.pages.filter(q=>q.id!==p.id).map(q=>`<option value="${esc(q.id)}" ${next===q.id?'selected':''}>${esc(q.name)}</option>`).join('')}</select>`;
+  footer.querySelector('select').onchange=e=>connectSequence(p.id,e.target.value);
+  board.append(title,frame,footer);$('#artboards').append(board);title.onclick=()=>setActive(p.id);dragBoard(title,board,p);bindWire(footer.querySelector('button'),()=>({page:p.id}),'sequence');
  }
  drawConnections();applyZoom();
 }
 function dragBoard(handle,board,p){handle.onpointerdown=e=>{if(e.button!==0)return;const start={x:e.clientX,y:e.clientY,px:p.x,py:p.y};let moved=false;handle.setPointerCapture(e.pointerId);
- handle.onpointermove=ev=>{if(!moved&&Math.hypot(ev.clientX-start.x,ev.clientY-start.y)>4){checkpoint();moved=true}if(!moved)return;p.x=Math.max(20,Math.min(9000,start.px+(ev.clientX-start.x)/zoom));p.y=Math.max(70,Math.min(9000,start.py+(ev.clientY-start.y)/zoom));board.style.left=p.x+'px';board.style.top=p.y+'px';drawConnections()};
+ handle.onpointermove=ev=>{if(!moved&&Math.hypot(ev.clientX-start.x,ev.clientY-start.y)>4){checkpoint();moved=true}if(!moved)return;p.x=Math.max(20,Math.min(48000,start.px+(ev.clientX-start.x)/zoom));p.y=Math.max(70,Math.min(48000,start.py+(ev.clientY-start.y)/zoom));board.style.left=p.x+'px';board.style.top=p.y+'px';drawConnections()};
  handle.onpointerup=()=>{handle.onpointermove=null;handle.onpointerup=null;if(moved){persist();updateHistory()}};
 }}
-function applyZoom(){zoom=Math.max(.15,Math.min(1.1,zoom));$('#scene').style.transform=`scale(${zoom})`;$('#zoom-label').textContent=Math.round(zoom*100)+'%';$('#scene-container').style.width=10000*zoom+'px';$('#scene-container').style.height=10000*zoom+'px'}
+function applyZoom(){zoom=Math.max(.15,Math.min(1.1,zoom));$('#scene').style.transform=`scale(${zoom})`;$('#zoom-label').textContent=Math.round(zoom*100)+'%';const extentX=Math.max(7000,...project.pages.map(p=>p.x+p.width+1000)),extentY=Math.max(5000,...project.pages.map(p=>p.y+(metrics.get(p.id)?.height||2000)+1500));$('#scene').style.width=extentX+'px';$('#scene').style.height=extentY+'px';$('#scene-container').style.width=extentX*zoom+'px';$('#scene-container').style.height=extentY*zoom+'px'}
 function focusPage(){const p=current();$('#workspace').scrollTo({left:Math.max(0,p.x*zoom-50),top:Math.max(0,p.y*zoom-70),behavior:'smooth'})}
 function nodeInfo(){if(!selection?.node)return null;const page=project.pages.find(p=>p.id===selection.page),block=page?.blocks.find(b=>b.id===selection.block);if(!block)return null;const t=document.createElement('template');t.innerHTML=block.html;const el=[...t.content.querySelectorAll('[data-node]')].find(n=>n.dataset.node===selection.node);return el?{page,block,t,el}:null}
 function updateNode(change){const info=nodeInfo();if(!info)return;commit(()=>{change(info.el);info.block.html=info.t.innerHTML});}
 function applyText(el,value){const icons=[...el.querySelectorAll('.icon')].map(i=>i.cloneNode(true));el.textContent=value;icons.forEach(i=>{el.append(' ',i)})}
 function renderInspector(){
  const page=current(),info=nodeInfo();$('#inspector-title').textContent=mode==='prototype'?'Interações':info?'Elemento':selection?.block?'Bloco':'Página';
- $('#inspector-help').textContent=mode==='prototype'?'Selecione um botão ou elemento. Arraste o ponto roxo até o título da página de destino, ou escolha o destino aqui. Use Testar para navegar.':'Clique em textos, imagens e botões para editar. Duplo clique no texto permite escrever diretamente na prancheta.';
+ $('#inspector-help').textContent=mode==='prototype'?'Selecione um botão ou elemento. Arraste o ponto roxo até o título da página de destino, ou escolha o destino aqui. Use Testar para navegar. A conexão verde inferior une os blocos na mesma página.':'Use o conector verde inferior para unir blocos na mesma página. Clique em textos, imagens e botões para editar. Duplo clique no texto permite escrever diretamente na prancheta.';
  if(mode==='prototype'&&info){const link=project.links.find(l=>l.fromPage===active&&l.block===selection.block&&l.node===selection.node);
   $('#inspector').innerHTML=`<p class="inspector-subtitle">${esc(info.el.tagName.toLowerCase())} · ${esc((info.el.textContent||'Imagem').slice(0,65))}</p><label>Ao clicar, navegar para<select id="link-target"><option value="">Sem ligação</option>${project.pages.map(p=>`<option value="${esc(p.id)}" ${link?.toPage===p.id?'selected':''}>${esc(p.name)}</option>`).join('')}</select></label><p class="panel-tip">A ligação será um link real no site exportado.</p><button class="wide" id="new-subpage"><span class="icon">add_link</span>Criar subpágina e conectar</button>`;
   $('#link-target').onchange=e=>connect(e.target.value);$('#new-subpage').onclick=async()=>{const source={...selection};await addPage(false);selection=source;active=source.page;connect(project.pages.at(-1).id)};return;
@@ -89,7 +93,8 @@ function renderInspector(){
   $('#connect-mode').onclick=()=>setMode('prototype');$('#select-parent-block').onclick=()=>{selection.node=null;renderInspector();drawConnections()};return;
  }
  if(selection?.block){const block=page.blocks.find(b=>b.id===selection.block);if(block){$('#inspector').innerHTML=`<p class="inspector-subtitle">${esc(definition(block.blockId).name)}<br>${esc(definition(block.blockId).source)}</p><button id="duplicate-block" class="wide"><span class="icon">content_copy</span>Duplicar bloco</button><button id="delete-block" class="wide danger"><span class="icon">delete</span>Excluir bloco</button>`;$('#duplicate-block').onclick=()=>commit(()=>{const i=page.blocks.indexOf(block);page.blocks.splice(i+1,0,{...structuredClone(block),id:uid()})});$('#delete-block').onclick=()=>commit(()=>{page.blocks=page.blocks.filter(b=>b.id!==block.id);project.links=project.links.filter(l=>l.block!==block.id);selection=null});return}}
- $('#inspector').innerHTML=`<p class="inspector-subtitle">${esc(page.name)} · ${page.blocks.length} seções</p><label>Nome da página<input id="page-name" value="${esc(page.name)}"></label><label>Nome do arquivo<input id="page-slug" value="${esc(page.slug)}" ${page.id===project.home?'disabled':''}><small>${esc(fileFor(project,page.id))}</small></label><label>Largura da prancheta<select id="page-width"><option value="1200">Desktop · 1200 px</option><option value="768">Tablet · 768 px</option><option value="390">Mobile · 390 px</option></select></label><label>Inserir modelo completo<select id="preset"><option value="">Escolher modelo…</option>${catalog.presets.map(p=>`<option value="${p.id}">${esc(p.name)}</option>`).join('')}</select></label><p class="panel-tip">Adiciona as seções ao fim desta página.</p><button id="home-page" class="wide" ${project.home===page.id?'disabled':''}><span class="icon">home</span>Definir como inicial</button><button id="duplicate-page" class="wide"><span class="icon">content_copy</span>Duplicar página</button><button id="delete-page" class="wide danger" ${project.pages.length===1?'disabled':''}><span class="icon">delete</span>Excluir página</button><div id="page-links"></div>`;
+ $('#inspector').innerHTML=`<p class="inspector-subtitle">${esc(page.name)} · ${page.blocks.length} seções</p><label>Nome da página<input id="page-name" value="${esc(page.name)}"></label><label>Nome do arquivo<input id="page-slug" value="${esc(page.slug)}" ${page.id===project.home?'disabled':''}><small>${esc(fileFor(composeProject(project),rootOf(project,page.id)))}</small></label><label>Largura da prancheta<select id="page-width"><option value="1200">Desktop · 1200 px</option><option value="768">Tablet · 768 px</option><option value="390">Mobile · 390 px</option></select></label><label>Inserir modelo completo<select id="preset"><option value="">Escolher modelo…</option>${catalog.presets.map(p=>`<option value="${p.id}">${esc(p.name)}</option>`).join('')}</select></label><p class="panel-tip">Adiciona as seções ao fim desta página.</p><label>Próximo bloco na mesma página<select id="sequence-target"><option value="">Fim da página</option>${project.pages.filter(q=>q.id!==page.id).map(q=>`<option value="${esc(q.id)}" ${(project.sequences||[]).some(e=>e.from===page.id&&e.to===q.id)?'selected':''}>${esc(q.name)}</option>`).join('')}</select></label><button id="home-page" class="wide" ${project.home===page.id?'disabled':''}><span class="icon">home</span>Definir como inicial</button><button id="duplicate-page" class="wide"><span class="icon">content_copy</span>Duplicar página</button><button id="delete-page" class="wide danger" ${project.pages.length===1?'disabled':''}><span class="icon">delete</span>Excluir página</button><div id="page-links"></div>`;
+ $('#sequence-target').onchange=e=>connectSequence(page.id,e.target.value);
  $('#page-name').onchange=e=>commit(()=>page.name=e.target.value.trim()||'Página');$('#page-slug').onchange=e=>commit(()=>page.slug=uniqueSlug(e.target.value,page.id));$('#page-width').value=page.width;$('#page-width').onchange=e=>commit(()=>page.width=Number(e.target.value));$('#home-page').onclick=()=>commit(()=>{const previous=project.pages.find(p=>p.id===project.home);if(previous.slug==='index')previous.slug=uniqueSlug(previous.name,previous.id);project.home=page.id});
  $('#preset').onchange=async e=>{const preset=catalog.presets.find(p=>p.id===e.target.value);if(!preset)return;try{const blocks=await Promise.all(preset.blocks.map(instance));commit(()=>page.blocks.push(...blocks))}catch(error){notify(error.message)}};
  $('#duplicate-page').onclick=()=>commit(()=>{const clone=structuredClone(page),mapping=new Map();clone.id=uid();clone.name+=' · cópia';clone.slug=uniqueSlug(clone.name);clone.x+=200;clone.y+=200;clone.blocks.forEach(b=>{const old=b.id;b.id=uid();mapping.set(old,b.id)});project.pages.push(clone);project.links.filter(l=>l.fromPage===page.id).forEach(l=>project.links.push({...l,fromPage:clone.id,block:mapping.get(l.block),toPage:l.toPage===page.id?clone.id:l.toPage}));active=clone.id;selection=null});
@@ -99,20 +104,23 @@ function renderInspector(){
 function safeURL(value,image=false){return !/^\s*(javascript|vbscript|file):/i.test(value)&&(!/^\s*data:/i.test(value)||image&&/^data:image\/(png|jpeg|webp|gif|avif);base64,/i.test(value))}
 function connect(to){if(!selection?.node)return;commit(()=>setLink(project,{fromPage:selection.page,block:selection.block,node:selection.node,toPage:to}));notify(to?'Ligação criada. Use Testar para navegar.':'Ligação removida.')}
 function pointFor(sel){const p=project.pages.find(p=>p.id===sel.page||p.id===sel.fromPage),m=metrics.get(p?.id)?.nodes.find(n=>n.block===sel.block&&n.node===sel.node);return p&&m?{x:p.x+m.x+m.width+15,y:p.y+64+m.y+m.height/2}:null}
+function sequencePoint(id){const board=$$('.artboard').find(b=>b.dataset.page===id),button=board?.querySelector('.sequence-port');if(!button)return null;const r=button.getBoundingClientRect(),scene=$('#scene').getBoundingClientRect();return{x:(r.left+r.width/2-scene.left)/zoom,y:(r.top+r.height/2-scene.top)/zoom}}
 function drawConnections(){
  const svg=$('#connections');svg.innerHTML='<defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" style="fill:#8d80ed;stroke:none"/></marker></defs>';
  if(mode==='prototype')for(const l of project.links){const a=pointFor(l),p=project.pages.find(p=>p.id===l.toPage);if(!a||!p)continue;const b={x:p.x+24,y:p.y+32},dx=Math.max(120,Math.abs(b.x-a.x)/2);const path=document.createElementNS('http://www.w3.org/2000/svg','path');path.setAttribute('d',`M${a.x},${a.y} C${a.x+dx},${a.y} ${b.x-dx},${b.y} ${b.x},${b.y}`);path.setAttribute('marker-end','url(#arrow)');svg.append(path)}
+ for(const edge of project.sequences||[]){const from=project.pages.find(p=>p.id===edge.from),to=project.pages.find(p=>p.id===edge.to);if(!from||!to)continue;const a=sequencePoint(from.id)||{x:from.x+from.width/2,y:from.y+64+(metrics.get(from.id)?.height||900)+60},b={x:to.x+12,y:to.y+32};const path=document.createElementNS('http://www.w3.org/2000/svg','path');path.setAttribute('d',`M${a.x},${a.y} C${a.x},${a.y+180} ${b.x},${b.y-180} ${b.x},${b.y}`);path.classList.add('sequence-line');svg.append(path)}
  const point=selection?.node&&pointFor(selection);$('#connector').hidden=mode!=='prototype'||!point;if(point){$('#connector').style.left=point.x-17+'px';$('#connector').style.top=point.y-17+'px'}
 }
 function setMode(value){mode=value;$('#design-mode').classList.toggle('active',mode==='design');$('#prototype-mode').classList.toggle('active',mode==='prototype');$('#canvas-hint').innerHTML=mode==='design'?'DESIGN <span>Clique para selecionar · Duplo clique para escrever</span>':'PROTÓTIPO <span>Selecione um elemento · Arraste o ponto até outra prancheta</span>';renderInspector();renderBoards()}
 async function addPage(usePreset=false){const page=await makePage(null,project.pages.length);page.slug=uniqueSlug(page.slug);commit(()=>{project.pages.push(page);active=page.id;selection=null});focusPage();return page}
 function download(blob,name){const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),30000)}
-function showPreview(id){previewPage=id;$('#preview-page').innerHTML=project.pages.map(p=>`<option value="${esc(p.id)}">${esc(p.name)}</option>`).join('');$('#preview-page').value=id;$('#preview-frame').srcdoc=buildDocument(project,project.pages.find(p=>p.id===id),catalog,{base:new URL('.',location.href).href,preview:true});if(!$('#preview-dialog').open)$('#preview-dialog').showModal()}
+function showPreview(id,anchor=''){const assembled=composeProject(project);const root=rootOf(project,id);previewPage=root;$('#preview-page').innerHTML=assembled.pages.map(p=>`<option value="${esc(p.id)}">${esc(p.name)}</option>`).join('');$('#preview-page').value=root;$('#preview-frame').srcdoc=buildDocument(assembled,assembled.pages.find(p=>p.id===root),catalog,{base:new URL('.',location.href).href,preview:true,anchor:anchor||(id!==root?'artboard-'+id:'')});if(!$('#preview-dialog').open)$('#preview-dialog').showModal()}
+
 async function exportSite(){
  const button=$('#export');button.disabled=true;notify('Preparando páginas, imagens, fontes e ligações…');
  try{
   validateProject(project,new Set(catalog.blocks.map(b=>b.id)));
-  const files=project.pages.map(p=>({name:fileFor(project,p.id),data:buildDocument(project,p,catalog)}));
+  const assembled=composeProject(project);const files=assembled.pages.map(p=>({name:fileFor(assembled,p.id),data:buildDocument(assembled,p,catalog)}));
   const paths=['page.css','runtime.js',...catalog.assets];
   for(let i=0;i<paths.length;i+=6){const batch=await Promise.all(paths.slice(i,i+6).map(async name=>({name,data:await(await request(name)).arrayBuffer()})));files.push(...batch)}
   files.push({name:'projeto.forma.json',data:JSON.stringify(project,null,2)},{name:'.nojekyll',data:''},{name:'LEIA-ME.txt',data:'Abra index.html ou publique esta pasta em hospedagem estática. As ligações entre páginas foram preservadas. Formulários são demonstrativos e não enviam reservas. Para continuar a edição, importe projeto.forma.json no Forma Studio. Fontes e fotos acompanham a exportação.'});
@@ -120,17 +128,21 @@ async function exportSite(){
  }catch(e){notify(e.message)}finally{button.disabled=false}
 }
 window.addEventListener('message',e=>{
- if(e.source===$('#preview-frame').contentWindow&&e.data?.kind==='preview-nav'){if(project.pages.some(p=>p.id===e.data.page))showPreview(e.data.page);return}
+ if(e.source===$('#preview-frame').contentWindow&&e.data?.kind==='preview-nav'){if(project.pages.some(p=>p.id===e.data.page))showPreview(e.data.page,e.data.anchor||'');return}
  const board=$$('.artboard').find(b=>b.querySelector('iframe').contentWindow===e.source);if(!board||!e.data||board.dataset.page!==e.data.page)return;
  const d=e.data;
- if(d.kind==='metrics'){if(!Number.isFinite(d.height)||!Array.isArray(d.nodes))return;const height=Math.min(50000,Math.max(200,d.height));board.querySelector('iframe').style.height=height+'px';metrics.set(d.page,{height,nodes:d.nodes});drawConnections()}
+ if(d.kind==='metrics'){if(!Number.isFinite(d.height)||!Array.isArray(d.nodes))return;const height=Math.min(50000,Math.max(200,d.height));board.querySelector('iframe').style.height=height+'px';metrics.set(d.page,{height,nodes:d.nodes});drawConnections();applyZoom()}
  else if(d.kind==='select'){active=d.page;selection={page:d.page,block:d.block,node:d.node};renderPanels();$$('.artboard').forEach(b=>b.classList.toggle('active',b===board));drawConnections()}
  else if(d.kind==='inline-text'){selection={page:d.page,block:d.block,node:d.node};active=d.page;updateNode(el=>applyText(el,String(d.text)))}
 });
-$('#connector').onpointerdown=e=>{if(!selection?.node)return;e.preventDefault();const source={...selection};$('#connector').setPointerCapture(e.pointerId);dragLink=source;
- $('#connector').onpointermove=ev=>{$$('.artboard').forEach(b=>{const r=b.getBoundingClientRect();b.classList.toggle('target',ev.clientX>=r.left&&ev.clientX<=r.right&&ev.clientY>=r.top&&ev.clientY<=r.bottom)})};
- $('#connector').onpointerup=ev=>{const target=$$('.artboard').find(b=>{const r=b.getBoundingClientRect();return ev.clientX>=r.left&&ev.clientX<=r.right&&ev.clientY>=r.top&&ev.clientY<=r.bottom});$$('.artboard').forEach(b=>b.classList.remove('target'));$('#connector').onpointermove=null;$('#connector').onpointerup=null;dragLink=null;if(target){selection=source;active=source.page;connect(target.dataset.page)}else notify('Solte o ponto sobre uma prancheta de destino.')};
-};
+function connectSequence(from,to){try{const next=structuredClone(project);setSequence(next,from,to);commit(()=>{project=next});notify(to?'Blocos conectados: serão exportados na mesma página, nesta ordem.':'Sequência desconectada.')}catch(e){notify(e.message);render()}}
+function bindWire(handle,getSource,type){handle.onpointerdown=e=>{if(e.button!==0)return;const source=getSource();if(!source)return;e.preventDefault();e.stopPropagation();handle.setPointerCapture(e.pointerId);let moved=false;
+ const startPoint=type==='sequence'?sequencePoint(source.page):pointFor(source);
+ handle.onpointermove=ev=>{moved=true;const scene=$('#scene').getBoundingClientRect(),x=(ev.clientX-scene.left)/zoom,y=(ev.clientY-scene.top)/zoom;let line=$('#drag-wire');if(!line){line=document.createElementNS('http://www.w3.org/2000/svg','path');line.id='drag-wire';line.style.strokeDasharray='15 10';if(type==='sequence')line.classList.add('sequence-line');$('#connections').append(line)}if(startPoint)line.setAttribute('d',`M${startPoint.x},${startPoint.y} L${x},${y}`);$$('.artboard').forEach(b=>{const r=b.getBoundingClientRect();b.classList.toggle('target',ev.clientX>=r.left&&ev.clientX<=r.right&&ev.clientY>=r.top&&ev.clientY<=r.bottom)})};
+ handle.onpointerup=ev=>{const target=$$('.artboard').find(b=>{const r=b.getBoundingClientRect();return ev.clientX>=r.left&&ev.clientX<=r.right&&ev.clientY>=r.top&&ev.clientY<=r.bottom});$$('.artboard').forEach(b=>b.classList.remove('target'));$('#drag-wire')?.remove();handle.onpointermove=null;handle.onpointerup=null;if(!moved){setActive(source.page);return}if(target){if(type==='sequence')connectSequence(source.page,target.dataset.page);else{selection=source;active=source.page;connect(target.dataset.page)}}else notify('Solte sobre a prancheta de destino ou use a lista de opções.')};
+ handle.onpointercancel=()=>{handle.onpointermove=null;handle.onpointerup=null;$('#drag-wire')?.remove();$$('.artboard').forEach(b=>b.classList.remove('target'))};
+}}
+bindWire($('#connector'),()=>selection?.node?{...selection}:null,'navigation');
 $('#design-mode').onclick=()=>setMode('design');$('#prototype-mode').onclick=()=>setMode('prototype');$('#undo').onclick=undo;$('#redo').onclick=redo;
 $('#zoom-in').onclick=()=>{zoom+=.1;applyZoom()};$('#zoom-out').onclick=()=>{zoom-=.1;applyZoom()};$('#focus-page').onclick=focusPage;
 $('#desktop').onclick=()=>commit(()=>current().width=1200);$('#mobile').onclick=()=>commit(()=>current().width=390);
@@ -145,11 +157,15 @@ document.addEventListener('keydown',e=>{if(e.target.matches('input,textarea,sele
 // Space + drag on empty canvas pans the workspace; wheel/trackpad scrolls naturally.
 let space=false;document.addEventListener('keydown',e=>{if(e.code==='Space'&&!e.target.matches('input,textarea,select')){space=true;e.preventDefault()}});document.addEventListener('keyup',e=>{if(e.code==='Space')space=false});window.addEventListener('blur',()=>space=false);
 $('#workspace').onpointerdown=e=>{if(!(space||e.button===1)||e.target.closest('button'))return;e.preventDefault();const w=$('#workspace'),x=e.clientX,y=e.clientY,left=w.scrollLeft,top=w.scrollTop;w.setPointerCapture(e.pointerId);w.onpointermove=ev=>{w.scrollLeft=left-(ev.clientX-x);w.scrollTop=top-(ev.clientY-y)};w.onpointerup=()=>{w.onpointermove=null;w.onpointerup=null}};
+
+async function floatingProject(){const pages=[];for(let i=0;i<catalog.blocks.length;i++){const def=catalog.blocks[i],page=await makePage(null,i);page.name=def.source+' · '+def.name.slice(0,42);page.slug=def.id;page.blocks=[await instance(def.id)];pages.push(page)}return{version:VERSION,name:'Biblioteca · Blocos flutuantes',home:pages[0].id,pages,links:[],sequences:[]}}
+$('#all-blocks').onclick=async()=>{if(!confirm('Abrir um novo mapa com todos os blocos? O projeto atual pode ser recuperado em Desfazer. Salve o JSON para guardá-lo.'))return;try{const next=await floatingProject();commit(()=>{project=next;active=next.home;selection=null});focusPage()}catch(e){notify(e.message)}};
+
 async function start(){
  if(location.protocol==='file:')throw Error('Execute npm run dev e abra http://localhost:4173. O editor também funciona no GitHub Pages.');
  catalog=await(await request('catalog.json')).json();$('#block-count').textContent=catalog.blocks.length;
  let saved=null;try{saved=localStorage.getItem(STORAGE)}catch{}if(saved){try{project=validateProject(JSON.parse(saved),new Set(catalog.blocks.map(b=>b.id)));project.pages.forEach(p=>p.blocks.forEach(b=>b.html=normalize(b.html)))}catch{notify('Não foi possível restaurar o rascunho. Abra o JSON salvo para recuperar o projeto.')}}
- if(!project){try{project=validateProject(await(await request('examples/hotel.forma.json')).json(),new Set(catalog.blocks.map(b=>b.id)))}catch{const pages=await Promise.all([makePage(catalog.presets[0],0),makePage(catalog.presets.find(p=>p.id==='deluxe'),1)]);project={version:VERSION,name:'Meu hotel',home:pages[0].id,pages,links:[]}}}
+ if(!project)project=await floatingProject();
  active=project.home;render();renderLibrary();persist();
 }
 start().catch(e=>{notify(e.message);$('#save-status').textContent='Não foi possível iniciar';$('#inspector').textContent=e.message});

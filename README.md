@@ -12,7 +12,7 @@ npm run dev
 
 Abra **http://localhost:4173**. O editor precisa de HTTP; não funciona abrindo `index.html` por duplo clique. O site exportado pode ser aberto localmente.
 
-Na primeira abertura, o projeto de exemplo mostra três pranchetas: **Início**, **Suíte Deluxe** e **Reserva**, com oito ligações já configuradas. O rascunho anterior tem prioridade se já existir neste navegador.
+Na primeira abertura, os **24 blocos aparecem como pranchetas flutuantes independentes**, em uma grade no mapa. Use **Abrir todos os blocos** para recriar esse mapa a qualquer momento. Depois de editar, o rascunho desta versão é restaurado ao reabrir. O exemplo de três páginas continua disponível em `examples/hotel.forma.json`, para importar se desejar.
 
 ## Criar e editar visualmente
 
@@ -34,6 +34,19 @@ Na primeira abertura, o projeto de exemplo mostra três pranchetas: **Início**,
 5. Clique em **Testar** para navegar pelas ligações. A prévia também mantém as interações demonstrativas dos blocos.
 
 As conexões são por elemento e permanecem salvas no JSON. Ao exportar, a página inicial vira `index.html`; as demais usam o nome de arquivo configurado. Duplicar uma página copia suas ligações. Excluí-la remove as ligações relacionadas.
+
+## Conectar blocos dentro da mesma página
+
+Cada prancheta tem um **conector verde na parte inferior** e uma lista **Conectar próximo bloco**. Arraste o conector para outra prancheta ou escolha o destino na lista. A linha verde representa a continuação vertical da página, não um clique de navegação. A mesma opção aparece no painel direito quando a prancheta inteira está selecionada.
+
+Por exemplo: **Hero → Quartos → Comodidades → Rodapé**. Essas quatro pranchetas continuam soltas no mapa para edição, mas **Testar** e **Exportar site** juntam os quatro blocos em um único HTML, na ordem das conexões. A posição física das pranchetas não define essa ordem.
+
+- **Roxo:** um botão ou outro elemento abre a prancheta de destino. Se ela faz parte de uma sequência, o link aponta para o bloco correto dentro da página montada.
+- **Verde:** uma prancheta é seguida por outra no mesmo documento.
+- Escolha **Fim da página** ou a primeira opção vazia para desfazer uma conexão verde.
+- Cada prancheta tem no máximo uma entrada e uma saída verde. O editor impede ciclos e duas entradas concorrentes. Para usar o mesmo conteúdo em outra página, duplique a prancheta.
+- O primeiro bloco da sequência determina o nome do arquivo. A sequência que contém a prancheta inicial é exportada como `index.html`.
+- Pranchetas não conectadas continuam sendo páginas independentes.
 
 ## Salvar o formato de trabalho e o resultado final
 
@@ -84,4 +97,4 @@ Categorias aceitas pela interface: `hero`, `header`, `content`, `rooms`, `featur
 
 Esta é uma primeira versão funcional do editor de blocos. Tem pranchetas, edição de conteúdo/estilo, ordenação de seções, subpáginas, conexões, undo/redo e exportação. Não implementa todas as ferramentas do Adobe XD: não há desenho vetorial livre, edição por coordenadas de cada elemento, colaboração em tempo real ou animações de transição entre páginas.
 
-Execute `npm run check` para verificar sintaxe e os dez testes de integridade. O gerador de ZIP também foi conferido com extração independente. A validação visual e de gestos em navegador ainda está pendente; não foi possível executá-la no ambiente de criação. O workflow de publicação está preparado, mas este pacote não foi enviado nem publicado em uma conta GitHub.
+Execute `npm run check` para verificar sintaxe e os quinze testes de integridade. O gerador de ZIP também foi conferido com extração independente. A validação visual e de gestos em navegador ainda está pendente; não foi possível executá-la no ambiente de criação. O workflow de publicação está preparado, mas este pacote não foi enviado nem publicado em uma conta GitHub.
