@@ -41,5 +41,5 @@ test('new CSS rules stay scoped to reference sections and include mobile breakpo
 });
 test('original landing sections are still available individually',()=>{
  for(const id of ['header','hero','trust-strip','problem','benefits','how-it-works','case-preview','comparison','services','lead-qualifier','faq','final-cta','footer','blog-pillars'])assert.ok(read(`sections/${id}.html`).length>0);
- assert.ok(read('index.html').includes('sections/hero.html'));
+ assert.ok(read('fontes/landing/index.html').includes('sections/hero.html'));
 });

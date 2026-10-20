@@ -1,3 +1,20 @@
+# Forma Studio — pranchetas e globais
+
+Execute `npm run dev` e abra `http://localhost:4173`. Não é necessário instalar dependências.
+
+- As 96 pranchetas ficam disponíveis por padrão. **Organizar todas as pranchetas** mostra as ocultas e distribui por referência; depois do carregamento, pode ser usado novamente para considerar as alturas medidas.
+- Em **Header e footer globais**, escolha os blocos compartilhados. **Editar header/footer** abre sua prancheta de origem. As alterações são aplicadas em **Testar** e **Exportar**, substituindo outros blocos da mesma categoria. As pranchetas de seção continuam isoladas para edição.
+- Em **Protótipo**, selecione um elemento. Os dois conectores laterais aparecem alinhados a ele, com uma linha indicando sua origem. Arraste até a página de destino. Também é possível escolher destino e lado em Propriedades.
+- Para desconectar, arraste a ponta da ligação para o espaço vazio do mapa ou escolha **Sem ligação**. O conector verde inferior continua unindo seções da mesma página.
+- Painéis recolhíveis em telas estreitas, controles acessíveis sem hover, largura livre entre 320 e 1920 px e CSS compartilhado entre landing, seções e site exportado.
+- **Desfazer** recupera alterações, exclusões e reorganização. Salve o JSON para levar o projeto a outro navegador.
+
+Validação: 32 testes automatizados aprovados; ZIP extraído e comparado byte a byte. A inspeção visual e gestual em navegador, zoom de texto e a matriz completa de larguras/alturas dos documentos de regras permanecem pendentes. As regras originais estão em `docs/`.
+
+A entrada `forma-studio/` redireciona ao editor principal para evitar duas versões de interface. Nenhuma publicação GitHub foi realizada.
+
+---
+
 # Forma Studio — construtor principal
 
 Este pacote corrige a organização da entrega anterior. O `index.html` da raiz é o **Forma Studio**. A landing enviada é material de origem, guardado em `fontes/landing/`, e suas **14 seções foram integradas como blocos editáveis**.

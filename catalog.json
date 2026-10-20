@@ -1288,6 +1288,7 @@
     "fontes/landing/blog/artigos/resposta-generica-sem-contexto-e-sem-personalizacao.html",
     "fontes/landing/blog/artigos/resposta-lenta-ou-irregular.html",
     "fontes/landing/blog/artigos/velocidade-e-experiencia-em-landing-pages.html",
-    "landing-runtime.js"
+    "landing-runtime.js",
+    "responsive.css"
   ]
 }
