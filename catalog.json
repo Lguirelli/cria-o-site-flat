@@ -7,7 +7,8 @@
       "source": "Form / Retreat",
       "theme": "form-page",
       "category": "hero",
-      "file": "blocks/form-01.html"
+      "file": "blocks/form-01.html",
+      "thumbnail": "thumbnails/form-01.svg"
     },
     {
       "id": "form-02",
@@ -15,7 +16,8 @@
       "source": "Form / Retreat",
       "theme": "form-page",
       "category": "rooms",
-      "file": "blocks/form-02.html"
+      "file": "blocks/form-02.html",
+      "thumbnail": "thumbnails/form-02.svg"
     },
     {
       "id": "emily-01",
@@ -23,7 +25,8 @@
       "source": "Grand Emily",
       "theme": "emily-page",
       "category": "hero",
-      "file": "blocks/emily-01.html"
+      "file": "blocks/emily-01.html",
+      "thumbnail": "thumbnails/emily-01.svg"
     },
     {
       "id": "emily-02",
@@ -31,7 +34,8 @@
       "source": "Grand Emily",
       "theme": "emily-page",
       "category": "content",
-      "file": "blocks/emily-02.html"
+      "file": "blocks/emily-02.html",
+      "thumbnail": "thumbnails/emily-02.svg"
     },
     {
       "id": "emily-03",
@@ -39,7 +43,8 @@
       "source": "Grand Emily",
       "theme": "emily-page",
       "category": "rooms",
-      "file": "blocks/emily-03.html"
+      "file": "blocks/emily-03.html",
+      "thumbnail": "thumbnails/emily-03.svg"
     },
     {
       "id": "qelli-01",
@@ -47,7 +52,8 @@
       "source": "Qelli",
       "theme": "qelli-page",
       "category": "header",
-      "file": "blocks/qelli-01.html"
+      "file": "blocks/qelli-01.html",
+      "thumbnail": "thumbnails/qelli-01.svg"
     },
     {
       "id": "qelli-02",
@@ -55,7 +61,8 @@
       "source": "Qelli",
       "theme": "qelli-page",
       "category": "content",
-      "file": "blocks/qelli-02.html"
+      "file": "blocks/qelli-02.html",
+      "thumbnail": "thumbnails/qelli-02.svg"
     },
     {
       "id": "qelli-03",
@@ -63,7 +70,8 @@
       "source": "Qelli",
       "theme": "qelli-page",
       "category": "content",
-      "file": "blocks/qelli-03.html"
+      "file": "blocks/qelli-03.html",
+      "thumbnail": "thumbnails/qelli-03.svg"
     },
     {
       "id": "qelli-04",
@@ -71,7 +79,8 @@
       "source": "Qelli",
       "theme": "qelli-page",
       "category": "rooms",
-      "file": "blocks/qelli-04.html"
+      "file": "blocks/qelli-04.html",
+      "thumbnail": "thumbnails/qelli-04.svg"
     },
     {
       "id": "verina-01",
@@ -79,7 +88,8 @@
       "source": "Verina Sifnos",
       "theme": "verina-page",
       "category": "header",
-      "file": "blocks/verina-01.html"
+      "file": "blocks/verina-01.html",
+      "thumbnail": "thumbnails/verina-01.svg"
     },
     {
       "id": "verina-02",
@@ -87,7 +97,8 @@
       "source": "Verina Sifnos",
       "theme": "verina-page",
       "category": "booking",
-      "file": "blocks/verina-02.html"
+      "file": "blocks/verina-02.html",
+      "thumbnail": "thumbnails/verina-02.svg"
     },
     {
       "id": "amenities-01",
@@ -95,7 +106,8 @@
       "source": "Amenities",
       "theme": "amenities-page",
       "category": "features",
-      "file": "blocks/amenities-01.html"
+      "file": "blocks/amenities-01.html",
+      "thumbnail": "thumbnails/amenities-01.svg"
     },
     {
       "id": "amenities-02",
@@ -103,7 +115,8 @@
       "source": "Amenities",
       "theme": "amenities-page",
       "category": "booking",
-      "file": "blocks/amenities-02.html"
+      "file": "blocks/amenities-02.html",
+      "thumbnail": "thumbnails/amenities-02.svg"
     },
     {
       "id": "deluxe-01",
@@ -111,7 +124,8 @@
       "source": "Double Deluxe",
       "theme": "deluxe-page",
       "category": "hero",
-      "file": "blocks/deluxe-01.html"
+      "file": "blocks/deluxe-01.html",
+      "thumbnail": "thumbnails/deluxe-01.svg"
     },
     {
       "id": "deluxe-02",
@@ -119,7 +133,8 @@
       "source": "Double Deluxe",
       "theme": "deluxe-page",
       "category": "rooms",
-      "file": "blocks/deluxe-02.html"
+      "file": "blocks/deluxe-02.html",
+      "thumbnail": "thumbnails/deluxe-02.svg"
     },
     {
       "id": "deluxe-03",
@@ -127,7 +142,8 @@
       "source": "Double Deluxe",
       "theme": "deluxe-page",
       "category": "features",
-      "file": "blocks/deluxe-03.html"
+      "file": "blocks/deluxe-03.html",
+      "thumbnail": "thumbnails/deluxe-03.svg"
     },
     {
       "id": "deluxe-04",
@@ -135,7 +151,8 @@
       "source": "Double Deluxe",
       "theme": "deluxe-page",
       "category": "features",
-      "file": "blocks/deluxe-04.html"
+      "file": "blocks/deluxe-04.html",
+      "thumbnail": "thumbnails/deluxe-04.svg"
     },
     {
       "id": "deluxe-05",
@@ -143,7 +160,8 @@
       "source": "Double Deluxe",
       "theme": "deluxe-page",
       "category": "content",
-      "file": "blocks/deluxe-05.html"
+      "file": "blocks/deluxe-05.html",
+      "thumbnail": "thumbnails/deluxe-05.svg"
     },
     {
       "id": "realtoro-01",
@@ -151,7 +169,8 @@
       "source": "RealToro",
       "theme": "realtoro-page",
       "category": "hero",
-      "file": "blocks/realtoro-01.html"
+      "file": "blocks/realtoro-01.html",
+      "thumbnail": "thumbnails/realtoro-01.svg"
     },
     {
       "id": "realtoro-02",
@@ -159,7 +178,8 @@
       "source": "RealToro",
       "theme": "realtoro-page",
       "category": "features",
-      "file": "blocks/realtoro-02.html"
+      "file": "blocks/realtoro-02.html",
+      "thumbnail": "thumbnails/realtoro-02.svg"
     },
     {
       "id": "realtoro-03",
@@ -167,7 +187,8 @@
       "source": "RealToro",
       "theme": "realtoro-page",
       "category": "content",
-      "file": "blocks/realtoro-03.html"
+      "file": "blocks/realtoro-03.html",
+      "thumbnail": "thumbnails/realtoro-03.svg"
     },
     {
       "id": "retreats-01",
@@ -175,7 +196,8 @@
       "source": "W Retreats",
       "theme": "retreats-page",
       "category": "hero",
-      "file": "blocks/retreats-01.html"
+      "file": "blocks/retreats-01.html",
+      "thumbnail": "thumbnails/retreats-01.svg"
     },
     {
       "id": "retreats-02",
@@ -183,7 +205,8 @@
       "source": "W Retreats",
       "theme": "retreats-page",
       "category": "content",
-      "file": "blocks/retreats-02.html"
+      "file": "blocks/retreats-02.html",
+      "thumbnail": "thumbnails/retreats-02.svg"
     },
     {
       "id": "retreats-03",
@@ -191,7 +214,44 @@
       "source": "W Retreats",
       "theme": "retreats-page",
       "category": "content",
-      "file": "blocks/retreats-03.html"
+      "file": "blocks/retreats-03.html",
+      "thumbnail": "thumbnails/retreats-03.svg"
+    },
+    {
+      "id": "footer-solitude",
+      "name": "Solitude Press · Editorial · Creme",
+      "source": "Footer Collection",
+      "theme": "footer-solitude-theme",
+      "category": "footer",
+      "file": "blocks/footer-solitude.html",
+      "thumbnail": "thumbnails/footer-solitude.svg"
+    },
+    {
+      "id": "footer-techflow",
+      "name": "TechFlow · Tecnologia · Escuro",
+      "source": "Footer Collection",
+      "theme": "footer-techflow-theme",
+      "category": "footer",
+      "file": "blocks/footer-techflow.html",
+      "thumbnail": "thumbnails/footer-techflow.svg"
+    },
+    {
+      "id": "footer-travelco",
+      "name": "TravelCo · Viagens · Contatos",
+      "source": "Footer Collection",
+      "theme": "footer-travelco-theme",
+      "category": "footer",
+      "file": "blocks/footer-travelco.html",
+      "thumbnail": "thumbnails/footer-travelco.svg"
+    },
+    {
+      "id": "footer-ai-platform",
+      "name": "AI Platform · IA · Azul-marinho",
+      "source": "Footer Collection",
+      "theme": "footer-ai-theme",
+      "category": "footer",
+      "file": "blocks/footer-ai-platform.html",
+      "thumbnail": "thumbnails/footer-ai-platform.svg"
     }
   ],
   "presets": [

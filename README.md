@@ -1,6 +1,6 @@
 # Forma Studio
 
-Editor visual de páginas e subpáginas baseado nos 24 blocos das oito referências de landing pages. A interface usa pranchetas, modos Design/Protótipo e conexões visuais, em um fluxo inspirado no Adobe XD. O resultado é um site estático responsivo que pode ser publicado no GitHub Pages.
+Editor visual de páginas e subpáginas baseado nos 28 blocos das oito referências de landing pages. A interface usa pranchetas, modos Design/Protótipo e conexões visuais, em um fluxo inspirado no Adobe XD. O resultado é um site estático responsivo que pode ser publicado no GitHub Pages.
 
 ## Começar
 
@@ -12,7 +12,7 @@ npm run dev
 
 Abra **http://localhost:4173**. O editor precisa de HTTP; não funciona abrindo `index.html` por duplo clique. O site exportado pode ser aberto localmente.
 
-Na primeira abertura, os **24 blocos aparecem como pranchetas flutuantes independentes**, em uma grade no mapa. Use **Abrir todos os blocos** para recriar esse mapa a qualquer momento. Depois de editar, o rascunho desta versão é restaurado ao reabrir. O exemplo de três páginas continua disponível em `examples/hotel.forma.json`, para importar se desejar.
+Na primeira abertura, os **28 blocos aparecem como pranchetas flutuantes independentes**, em uma grade no mapa. Use **Abrir todos os blocos** para recriar esse mapa a qualquer momento. Depois de editar, o rascunho desta versão é restaurado ao reabrir. O exemplo de três páginas continua disponível em `examples/hotel.forma.json`, para importar se desejar.
 
 ## Criar e editar visualmente
 
@@ -75,7 +75,7 @@ Documentação utilizada: https://docs.github.com/en/pages/getting-started-with-
 | Caminho | Conteúdo |
 | --- | --- |
 | `index.html`, `editor.css`, `editor.js` | Interface do editor, pranchetas e painel de propriedades |
-| `blocks/*.html` | 24 blocos HTML independentes |
+| `blocks/*.html` | 28 blocos HTML independentes |
 | `catalog.json` | Metadados, categorias, temas, oito modelos e arquivos exportáveis |
 | `lib/project.js` | Formato de projeto, validação e ligações |
 | `lib/document.js` | Montagem do HTML de prévia e exportação |
@@ -98,3 +98,15 @@ Categorias aceitas pela interface: `hero`, `header`, `content`, `rooms`, `featur
 Esta é uma primeira versão funcional do editor de blocos. Tem pranchetas, edição de conteúdo/estilo, ordenação de seções, subpáginas, conexões, undo/redo e exportação. Não implementa todas as ferramentas do Adobe XD: não há desenho vetorial livre, edição por coordenadas de cada elemento, colaboração em tempo real ou animações de transição entre páginas.
 
 Execute `npm run check` para verificar sintaxe e os quinze testes de integridade. O gerador de ZIP também foi conferido com extração independente. A validação visual e de gestos em navegador ainda está pendente; não foi possível executá-la no ambiente de criação. O workflow de publicação está preparado, mas este pacote não foi enviado nem publicado em uma conta GitHub.
+
+## Miniaturas vetoriais
+
+A biblioteca usa 28 wireframes SVG específicos em `thumbnails/`, em vez das fotografias dos modelos. Cada miniatura representa a composição da seção (imagens, títulos, cards, navegação, benefícios ou formulários). O campo `thumbnail` de cada bloco aponta para seu SVG. Para regenerar: `node scripts/generate-thumbnails.mjs`.
+
+## Rodapés da nova referência
+
+Quatro opções foram adicionadas: **Solitude Press**, **TechFlow**, **TravelCo** e **AI Platform**. Filtre por **Rodapés** na biblioteca. Cada opção tem HTML responsivo, wireframe SVG e uma prancheta editável. Na primeira abertura desta atualização, as opções que faltarem são acrescentadas ao rascunho, sem substituir os blocos existentes. Essa inclusão automática acontece uma vez.
+
+Use o conector verde do último bloco de conteúdo para ligar o rodapé à mesma página. No modo Protótipo, links do rodapé podem ser associados a outras pranchetas. Os contatos e os selos reproduzem conteúdo demonstrativo da referência; personalize-os para o projeto final. Ícones de interface usam Material Symbols do Google Fonts; redes sociais e meios de pagamento aparecem como textos editáveis.
+
+A análise das quatro referências está em `ANALISE_RODAPES.md`.
