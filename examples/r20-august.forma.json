@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "name": "Estudos de referência · PT-BR",
+  "home": "r20-august",
+  "pages": [
+    {
+      "id": "r20-august",
+      "name": "August · Referência 20/10",
+      "slug": "r20-august",
+      "x": 100,
+      "y": 100,
+      "width": 1200,
+      "blocks": [
+        {
+          "id": "r20-august-header",
+          "blockId": "r20-august-header",
+          "html": "<header class=\"nr-section nr-august nr-layout-nav\" id=\"august-header\" data-node=\"n1\"><div class=\"nr-inner\" data-node=\"n2\"><div class=\"nr-nav\" data-node=\"n3\"><a class=\"nr-brand\" href=\"#\" data-node=\"n4\">August</a><nav aria-label=\"Navegação de August\" data-node=\"node-4\"><a href=\"#august-about\" data-node=\"n5\">Sobre nós</a><a href=\"#august-works\" data-node=\"n6\">Projetos</a><a href=\"#august-events\" data-node=\"n7\">Serviços para eventos</a><a href=\"#august-marketing\" data-node=\"n8\">Serviços de marketing</a></nav><a class=\"nr-button \" href=\"#august-contact\" data-node=\"n9\">Contato<span class=\"icon\" aria-hidden=\"true\">arrow_outward</span></a></div></div></header>"
+        },
+        {
+          "id": "r20-august-about",
+          "blockId": "r20-august-about",
+          "html": "<section class=\"nr-section nr-august nr-layout-collage\" id=\"august-about\" data-node=\"n1\"><div class=\"nr-inner\" data-node=\"n2\"><div class=\"nr-collage\" data-node=\"n3\"><figure class=\"nr-media \" style=\"aspect-ratio:99/119\" data-node=\"n4\"><img src=\"assets/references-20261020/august.png\" alt=\"Retrato em preto e branco\" loading=\"lazy\" data-reference-crop=\"true\" style=\"position:absolute;width:1212.12121%;height:1674.78992%;max-width:none;left:-340.40404%;top:-198.31933%\" data-node=\"n5\"></figure><figure class=\"nr-media \" style=\"aspect-ratio:253/312\" data-node=\"n6\"><img src=\"assets/references-20261020/august.png\" alt=\"Evento em cenário verde\" loading=\"lazy\" data-reference-crop=\"true\" style=\"position:absolute;width:474.30830%;height:638.78205%;max-width:none;left:-188.14229%;top:-92.62821%\" data-node=\"n7\"></figure><figure class=\"nr-media \" style=\"aspect-ratio:98/119\" data-node=\"n8\"><img src=\"assets/references-20261020/august.png\" alt=\"Performance em cenário rosa\" loading=\"lazy\" data-reference-crop=\"true\" style=\"position:absolute;width:1224.48980%;height:1674.78992%;max-width:none;left:-882.65306%;top:-431.93277%\" data-node=\"n9\"></figure><h2 data-node=\"n10\">sobre nós</h2></div><p class=\"nr-center\" data-node=\"n11\">Em Londres, com atuação no mundo todo</p></div></section>"
+        },
+        {
+          "id": "r20-august-manifesto",
+          "blockId": "r20-august-manifesto",
+          "html": "<section class=\"nr-section nr-august nr-layout-statement\" id=\"august-manifesto\" data-node=\"n1\"><div class=\"nr-inner\" data-node=\"n2\"><div class=\"nr-center\" data-node=\"n3\"><h2 data-node=\"n4\">Somos um coletivo criativo de produtores de eventos, especialistas em marketing, diretores de arte, designers e analistas de estratégia.</h2></div><p class=\"nr-offset\" data-node=\"n5\">Juntos, criamos soluções sob medida para cada marca, combinando criatividade e impacto para construir experiências inovadoras e memoráveis.</p></div></section>"
+        },
+        {
+          "id": "r20-august-process",
+          "blockId": "r20-august-process",
+          "html": "<section class=\"nr-section nr-august nr-layout-timeline\" id=\"august-process\" data-node=\"n1\"><div class=\"nr-inner\" data-node=\"n2\"><h2 data-node=\"n3\">processo.</h2><ol class=\"nr-timeline\" data-node=\"n4\"><li data-node=\"node-4\"><h3 data-node=\"n5\">análise</h3><p data-node=\"n6\">Identifique a mensagem central e defina a direção.</p></li><li data-node=\"node-7\"><h3 data-node=\"n7\">conceito</h3><p data-node=\"n8\">Crie conceitos exclusivos e painéis de referências visuais.</p></li><li data-node=\"node-10\"><h3 data-node=\"n9\">visual e manifesto</h3><p data-node=\"n10\">Desenvolva a narrativa visual e a mensagem central.</p></li><li data-node=\"node-13\"><h3 data-node=\"n11\">orçamento</h3><p data-node=\"n12\">Apresente preços transparentes, sem custos ocultos.</p></li></ol></div></section>"
+        }
+      ]
+    }
+  ],
+  "links": [],
+  "sequences": []
+}

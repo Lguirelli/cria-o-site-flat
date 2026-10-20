@@ -252,6 +252,622 @@
       "category": "footer",
       "file": "blocks/footer-ai-platform.html",
       "thumbnail": "thumbnails/footer-ai-platform.svg"
+    },
+    {
+      "id": "r20-fulfillix-hero",
+      "name": "Mapa e promessa de fulfillment",
+      "source": "Fulfillix · Novas referências",
+      "theme": "nr-theme",
+      "category": "hero",
+      "file": "blocks/r20-fulfillix-hero.html",
+      "thumbnail": "thumbnails/r20-fulfillix-hero.svg",
+      "referenceImage": "assets/references-20261020/fulfillix.png",
+      "layout": "map"
+    },
+    {
+      "id": "r20-fulfillix-problems",
+      "name": "Quatro dores de operação",
+      "source": "Fulfillix · Novas referências",
+      "theme": "nr-theme",
+      "category": "features",
+      "file": "blocks/r20-fulfillix-problems.html",
+      "thumbnail": "thumbnails/r20-fulfillix-problems.svg",
+      "referenceImage": "assets/references-20261020/fulfillix.png",
+      "layout": "cards4"
+    },
+    {
+      "id": "r20-fulfillix-solutions",
+      "name": "Proposta e três soluções",
+      "source": "Fulfillix · Novas referências",
+      "theme": "nr-theme",
+      "category": "content",
+      "file": "blocks/r20-fulfillix-solutions.html",
+      "thumbnail": "thumbnails/r20-fulfillix-solutions.svg",
+      "referenceImage": "assets/references-20261020/fulfillix.png",
+      "layout": "splitlist"
+    },
+    {
+      "id": "r20-fulfillix-why",
+      "name": "Por que Fulfillix — imagem e lista",
+      "source": "Fulfillix · Novas referências",
+      "theme": "nr-theme",
+      "category": "features",
+      "file": "blocks/r20-fulfillix-why.html",
+      "thumbnail": "thumbnails/r20-fulfillix-why.svg",
+      "referenceImage": "assets/references-20261020/fulfillix.png",
+      "layout": "splitlist"
+    },
+    {
+      "id": "r20-fulfillix-reviews",
+      "name": "Depoimentos em três cartões",
+      "source": "Fulfillix · Novas referências",
+      "theme": "nr-theme",
+      "category": "content",
+      "file": "blocks/r20-fulfillix-reviews.html",
+      "thumbnail": "thumbnails/r20-fulfillix-reviews.svg",
+      "referenceImage": "assets/references-20261020/fulfillix.png",
+      "layout": "cards3"
+    },
+    {
+      "id": "r20-fulfillix-steps",
+      "name": "Processo de onboarding",
+      "source": "Fulfillix · Novas referências",
+      "theme": "nr-theme",
+      "category": "content",
+      "file": "blocks/r20-fulfillix-steps.html",
+      "thumbnail": "thumbnails/r20-fulfillix-steps.svg",
+      "referenceImage": "assets/references-20261020/fulfillix.png",
+      "layout": "steps"
+    },
+    {
+      "id": "r20-fulfillix-faq",
+      "name": "FAQ em quatro colunas",
+      "source": "Fulfillix · Novas referências",
+      "theme": "nr-theme",
+      "category": "content",
+      "file": "blocks/r20-fulfillix-faq.html",
+      "thumbnail": "thumbnails/r20-fulfillix-faq.svg",
+      "referenceImage": "assets/references-20261020/fulfillix.png",
+      "layout": "faq"
+    },
+    {
+      "id": "r20-fulfillix-journey",
+      "name": "Conversão com duas opções",
+      "source": "Fulfillix · Novas referências",
+      "theme": "nr-theme",
+      "category": "content",
+      "file": "blocks/r20-fulfillix-journey.html",
+      "thumbnail": "thumbnails/r20-fulfillix-journey.svg",
+      "referenceImage": "assets/references-20261020/fulfillix.png",
+      "layout": "cards2"
+    },
+    {
+      "id": "r20-fulfillix-cta",
+      "name": "Chamada final de operação",
+      "source": "Fulfillix · Novas referências",
+      "theme": "nr-theme",
+      "category": "content",
+      "file": "blocks/r20-fulfillix-cta.html",
+      "thumbnail": "thumbnails/r20-fulfillix-cta.svg",
+      "referenceImage": "assets/references-20261020/fulfillix.png",
+      "layout": "cta"
+    },
+    {
+      "id": "r20-fulfillix-footer",
+      "name": "Footer Fulfillix",
+      "source": "Fulfillix · Novas referências",
+      "theme": "nr-theme",
+      "category": "footer",
+      "file": "blocks/r20-fulfillix-footer.html",
+      "thumbnail": "thumbnails/r20-fulfillix-footer.svg",
+      "referenceImage": "assets/references-20261020/fulfillix.png",
+      "layout": "footer"
+    },
+    {
+      "id": "r20-statue-header",
+      "name": "Navegação Design",
+      "source": "Design · Escultura · Novas referências",
+      "theme": "nr-theme",
+      "category": "header",
+      "file": "blocks/r20-statue-header.html",
+      "thumbnail": "thumbnails/r20-statue-header.svg",
+      "referenceImage": "assets/references-20261020/statue.png",
+      "layout": "nav"
+    },
+    {
+      "id": "r20-statue-hero",
+      "name": "Hero escultura vermelha",
+      "source": "Design · Escultura · Novas referências",
+      "theme": "nr-theme",
+      "category": "hero",
+      "file": "blocks/r20-statue-hero.html",
+      "thumbnail": "thumbnails/r20-statue-hero.svg",
+      "referenceImage": "assets/references-20261020/statue.png",
+      "layout": "split"
+    },
+    {
+      "id": "r20-apex-header",
+      "name": "Navegação Apex",
+      "source": "Apex · Bloodhound · Novas referências",
+      "theme": "nr-theme",
+      "category": "header",
+      "file": "blocks/r20-apex-header.html",
+      "thumbnail": "thumbnails/r20-apex-header.svg",
+      "referenceImage": "assets/references-20261020/apex.png",
+      "layout": "nav"
+    },
+    {
+      "id": "r20-apex-hero",
+      "name": "Personagem e habilidades em três colunas",
+      "source": "Apex · Bloodhound · Novas referências",
+      "theme": "nr-theme",
+      "category": "hero",
+      "file": "blocks/r20-apex-hero.html",
+      "thumbnail": "thumbnails/r20-apex-hero.svg",
+      "referenceImage": "assets/references-20261020/apex.png",
+      "layout": "triple"
+    },
+    {
+      "id": "r20-folio-header",
+      "name": "Navegação Folioblox",
+      "source": "Folioblox · Novas referências",
+      "theme": "nr-theme",
+      "category": "header",
+      "file": "blocks/r20-folio-header.html",
+      "thumbnail": "thumbnails/r20-folio-header.svg",
+      "referenceImage": "assets/references-20261020/folio.png",
+      "layout": "nav"
+    },
+    {
+      "id": "r20-folio-hero",
+      "name": "Diretor criativo com retrato central",
+      "source": "Folioblox · Novas referências",
+      "theme": "nr-theme",
+      "category": "hero",
+      "file": "blocks/r20-folio-hero.html",
+      "thumbnail": "thumbnails/r20-folio-hero.svg",
+      "referenceImage": "assets/references-20261020/folio.png",
+      "layout": "portrait"
+    },
+    {
+      "id": "r20-folio-brands",
+      "name": "Faixa de marcas",
+      "source": "Folioblox · Novas referências",
+      "theme": "nr-theme",
+      "category": "content",
+      "file": "blocks/r20-folio-brands.html",
+      "thumbnail": "thumbnails/r20-folio-brands.svg",
+      "referenceImage": "assets/references-20261020/folio.png",
+      "layout": "strip"
+    },
+    {
+      "id": "r20-folio-about",
+      "name": "Manifesto e três projetos",
+      "source": "Folioblox · Novas referências",
+      "theme": "nr-theme",
+      "category": "content",
+      "file": "blocks/r20-folio-about.html",
+      "thumbnail": "thumbnails/r20-folio-about.svg",
+      "referenceImage": "assets/references-20261020/folio.png",
+      "layout": "gallery3"
+    },
+    {
+      "id": "r20-kianro-header",
+      "name": "Navegação Kianro",
+      "source": "Kianro · Novas referências",
+      "theme": "nr-theme",
+      "category": "header",
+      "file": "blocks/r20-kianro-header.html",
+      "thumbnail": "thumbnails/r20-kianro-header.svg",
+      "referenceImage": "assets/references-20261020/kianro.png",
+      "layout": "nav"
+    },
+    {
+      "id": "r20-kianro-hero",
+      "name": "Identidade e seis projetos",
+      "source": "Kianro · Novas referências",
+      "theme": "nr-theme",
+      "category": "hero",
+      "file": "blocks/r20-kianro-hero.html",
+      "thumbnail": "thumbnails/r20-kianro-hero.svg",
+      "referenceImage": "assets/references-20261020/kianro.png",
+      "layout": "gallery6"
+    },
+    {
+      "id": "r20-kianro-about",
+      "name": "Manifesto e métricas assimétricas",
+      "source": "Kianro · Novas referências",
+      "theme": "nr-theme",
+      "category": "content",
+      "file": "blocks/r20-kianro-about.html",
+      "thumbnail": "thumbnails/r20-kianro-about.svg",
+      "referenceImage": "assets/references-20261020/kianro.png",
+      "layout": "stats"
+    },
+    {
+      "id": "r20-onepoint-gallery",
+      "name": "Editorial Graphic Design",
+      "source": "Onepoint Design · Novas referências",
+      "theme": "nr-theme",
+      "category": "content",
+      "file": "blocks/r20-onepoint-gallery.html",
+      "thumbnail": "thumbnails/r20-onepoint-gallery.svg",
+      "referenceImage": "assets/references-20261020/onepoint.png",
+      "layout": "editorial"
+    },
+    {
+      "id": "r20-onepoint-numbers",
+      "name": "Projeto em números",
+      "source": "Onepoint Design · Novas referências",
+      "theme": "nr-theme",
+      "category": "content",
+      "file": "blocks/r20-onepoint-numbers.html",
+      "thumbnail": "thumbnails/r20-onepoint-numbers.svg",
+      "referenceImage": "assets/references-20261020/onepoint.png",
+      "layout": "triple"
+    },
+    {
+      "id": "r20-gioia-header",
+      "name": "Navegação do fotógrafo",
+      "source": "Francesco Gioia · Novas referências",
+      "theme": "nr-theme",
+      "category": "header",
+      "file": "blocks/r20-gioia-header.html",
+      "thumbnail": "thumbnails/r20-gioia-header.svg",
+      "referenceImage": "assets/references-20261020/gioia.png",
+      "layout": "nav"
+    },
+    {
+      "id": "r20-gioia-hero",
+      "name": "Tipografia sobre fotografia",
+      "source": "Francesco Gioia · Novas referências",
+      "theme": "nr-theme",
+      "category": "hero",
+      "file": "blocks/r20-gioia-hero.html",
+      "thumbnail": "thumbnails/r20-gioia-hero.svg",
+      "referenceImage": "assets/references-20261020/gioia.png",
+      "layout": "overlay"
+    },
+    {
+      "id": "r20-gioia-gallery",
+      "name": "Galeria horizontal do fotógrafo",
+      "source": "Francesco Gioia · Novas referências",
+      "theme": "nr-theme",
+      "category": "content",
+      "file": "blocks/r20-gioia-gallery.html",
+      "thumbnail": "thumbnails/r20-gioia-gallery.svg",
+      "referenceImage": "assets/references-20261020/gioia.png",
+      "layout": "carousel"
+    },
+    {
+      "id": "r20-bruno-about",
+      "name": "Sobre com colagem e retrato",
+      "source": "Bruno Grazina · Novas referências",
+      "theme": "nr-theme",
+      "category": "content",
+      "file": "blocks/r20-bruno-about.html",
+      "thumbnail": "thumbnails/r20-bruno-about.svg",
+      "referenceImage": "assets/references-20261020/bruno.png",
+      "layout": "split"
+    },
+    {
+      "id": "r20-bruno-contact",
+      "name": "Contato do portfólio",
+      "source": "Bruno Grazina · Novas referências",
+      "theme": "nr-theme",
+      "category": "footer",
+      "file": "blocks/r20-bruno-contact.html",
+      "thumbnail": "thumbnails/r20-bruno-contact.svg",
+      "referenceImage": "assets/references-20261020/bruno.png",
+      "layout": "footer"
+    },
+    {
+      "id": "r20-orbit-hero",
+      "name": "Hero CRM com IA",
+      "source": "Orbit CRM · Novas referências",
+      "theme": "nr-theme",
+      "category": "hero",
+      "file": "blocks/r20-orbit-hero.html",
+      "thumbnail": "thumbnails/r20-orbit-hero.svg",
+      "referenceImage": "assets/references-20261020/orbit.png",
+      "layout": "split"
+    },
+    {
+      "id": "r20-orbit-features",
+      "name": "Seis recursos de CRM",
+      "source": "Orbit CRM · Novas referências",
+      "theme": "nr-theme",
+      "category": "features",
+      "file": "blocks/r20-orbit-features.html",
+      "thumbnail": "thumbnails/r20-orbit-features.svg",
+      "referenceImage": "assets/references-20261020/orbit.png",
+      "layout": "cards6"
+    },
+    {
+      "id": "r20-orbit-comparison",
+      "name": "Tabela CRM inteligente e tradicional",
+      "source": "Orbit CRM · Novas referências",
+      "theme": "nr-theme",
+      "category": "content",
+      "file": "blocks/r20-orbit-comparison.html",
+      "thumbnail": "thumbnails/r20-orbit-comparison.svg",
+      "referenceImage": "assets/references-20261020/orbit.png",
+      "layout": "table"
+    },
+    {
+      "id": "r20-onion-hero",
+      "name": "Hero modular CORA",
+      "source": "Onion AI · Novas referências",
+      "theme": "nr-theme",
+      "category": "hero",
+      "file": "blocks/r20-onion-hero.html",
+      "thumbnail": "thumbnails/r20-onion-hero.svg",
+      "referenceImage": "assets/references-20261020/onion.png",
+      "layout": "center"
+    },
+    {
+      "id": "r20-onion-intro",
+      "name": "Introdução com três benefícios",
+      "source": "Onion AI · Novas referências",
+      "theme": "nr-theme",
+      "category": "features",
+      "file": "blocks/r20-onion-intro.html",
+      "thumbnail": "thumbnails/r20-onion-intro.svg",
+      "referenceImage": "assets/references-20261020/onion.png",
+      "layout": "cards3"
+    },
+    {
+      "id": "r20-onion-process",
+      "name": "Processo em quatro cards",
+      "source": "Onion AI · Novas referências",
+      "theme": "nr-theme",
+      "category": "content",
+      "file": "blocks/r20-onion-process.html",
+      "thumbnail": "thumbnails/r20-onion-process.svg",
+      "referenceImage": "assets/references-20261020/onion.png",
+      "layout": "cards4"
+    },
+    {
+      "id": "r20-onion-features",
+      "name": "Recursos CORA",
+      "source": "Onion AI · Novas referências",
+      "theme": "nr-theme",
+      "category": "features",
+      "file": "blocks/r20-onion-features.html",
+      "thumbnail": "thumbnails/r20-onion-features.svg",
+      "referenceImage": "assets/references-20261020/onion.png",
+      "layout": "cards3"
+    },
+    {
+      "id": "r20-vellum-hero",
+      "name": "Manifesto editorial Vellum",
+      "source": "Vellum · Novas referências",
+      "theme": "nr-theme",
+      "category": "hero",
+      "file": "blocks/r20-vellum-hero.html",
+      "thumbnail": "thumbnails/r20-vellum-hero.svg",
+      "referenceImage": "assets/references-20261020/vellum.png",
+      "layout": "split"
+    },
+    {
+      "id": "r20-vellum-services-strip",
+      "name": "Faixa de especialidades",
+      "source": "Vellum · Novas referências",
+      "theme": "nr-theme",
+      "category": "content",
+      "file": "blocks/r20-vellum-services-strip.html",
+      "thumbnail": "thumbnails/r20-vellum-services-strip.svg",
+      "referenceImage": "assets/references-20261020/vellum.png",
+      "layout": "strip"
+    },
+    {
+      "id": "r20-vellum-work",
+      "name": "Projetos em grade 2×2",
+      "source": "Vellum · Novas referências",
+      "theme": "nr-theme",
+      "category": "content",
+      "file": "blocks/r20-vellum-work.html",
+      "thumbnail": "thumbnails/r20-vellum-work.svg",
+      "referenceImage": "assets/references-20261020/vellum.png",
+      "layout": "gallery4"
+    },
+    {
+      "id": "r20-vellum-services",
+      "name": "Serviços em linhas",
+      "source": "Vellum · Novas referências",
+      "theme": "nr-theme",
+      "category": "content",
+      "file": "blocks/r20-vellum-services.html",
+      "thumbnail": "thumbnails/r20-vellum-services.svg",
+      "referenceImage": "assets/references-20261020/vellum.png",
+      "layout": "rows"
+    },
+    {
+      "id": "r20-vellum-metrics",
+      "name": "Equipe e quatro números",
+      "source": "Vellum · Novas referências",
+      "theme": "nr-theme",
+      "category": "content",
+      "file": "blocks/r20-vellum-metrics.html",
+      "thumbnail": "thumbnails/r20-vellum-metrics.svg",
+      "referenceImage": "assets/references-20261020/vellum.png",
+      "layout": "stats"
+    },
+    {
+      "id": "r20-august-header",
+      "name": "Navegação August",
+      "source": "August · Novas referências",
+      "theme": "nr-theme",
+      "category": "header",
+      "file": "blocks/r20-august-header.html",
+      "thumbnail": "thumbnails/r20-august-header.svg",
+      "referenceImage": "assets/references-20261020/august.png",
+      "layout": "nav"
+    },
+    {
+      "id": "r20-august-about",
+      "name": "Sobre com colagem tipográfica",
+      "source": "August · Novas referências",
+      "theme": "nr-theme",
+      "category": "hero",
+      "file": "blocks/r20-august-about.html",
+      "thumbnail": "thumbnails/r20-august-about.svg",
+      "referenceImage": "assets/references-20261020/august.png",
+      "layout": "collage"
+    },
+    {
+      "id": "r20-august-manifesto",
+      "name": "Manifesto do coletivo",
+      "source": "August · Novas referências",
+      "theme": "nr-theme",
+      "category": "content",
+      "file": "blocks/r20-august-manifesto.html",
+      "thumbnail": "thumbnails/r20-august-manifesto.svg",
+      "referenceImage": "assets/references-20261020/august.png",
+      "layout": "statement"
+    },
+    {
+      "id": "r20-august-process",
+      "name": "Processo vertical alternado",
+      "source": "August · Novas referências",
+      "theme": "nr-theme",
+      "category": "content",
+      "file": "blocks/r20-august-process.html",
+      "thumbnail": "thumbnails/r20-august-process.svg",
+      "referenceImage": "assets/references-20261020/august.png",
+      "layout": "timeline"
+    },
+    {
+      "id": "r20-peptide-header",
+      "name": "Navegação Pro Peptide",
+      "source": "Pro Peptide · Novas referências",
+      "theme": "nr-theme",
+      "category": "header",
+      "file": "blocks/r20-peptide-header.html",
+      "thumbnail": "thumbnails/r20-peptide-header.svg",
+      "referenceImage": "assets/references-20261020/peptide.png",
+      "layout": "nav"
+    },
+    {
+      "id": "r20-peptide-hero",
+      "name": "Hero de produto e benefícios",
+      "source": "Pro Peptide · Novas referências",
+      "theme": "nr-theme",
+      "category": "hero",
+      "file": "blocks/r20-peptide-hero.html",
+      "thumbnail": "thumbnails/r20-peptide-hero.svg",
+      "referenceImage": "assets/references-20261020/peptide.png",
+      "layout": "split"
+    },
+    {
+      "id": "r20-peptide-products",
+      "name": "Produtos em carrossel",
+      "source": "Pro Peptide · Novas referências",
+      "theme": "nr-theme",
+      "category": "content",
+      "file": "blocks/r20-peptide-products.html",
+      "thumbnail": "thumbnails/r20-peptide-products.svg",
+      "referenceImage": "assets/references-20261020/peptide.png",
+      "layout": "products"
+    },
+    {
+      "id": "r20-peptide-quality",
+      "name": "Qualidade com abas e produto",
+      "source": "Pro Peptide · Novas referências",
+      "theme": "nr-theme",
+      "category": "content",
+      "file": "blocks/r20-peptide-quality.html",
+      "thumbnail": "thumbnails/r20-peptide-quality.svg",
+      "referenceImage": "assets/references-20261020/peptide.png",
+      "layout": "quality"
+    },
+    {
+      "id": "r20-genex-header",
+      "name": "Navegação GeneX",
+      "source": "GeneX · Novas referências",
+      "theme": "nr-theme",
+      "category": "header",
+      "file": "blocks/r20-genex-header.html",
+      "thumbnail": "thumbnails/r20-genex-header.svg",
+      "referenceImage": "assets/references-20261020/genex.png",
+      "layout": "nav"
+    },
+    {
+      "id": "r20-genex-hero",
+      "name": "Hero pesquisa e longevidade",
+      "source": "GeneX · Novas referências",
+      "theme": "nr-theme",
+      "category": "hero",
+      "file": "blocks/r20-genex-hero.html",
+      "thumbnail": "thumbnails/r20-genex-hero.svg",
+      "referenceImage": "assets/references-20261020/genex.png",
+      "layout": "split"
+    },
+    {
+      "id": "r20-genex-research",
+      "name": "Áreas de pesquisa e terapia",
+      "source": "GeneX · Novas referências",
+      "theme": "nr-theme",
+      "category": "features",
+      "file": "blocks/r20-genex-research.html",
+      "thumbnail": "thumbnails/r20-genex-research.svg",
+      "referenceImage": "assets/references-20261020/genex.png",
+      "layout": "cards4"
+    },
+    {
+      "id": "r20-genex-science",
+      "name": "Ciência — capa de vídeo",
+      "source": "GeneX · Novas referências",
+      "theme": "nr-theme",
+      "category": "content",
+      "file": "blocks/r20-genex-science.html",
+      "thumbnail": "thumbnails/r20-genex-science.svg",
+      "referenceImage": "assets/references-20261020/genex.png",
+      "layout": "video"
+    },
+    {
+      "id": "r20-genex-technologies",
+      "name": "Três tecnologias de pesquisa",
+      "source": "GeneX · Novas referências",
+      "theme": "nr-theme",
+      "category": "features",
+      "file": "blocks/r20-genex-technologies.html",
+      "thumbnail": "thumbnails/r20-genex-technologies.svg",
+      "referenceImage": "assets/references-20261020/genex.png",
+      "layout": "gallery3"
+    },
+    {
+      "id": "r20-genex-visit",
+      "name": "Visita ao instituto",
+      "source": "GeneX · Novas referências",
+      "theme": "nr-theme",
+      "category": "content",
+      "file": "blocks/r20-genex-visit.html",
+      "thumbnail": "thumbnails/r20-genex-visit.svg",
+      "referenceImage": "assets/references-20261020/genex.png",
+      "layout": "video"
+    },
+    {
+      "id": "r20-genex-trials",
+      "name": "Estudos em dois cards",
+      "source": "GeneX · Novas referências",
+      "theme": "nr-theme",
+      "category": "content",
+      "file": "blocks/r20-genex-trials.html",
+      "thumbnail": "thumbnails/r20-genex-trials.svg",
+      "referenceImage": "assets/references-20261020/genex.png",
+      "layout": "cards2"
+    },
+    {
+      "id": "r20-genex-cta",
+      "name": "CTA final GeneX",
+      "source": "GeneX · Novas referências",
+      "theme": "nr-theme",
+      "category": "content",
+      "file": "blocks/r20-genex-cta.html",
+      "thumbnail": "thumbnails/r20-genex-cta.svg",
+      "referenceImage": "assets/references-20261020/genex.png",
+      "layout": "cta"
     }
   ],
   "presets": [
@@ -326,6 +942,146 @@
         "retreats-02",
         "retreats-03"
       ]
+    },
+    {
+      "id": "r20-fulfillix",
+      "name": "Fulfillix · Referência 20/10",
+      "blocks": [
+        "r20-fulfillix-hero",
+        "r20-fulfillix-problems",
+        "r20-fulfillix-solutions",
+        "r20-fulfillix-why",
+        "r20-fulfillix-reviews",
+        "r20-fulfillix-steps",
+        "r20-fulfillix-faq",
+        "r20-fulfillix-journey",
+        "r20-fulfillix-cta",
+        "r20-fulfillix-footer"
+      ]
+    },
+    {
+      "id": "r20-statue",
+      "name": "Design · Escultura · Referência 20/10",
+      "blocks": [
+        "r20-statue-header",
+        "r20-statue-hero"
+      ]
+    },
+    {
+      "id": "r20-apex",
+      "name": "Apex · Bloodhound · Referência 20/10",
+      "blocks": [
+        "r20-apex-header",
+        "r20-apex-hero"
+      ]
+    },
+    {
+      "id": "r20-folio",
+      "name": "Folioblox · Referência 20/10",
+      "blocks": [
+        "r20-folio-header",
+        "r20-folio-hero",
+        "r20-folio-brands",
+        "r20-folio-about"
+      ]
+    },
+    {
+      "id": "r20-kianro",
+      "name": "Kianro · Referência 20/10",
+      "blocks": [
+        "r20-kianro-header",
+        "r20-kianro-hero",
+        "r20-kianro-about"
+      ]
+    },
+    {
+      "id": "r20-onepoint",
+      "name": "Onepoint Design · Referência 20/10",
+      "blocks": [
+        "r20-onepoint-gallery",
+        "r20-onepoint-numbers"
+      ]
+    },
+    {
+      "id": "r20-gioia",
+      "name": "Francesco Gioia · Referência 20/10",
+      "blocks": [
+        "r20-gioia-header",
+        "r20-gioia-hero",
+        "r20-gioia-gallery"
+      ]
+    },
+    {
+      "id": "r20-bruno",
+      "name": "Bruno Grazina · Referência 20/10",
+      "blocks": [
+        "r20-bruno-about",
+        "r20-bruno-contact"
+      ]
+    },
+    {
+      "id": "r20-orbit",
+      "name": "Orbit CRM · Referência 20/10",
+      "blocks": [
+        "r20-orbit-hero",
+        "r20-orbit-features",
+        "r20-orbit-comparison"
+      ]
+    },
+    {
+      "id": "r20-onion",
+      "name": "Onion AI · Referência 20/10",
+      "blocks": [
+        "r20-onion-hero",
+        "r20-onion-intro",
+        "r20-onion-process",
+        "r20-onion-features"
+      ]
+    },
+    {
+      "id": "r20-vellum",
+      "name": "Vellum · Referência 20/10",
+      "blocks": [
+        "r20-vellum-hero",
+        "r20-vellum-services-strip",
+        "r20-vellum-work",
+        "r20-vellum-services",
+        "r20-vellum-metrics"
+      ]
+    },
+    {
+      "id": "r20-august",
+      "name": "August · Referência 20/10",
+      "blocks": [
+        "r20-august-header",
+        "r20-august-about",
+        "r20-august-manifesto",
+        "r20-august-process"
+      ]
+    },
+    {
+      "id": "r20-peptide",
+      "name": "Pro Peptide · Referência 20/10",
+      "blocks": [
+        "r20-peptide-header",
+        "r20-peptide-hero",
+        "r20-peptide-products",
+        "r20-peptide-quality"
+      ]
+    },
+    {
+      "id": "r20-genex",
+      "name": "GeneX · Referência 20/10",
+      "blocks": [
+        "r20-genex-header",
+        "r20-genex-hero",
+        "r20-genex-research",
+        "r20-genex-science",
+        "r20-genex-technologies",
+        "r20-genex-visit",
+        "r20-genex-trials",
+        "r20-genex-cta"
+      ]
     }
   ],
   "assets": [
@@ -380,6 +1136,22 @@
     "assets/verina-3.webp",
     "assets/verina-4.webp",
     "assets/verina-5.webp",
-    "responsive.css"
+    "responsive.css",
+    "new-sections.css",
+    "new-sections.js",
+    "assets/references-20261020/fulfillix.png",
+    "assets/references-20261020/statue.png",
+    "assets/references-20261020/apex.png",
+    "assets/references-20261020/folio.png",
+    "assets/references-20261020/kianro.png",
+    "assets/references-20261020/onepoint.png",
+    "assets/references-20261020/gioia.png",
+    "assets/references-20261020/bruno.png",
+    "assets/references-20261020/orbit.png",
+    "assets/references-20261020/onion.png",
+    "assets/references-20261020/vellum.png",
+    "assets/references-20261020/august.png",
+    "assets/references-20261020/peptide.png",
+    "assets/references-20261020/genex.png"
   ]
 }

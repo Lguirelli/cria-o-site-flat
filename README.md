@@ -1,17 +1,29 @@
-# Forma Studio — blocos originais, regras atuais
+# Forma Studio — 14 novas referências em português
 
-Execute `npm run dev` e abra http://localhost:4173. Não é necessário instalar dependências.
+Base: Forma Studio reconstruído a partir de Com Rodapés. Os 28 blocos originais continuam disponíveis. Foram adicionadas **56 seções**, totalizando **84 blocos e 22 modelos**.
 
-O catálogo contém **28 blocos e 8 modelos** da versão anterior. Os 68 blocos exclusivos da versão mais recente foram removidos, junto com seus modelos e arquivos exclusivos. A comparação completa está em `docs/COMPARACAO.md`.
+## Abrir
 
-Mantidos:
-- Pranchetas flutuantes e organização de todos os blocos.
-- Header e footer globais, editados na origem e compartilhados em Testar/Exportar.
-- Conexões dos lados esquerdo e direito vinculadas ao elemento selecionado.
-- Desconexão por arraste, seleção de destino pelo painel e sequência inferior de seções.
-- Painéis recolhíveis, largura livre de 320 a 1920 px, foco visível e movimento reduzido.
-- Regras de UX e responsividade em `docs/`, CSS aplicado a seções e páginas exportadas.
+Execute `npm run dev` e abra http://localhost:4173. O index é o construtor. `previews/index.html` reúne as 14 páginas de referência em português, montadas com as mesmas seções editáveis. `wireframes/` contém um SVG por nova seção.
 
-Esta revisão usa um novo rascunho local para não reabrir as 68 seções removidas. O rascunho anterior não é apagado. Projetos JSON com apenas os blocos originais continuam importáveis; projetos que usam blocos removidos precisam ser ajustados antes da importação.
+Use o filtro de referência em Blocos para localizar cada família. Em Inserir modelo completo, escolha a referência de 20/10. Também há um JSON por referência em examples. Rascunhos existentes recebem as novas pranchetas até o limite de 120; acima disso os blocos continuam na biblioteca.
 
-Verificação: `npm run check`. A validação visual em navegador permanece pendente.
+Mantidos os globais, conexão por elemento dos dois lados, sequência inferior, organização das pranchetas e regras de UX/responsividade.
+
+## Entregáveis e limites
+
+- `docs/ANALISE_REFERENCIAS_PT_BR.md`: análise individual e mapa das seções.
+- `docs/traducoes-pt-br.json`: 259 traduções aplicadas aos novos textos de interface.
+- `blocks/r20-*.html`: 56 seções independentes.
+- `wireframes/r20-*.svg`: diagramas vetoriais editáveis.
+- `previews/`: 14 páginas e índice de consulta.
+- Fotografias e arte usam recortes visuais por CSS das referências; podem ser substituídas pelo inspetor. Palavras integradas às imagens originais não são texto HTML e permanecem na língua original.
+- O catálogo antigo foi preservado, incluindo seus textos originais. A tradução desta entrega cobre as 14 novas referências.
+- Menus com destinos não mostrados nas imagens precisam ser ligados às páginas desejadas no editor. Produtos, formulário e números são demonstrativos; nenhum pedido é enviado.
+- QA visual pendente por indisponibilidade de control-browser; detalhes em design-qa.md.
+
+## Verificar
+
+`npm run check`
+`node scripts/generate-reference-previews.mjs`
+`node scripts/package-site.mjs`
