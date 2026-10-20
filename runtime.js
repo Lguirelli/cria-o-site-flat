@@ -1,0 +1,72 @@
+document.querySelectorAll('[data-block-instance]').forEach((scope,index)=>{
+ scope.insertAdjacentHTML('beforeend',"<dialog class=\"dialog\" id=\"dialog\" aria-label=\"Details\"><button class=\"plain close\" aria-label=\"Close dialog\"><span class=\"icon\" aria-hidden=\"true\">close</span></button><div id=\"dialog-content\"></div></dialog>\n\n<div id=\"toast\" class=\"toast hidden\" role=\"status\"></div>\n\n");
+ const ids={}; scope.querySelectorAll('[id]').forEach(el=>{const original=el.id;el.dataset.originalId=original;ids[original]='block-'+index+'-'+original;el.id=ids[original]});
+ scope.querySelectorAll('[for]').forEach(el=>{if(ids[el.htmlFor])el.htmlFor=ids[el.htmlFor]});
+ function initialize(){
+ const select=s=>s.replace(/#([a-zA-Z][\w-]*)/g,(match,id)=>ids[id]?'#'+ids[id]:match);
+const $=s=>scope.querySelector(select(s)), $$=s=>[...scope.querySelectorAll(select(s))];
+const dialog=$('#dialog'), content=$('#dialog-content');
+let toastTimer;
+function toast(text){$('#toast').textContent=text;$('#toast').classList.remove('hidden');clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('#toast').classList.add('hidden'),4500)}
+function open(html){content.innerHTML=html;if(!dialog.open)dialog.showModal()}
+if(dialog){dialog.querySelector('.close').onclick=()=>dialog.close();dialog.addEventListener('click',e=>{if(e.target===dialog){const b=dialog.getBoundingClientRect();if(e.clientX<b.left||e.clientX>b.right||e.clientY<b.top||e.clientY>b.bottom)dialog.close()}})}
+const safe=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const today=new Date();const iso=d=>`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+function booking(room='Your stay',arrival=''){
+ open(`<h2>${safe(room||'Your stay')}</h2><p>Choose your preferred dates. This is a prototype enquiry, no payment or real reservation is made.</p><form id="demo-book"><div class="two"><label>Check in<input name="arrival" type="date" min="${iso(today)}" value="${safe(arrival)}" required></label><label>Check out<input name="departure" type="date" min="${iso(today)}" required></label></div><label>Guests<select name="guests"><option>1 guest</option><option selected>2 guests</option><option>3 guests</option><option>4 guests</option></select></label><label>Email<input type="email" name="email" required placeholder="you@example.com"></label><button class="btn solid" type="submit">Request availability</button></form>`);
+ $('#demo-book').onsubmit=e=>{e.preventDefault();const f=e.target;if(f.departure.value<=f.arrival.value){f.departure.setCustomValidity('Departure must be after arrival.');f.departure.reportValidity();return}open('<h2>Enquiry prepared</h2><p>Your selected dates have been captured for this demonstration. Nothing has been sent and no reservation has been made.</p><button class="btn solid" id="done">Done</button>');$('#done').onclick=()=>dialog.close()};$('#demo-book').departure.oninput=e=>e.target.setCustomValidity('');
+}
+$$('[data-book]').forEach(b=>b.onclick=()=>booking(b.dataset.book));
+$$('[data-room]').forEach(b=>b.onclick=()=>{const n=b.dataset.room;open(`<img class="dialog-photo" src="assets/${safe(b.dataset.image)}.webp" alt="${safe(n)}"><h2 style="margin-top:22px">${safe(n)}</h2><p>Explore this setting and choose dates for your next escape.</p><button class="btn solid" id="room-book">Check availability</button>`);$('#room-book').onclick=()=>booking(n)});
+$$('[data-info]').forEach(b=>b.onclick=()=>open(`<h2>${safe(b.dataset.info)}</h2><p>${b.dataset.info.includes('team')?'Our small team visits, measures and photographs every home, giving you the same point of contact from your first enquiry to your viewing.':'A five-storey atrium, natural materials and considered architecture create a calm space to meet and unwind.'}</p><a class="btn" href="#rooms" id="info-link">Continue exploring</a>`));
+$$('[data-menu]').forEach(b=>b.onclick=()=>{const targets=$$('main section[id],section[id],main[id]').map(e=>({id:e.id,label:e.id==='about'?'About':e.id==='rooms'?'Rooms':e.id==='listing'?'Accommodation':e.id==='facilities'?'Facilities':e.id==='details'?'Room details':e.id==='destinations'?'Destinations':'Explore'}));open('<h2>Explore</h2><nav class="menu-panel">'+(targets.length?targets:[{id:'about',label:'About'}]).map(t=>`<a href="#${t.id}">${t.label}</a>`).join('')+'<a href="index.html">All design studies</a></nav>');content.querySelectorAll('a').forEach(a=>a.onclick=()=>dialog.close())});
+if(content)content.addEventListener('click',e=>{if(e.target.closest('#info-link'))dialog.close()});
+$$('[data-quick-book]').forEach(f=>{f.arrival.min=iso(today);f.onsubmit=e=>{e.preventDefault();booking('Grand Emily Hotel',f.arrival.value)}});
+if($('#save'))$('#save').onclick=e=>{const b=e.currentTarget;const active=b.getAttribute('aria-pressed')!=='true';b.setAttribute('aria-pressed',active);b.innerHTML=`<span class="icon" aria-hidden="true" style="font-variation-settings:'FILL' ${active?1:0}">favorite</span> ${active?'Saved':'Save'}`;toast(active?'Saved for this visit':'Removed from saved places')};
+if($('#share'))$('#share').onclick=async()=>{try{await navigator.clipboard.writeText(location.href);toast('Page link copied')}catch{open('<h2>Share this page</h2><label>Page link<input readonly id="share-url"></label>');$('#share-url').value=location.href;$('#share-url').select()}};
+if($('#show-more'))$('#show-more').onclick=()=>{const openState=$('#more-description').classList.toggle('hidden');$('#show-more').setAttribute('aria-expanded',String(!openState));$('#show-more').textContent=openState?'Show more':'Show less'};
+let currentPhoto=0;function photo(i){currentPhoto=(i+5)%5;open(`<img class="dialog-photo" src="assets/verina-${currentPhoto+1}.webp" alt="Verina Sifnos photo ${currentPhoto+1}"><div class="dialog-actions"><button class="btn" id="photo-prev" aria-label="Previous photo">Previous</button><span>${currentPhoto+1} / 5</span><button class="btn" id="photo-next" aria-label="Next photo">Next</button></div>`);$('#photo-prev').onclick=()=>photo(currentPhoto-1);$('#photo-next').onclick=()=>photo(currentPhoto+1)}
+$$('[data-photo]').forEach(b=>b.onclick=()=>photo(Number(b.dataset.photo)));
+if($('#reserve-form')){
+ $('#checkin').min=iso(today);$('#checkout').min=iso(today);
+ function bill(){const a=$('#checkin').value,b=$('#checkout').value;const nights=Math.round((new Date(b+'T12:00:00')-new Date(a+'T12:00:00'))/86400000);$('#checkout').setCustomValidity(nights>0?'':'Check out must be after check in.');$('#nights').textContent=nights>0?`$480 × ${nights} nights`:'Choose valid dates';$('#subtotal').textContent=nights>0?`$${nights*480}`:'—';$('#total').textContent=nights>0?`$${nights*480+59}`:'—';return nights}
+ $('#checkin').onchange=bill;$('#checkout').onchange=bill;$('#reserve-form').onsubmit=e=>{e.preventDefault();if(bill()>0)open(`<h2>Review your stay</h2><p>Verina Sifnos · ${safe($('#guests').value)}</p><p>${safe($('#checkin').value)} to ${safe($('#checkout').value)}</p><p><strong>Total ${safe($('#total').textContent)}</strong></p><p>This is a demonstration. No charge or booking will be made.</p><button class="btn solid" id="confirm-demo">Confirm demo</button>`);if($('#confirm-demo'))$('#confirm-demo').onclick=()=>{dialog.close();toast('Demo confirmed. No real booking was made.')}};bill();
+}
+let deluxePhoto=0;$$('[data-deluxe-photo]').forEach(b=>b.onclick=()=>{deluxePhoto=1-deluxePhoto;const im=$('.deluxe-details .room-photo img');im.src=`assets/deluxe-${deluxePhoto?'hero':'1'}.webp`;im.alt=deluxePhoto?'Double Deluxe bedroom':'Ocean view bathroom'});
+if($('[data-destinations]'))$('[data-destinations]').onclick=()=>{open('<h2>Choose your destination</h2><nav class="menu-panel">'+['Lapland','Mallorca','Marbella','Mykonos','St Tropez','Zermatt','Cannes'].map(n=>`<button class="plain" data-choice="${n}" style="display:block;padding:13px">${n}</button>`).join('')+'</nav>');content.querySelectorAll('[data-choice]').forEach(b=>b.onclick=()=>booking(b.dataset.choice))};
+if($('#calendar')){
+ let month=new Date(today.getFullYear(),today.getMonth(),1),start=null,end=null;
+ function render(){ $('#month-label').textContent=month.toLocaleDateString('en',{month:'long',year:'numeric'});const first=(month.getDay()+6)%7,count=new Date(month.getFullYear(),month.getMonth()+1,0).getDate();$('#calendar').innerHTML=['Mo','Tu','We','Th','Fr','Sa','Su'].map(d=>`<span class="day-name">${d}</span>`).join('')+'<span></span>'.repeat(first)+Array.from({length:count},(_,i)=>{const d=iso(new Date(month.getFullYear(),month.getMonth(),i+1));return `<button type="button" data-date="${d}" aria-label="${d}" ${d<iso(today)?'disabled':''} class="${d===start||d===end?'selected':start&&end&&d>start&&d<end?'range':''}">${i+1}</button>`}).join('');$$('[data-date]').forEach(b=>b.onclick=()=>{const d=b.dataset.date;if(!start||end||d<=start){start=d;end=null}else end=d;$('#date-summary').textContent=end?`${start} to ${end}`:`Arrival: ${start}. Choose departure.`;render()})}
+ $('#prev-month').onclick=()=>{month=new Date(month.getFullYear(),month.getMonth()-1,1);render()};$('#next-month').onclick=()=>{month=new Date(month.getFullYear(),month.getMonth()+1,1);render()};$('#calendar-form').onsubmit=e=>{e.preventDefault();if(!start||!end){$('#date-summary').textContent='Please choose both arrival and departure dates.';return}open(`<h2>Your stay request</h2><p>${safe(start)} to ${safe(end)}</p><p>Thank you, ${safe(e.target.firstName.value)}. This is a prototype: no personal information has been sent and no reservation has been made.</p>`)};render();
+}
+
+ }
+ initialize();
+});
+document.addEventListener('click',e=>{const a=e.target.closest('a[href^="#"]');if(!a)return;const id=a.getAttribute('href').slice(1);if(!id)return;const scope=a.closest('[data-block-instance]');const nodes=[...document.querySelectorAll('[data-original-id]')];const target=nodes.find(el=>el.dataset.originalId===id&&scope?.contains(el))||nodes.find(el=>el.dataset.originalId===id);if(target){e.preventDefault();target.scrollIntoView({behavior:'smooth'})}});
+
+// Scoped demonstration only. Configure a backend before collecting real submissions.
+document.addEventListener('submit',e=>{const form=e.target.closest('[data-reference-form]');if(!form)return;e.preventDefault();const status=form.querySelector('[data-reference-status]');status.textContent='Briefing preparado nesta demonstração. Nenhum dado foi enviado.';});
+
+// Adapted from landing-runtime.js; bundled inline for local exports.
+// Interactions adapted for independent, repeatable landing sections.
+document.querySelectorAll('[data-landing-section]').forEach(scope=>{
+ const menu=scope.querySelector('[data-header-more-menu]');
+ const button=scope.querySelector('[data-header-menu-button]');
+ if(menu&&button){
+   button.closest('[data-header-more]').classList.add('has-items');
+   button.onclick=()=>{const open=menu.classList.toggle('is-open');button.setAttribute('aria-expanded',String(open))};
+   scope.addEventListener('keydown',e=>{if(e.key==='Escape'){menu.classList.remove('is-open');button.setAttribute('aria-expanded','false');button.focus()}});
+ }
+ const triggers=[...scope.querySelectorAll('[data-pillar-trigger]')];
+ const figures=[...scope.querySelectorAll('[data-pillar-image]')];
+ function activate(trigger){
+   triggers.forEach(el=>{const active=el===trigger;el.classList.toggle('is-active',active);el.setAttribute('aria-selected',String(active));el.tabIndex=active?0:-1});
+   figures.forEach(el=>el.classList.toggle('is-active',el.dataset.pillarIndex===trigger.dataset.pillarIndex));
+ }
+ triggers.forEach((trigger,index)=>{
+   trigger.onclick=()=>activate(trigger);trigger.onmouseenter=()=>activate(trigger);trigger.onfocus=()=>activate(trigger);
+   trigger.onkeydown=e=>{if(['ArrowDown','ArrowRight','ArrowUp','ArrowLeft','Home','End'].includes(e.key)){e.preventDefault();let next=e.key==='Home'?0:e.key==='End'?triggers.length-1:(index+(['ArrowDown','ArrowRight'].includes(e.key)?1:-1)+triggers.length)%triggers.length;activate(triggers[next]);triggers[next].focus()}};
+ });
+ scope.querySelectorAll('[data-landing-form]').forEach(form=>form.addEventListener('submit',e=>{e.preventDefault();form.querySelector('[data-landing-status]').textContent='Diagnóstico preparado nesta demonstração. Nenhum dado foi enviado.'}));
+});

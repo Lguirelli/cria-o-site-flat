@@ -1,0 +1,269 @@
+{
+  "version": 1,
+  "name": "Landing IA · Seções do repositório",
+  "home": "landing-ia-header",
+  "pages": [
+    {
+      "id": "landing-ia-header",
+      "name": "Cabeçalho e menu",
+      "slug": "landing-ia-header",
+      "x": 100,
+      "y": 130,
+      "width": 1200,
+      "hidden": false,
+      "blocks": [
+        {
+          "id": "instance-landing-ia-header",
+          "blockId": "landing-ia-header",
+          "html": "<div class=\"lp-section home-page\" data-landing-section=\"header\"><a class=\"skip-link sr-only\" href=\"#main\">Pular para o conteúdo</a>\n<header class=\"site-header\" data-copy-section=\"brand\">\n  <div class=\"container header-inner\">\n    <a href=\"#main\" class=\"logo\" aria-label=\"Página inicial\">\n      <span class=\"logo-mark logo-mark-duck\" aria-hidden=\"true\"></span>\n      <span data-copy=\"brand.name\">Brand</span>\n    </a>\n\n    <div class=\"header-center-nav\" data-header-center-nav>\n      <nav class=\"nav\" id=\"siteNav\" aria-label=\"Navegação principal\"><a href=\"#hero\">Home</a><a href=\"#services\">Landing pages</a><a href=\"#services\">Agentes de automação</a><a href=\"#pilares-blog\">Conteúdo</a><a href=\"#services\">Dashboards</a></nav>\n\n      <div class=\"header-more\" data-header-more>\n        <button class=\"header-menu-button\" type=\"button\" aria-expanded=\"false\" aria-controls=\"headerMoreMenu\" data-header-menu-button>Mais</button>\n        <div class=\"header-more-menu\" id=\"headerMoreMenu\" data-header-more-menu><a href=\"#how-it-works\">Como funciona</a><a href=\"#faq\">FAQ</a><a href=\"#lead\">Diagnóstico</a></div>\n      </div>\n    </div>\n\n    <div class=\"header-actions\" data-header-actions>\n      <a class=\"btn btn-accent\" href=\"#final-cta\">Solicitar diagnóstico</a>\n    </div>\n  </div>\n</header>\n</div>"
+        }
+      ]
+    },
+    {
+      "id": "landing-ia-hero",
+      "name": "Abertura com pato amarelo",
+      "slug": "landing-ia-hero",
+      "x": 1600,
+      "y": 130,
+      "width": 1200,
+      "hidden": true,
+      "blocks": [
+        {
+          "id": "instance-landing-ia-hero",
+          "blockId": "landing-ia-hero",
+          "html": "<div class=\"lp-section home-page\" data-landing-section=\"hero\"><section class=\"hero hero-with-bg\" data-copy-section=\"hero\" id=\"hero\">\n  <div class=\"hero-bg-media\" aria-hidden=\"true\">\n    <picture>\n      <source media=\"(max-width: 768px)\" srcset=\"fontes/landing/assets/images/hero-mobile-bg.webp\" type=\"image/webp\">\n      <source media=\"(max-width: 768px)\" srcset=\"fontes/landing/assets/images/hero-mobile-bg.jpg\" type=\"image/jpeg\">\n      <source srcset=\"fontes/landing/assets/images/hero-desktop-bg.webp\" type=\"image/webp\">\n      <img src=\"fontes/landing/assets/images/hero-desktop-bg.jpg\" alt=\"\" loading=\"eager\" decoding=\"async\" fetchpriority=\"high\">\n    </source></source></source></picture>\n  </div>\n\n  <div class=\"hero-bg-text-shade\" aria-hidden=\"true\"></div>\n\n  <div class=\"container grid-2 hero-grid hero-grid-copy-left\">\n    <div class=\"hero-copy\">\n      <span class=\"section-kicker\" data-copy=\"hero.kicker\"> inteligência artificial, automação<br>e soluções digitais estratégicas</span>\n      <h1 class=\"hero-title\" data-copy=\"hero.title\" data-blur-text data-blur-delay=\"105\" data-blur-by=\"words\" data-blur-direction=\"top\">Transforme atendimento, conteúdo e vendas com IA e automação.</h1>\n      <p class=\"hero-lead\" data-copy=\"hero.lead\">Criamos agentes de IA, landing pages, automações e dashboards para empresas em crescimento que querem vender melhor, reduzir processos manuais e tomar decisões com mais clareza a partir do que já acontece na operação.</p>\n      <div class=\"btn-row\">\n        <a class=\"btn btn-accent\" data-copy=\"hero.primaryButton\" href=\"#lead\">Solicitar diagnóstico</a>\n        <a class=\"btn btn-secondary\" data-copy=\"hero.secondaryButton\" href=\"#how-it-works\">Ver soluções</a>\n      </div>\n    </div>\n    <div class=\"hero-empty-visual\" aria-hidden=\"true\"></div>\n  </div>\n</section>\n</div>"
+        }
+      ]
+    },
+    {
+      "id": "landing-ia-trust-strip",
+      "name": "Faixa de guias editoriais",
+      "slug": "landing-ia-trust-strip",
+      "x": 3100,
+      "y": 130,
+      "width": 1200,
+      "hidden": true,
+      "blocks": [
+        {
+          "id": "instance-landing-ia-trust-strip",
+          "blockId": "landing-ia-trust-strip",
+          "html": "<div class=\"lp-section home-page\" data-landing-section=\"trust-strip\"><section aria-label=\"Guias editoriais\" class=\"section-tight\" data-copy-section=\"trust\">\n  <div class=\"container\">\n    <p class=\"section-kicker\" data-copy=\"trust.kicker\">Guias editoriais para entender atendimento, conversão, automação, dados e conteúdo com mais clareza.</p>\n    <div class=\"logo-strip blog-topic-strip\">\n      <a class=\"logo-box\" data-copy=\"trust.logo1\" href=\"fontes/landing/blog.html#atendimento\">Atendimento</a>\n      <a class=\"logo-box\" data-copy=\"trust.logo2\" href=\"fontes/landing/blog.html#conversao\">Conversão</a>\n      <a class=\"logo-box\" data-copy=\"trust.logo3\" href=\"fontes/landing/blog.html#automacao\">Automação</a>\n      <a class=\"logo-box\" data-copy=\"trust.logo4\" href=\"fontes/landing/blog.html#dados\">Dados</a>\n      <a class=\"logo-box\" data-copy=\"trust.logo5\" href=\"fontes/landing/blog.html#conteudo\">Conteúdo</a>\n      <a class=\"logo-box logo-box-accent\" data-copy=\"trust.logo6\" href=\"fontes/landing/blog.html\">Conheça todas</a>\n    </div>\n  </div>\n</section>\n</div>"
+        }
+      ]
+    },
+    {
+      "id": "landing-ia-problem",
+      "name": "Problema e pato vetorial",
+      "slug": "landing-ia-problem",
+      "x": 4600,
+      "y": 130,
+      "width": 1200,
+      "hidden": true,
+      "blocks": [
+        {
+          "id": "instance-landing-ia-problem",
+          "blockId": "landing-ia-problem",
+          "html": "<div class=\"lp-section home-page\" data-landing-section=\"problem\"><section class=\"section problem-section problem-section-svg\" data-copy-section=\"problem\" id=\"problem\">\n  <div class=\"container problem-section-inner problem-section-inner-svg\">\n    <div class=\"problem-layout-svg\">\n      <div class=\"problem-duck-svg-wrap\" aria-hidden=\"true\" role=\"presentation\">\n        <img class=\"problem-duck-svg\" src=\"fontes/landing/assets/icons/pato.svg\" alt=\"\" loading=\"lazy\" decoding=\"async\">\n      </div>\n\n      <div class=\"problem-copy problem-main-copy problem-copy-svg\">\n        <span class=\"section-kicker problem-kicker-centered\" data-copy=\"problem.kicker\">Problema</span>\n        <h2 class=\"section-title\" data-copy=\"problem.title\">A maioria dos negócios não perde vendas por falta de ferramentas. Perde por falta de estrutura.</h2>\n        <p class=\"section-lead problem-lead-centered\" data-copy=\"problem.lead\">WhatsApp, redes sociais, anúncios, formulários e planilhas já fazem parte da rotina de muitas empresas. O problema começa quando cada canal funciona de um jeito, sem conexão entre as etapas, deixando a jornada do cliente confusa e a equipe presa em tarefas que poderiam ser organizadas com mais inteligência.</p>\n      </div>\n    </div>\n  </div>\n</section>\n</div>"
+        }
+      ]
+    },
+    {
+      "id": "landing-ia-benefits",
+      "name": "Benefícios da estrutura digital",
+      "slug": "landing-ia-benefits",
+      "x": 100,
+      "y": 2430,
+      "width": 1200,
+      "hidden": true,
+      "blocks": [
+        {
+          "id": "instance-landing-ia-benefits",
+          "blockId": "landing-ia-benefits",
+          "html": "<div class=\"lp-section home-page\" data-landing-section=\"benefits\"><section class=\"section\" data-copy-section=\"benefits\" id=\"benefits\">\n<div class=\"container grid-2\">\n<div>\n<span class=\"section-kicker\" data-copy=\"benefits.kicker\">Benefícios</span>\n<h2 class=\"section-title\" data-copy=\"benefits.title\">Quando a operação ganha estrutura, o crescimento deixa de depender do improviso.</h2>\n<p class=\"section-lead\" data-copy=\"benefits.lead\">A tecnologia certa não deve complicar o negócio. Ela precisa conectar canais, acelerar respostas, organizar informações importantes e criar uma jornada mais fácil para o cliente entender, confiar e avançar.</p>\n</div>\n<div class=\"benefit-list\">\n<article class=\"benefit-item\">\n<span class=\"icon-placeholder\">ICO</span>\n<div>\n<h3 data-copy=\"benefits.item1Title\">Menos tempo perdido no atendimento</h3>\n<p data-copy=\"benefits.item1Text\">Automatize as primeiras respostas, filtre oportunidades e mantenha o cliente em movimento até o momento certo da equipe assumir a conversa.</p>\n</div>\n</article>\n<article class=\"benefit-item\">\n<span class=\"icon-placeholder\">ICO</span>\n<div>\n<h3 data-copy=\"benefits.item2Title\">Mais força na apresentação da oferta</h3>\n<p data-copy=\"benefits.item2Text\">Transforme páginas, mensagens e conteúdos em ativos comerciais que explicam valor, reduzem dúvidas, quebram objeções e ajudam o cliente a tomar uma decisão com mais confiança.</p>\n</div>\n</article>\n<article class=\"benefit-item\">\n<span class=\"icon-placeholder\">ICO</span>\n<div>\n<h3 data-copy=\"benefits.item3Title\">Mais clareza para agir</h3>\n<p data-copy=\"benefits.item3Text\">Centralize informações importantes em fluxos, painéis e processos que mostram onde a operação está travando, quais oportunidades estão aparecendo e quais próximos passos fazem mais sentido.</p>\n</div>\n</article>\n</div>\n</div>\n</section>\n\n</div>"
+        }
+      ]
+    },
+    {
+      "id": "landing-ia-how-it-works",
+      "name": "Processo em quatro etapas",
+      "slug": "landing-ia-how-it-works",
+      "x": 1600,
+      "y": 2430,
+      "width": 1200,
+      "hidden": true,
+      "blocks": [
+        {
+          "id": "instance-landing-ia-how-it-works",
+          "blockId": "landing-ia-how-it-works",
+          "html": "<div class=\"lp-section home-page\" data-landing-section=\"how-it-works\"><section class=\"section\" data-copy-section=\"how\" id=\"how-it-works\">\n<div class=\"container\">\n<span class=\"section-kicker\" data-copy=\"how.kicker\">Como funciona</span>\n<h2 class=\"section-title\" data-copy=\"how.title\">Da análise inicial à solução funcionando na rotina do negócio.</h2>\n<div class=\"how-steps\">\n<article class=\"how-step\">\n<span class=\"how-step-number\">01</span>\n<h3 data-copy=\"how.step1Title\">Diagnóstico</h3>\n<p data-copy=\"how.step1Text\">Mapeamos o cenário atual, entendendo quais canais o negócio usa, onde estão os pontos de perda e qual objetivo precisa ser priorizado antes de qualquer construção.</p>\n</article>\n<article class=\"how-step\">\n<span class=\"how-step-number\">02</span>\n<h3 data-copy=\"how.step2Title\">Direção estratégica</h3>\n<p data-copy=\"how.step2Text\">Definimos o que faz mais sentido construir primeiro, seja um agente de IA, uma landing page, uma automação, um dashboard ou uma combinação entre essas frentes.</p>\n</article>\n<article class=\"how-step\">\n<span class=\"how-step-number\">03</span>\n<h3 data-copy=\"how.step3Title\">Construção</h3>\n<p data-copy=\"how.step3Text\">Criamos a estrutura, os textos, os fluxos, as telas e as integrações necessárias para que a solução saia da ideia e passe a funcionar na operação.</p>\n</article>\n<article class=\"how-step\">\n<span class=\"how-step-number\">04</span>\n<h3 data-copy=\"how.step4Title\">Otimização</h3>\n<p data-copy=\"how.step4Text\">Ajustamos a entrega com base no uso real, corrigindo atritos, refinando a experiência e melhorando a solução conforme o negócio evolui.</p>\n</article>\n</div>\n</div>\n</section>\n\n</div>"
+        }
+      ]
+    },
+    {
+      "id": "landing-ia-case-preview",
+      "name": "Caso de uso e resultado",
+      "slug": "landing-ia-case-preview",
+      "x": 3100,
+      "y": 2430,
+      "width": 1200,
+      "hidden": true,
+      "blocks": [
+        {
+          "id": "instance-landing-ia-case-preview",
+          "blockId": "landing-ia-case-preview",
+          "html": "<div class=\"lp-section home-page\" data-landing-section=\"case-preview\"><section class=\"section\" data-copy-section=\"case\" id=\"case\">\n<div class=\"container\">\n<div class=\"card grid-2\">\n<div>\n<span class=\"section-kicker\" data-copy=\"case.kicker\">Caso de uso</span>\n<h2 class=\"section-title\" data-copy=\"case.title\">Do primeiro contato ao lead qualificado, sem depender de resposta manual imediata.</h2>\n<p class=\"section-lead\" data-copy=\"case.lead\">Quando um cliente chega pelo WhatsApp, formulário ou campanha, a solução pode iniciar a conversa, entender a necessidade, apresentar o caminho certo e entregar para a equipe uma oportunidade mais organizada, com mais contexto e mais chance de avançar.</p>\n<div class=\"btn-row\">\n<a class=\"btn btn-secondary\" data-copy=\"case.button\" href=\"#lead\">Mapear meu fluxo</a>\n</div>\n</div>\n<div class=\"placeholder\">Placeholder de gráfico / resultado / print</div>\n</div>\n</div>\n</section>\n\n</div>"
+        }
+      ]
+    },
+    {
+      "id": "landing-ia-comparison",
+      "name": "Comparação de cenários",
+      "slug": "landing-ia-comparison",
+      "x": 4600,
+      "y": 2430,
+      "width": 1200,
+      "hidden": true,
+      "blocks": [
+        {
+          "id": "instance-landing-ia-comparison",
+          "blockId": "landing-ia-comparison",
+          "html": "<div class=\"lp-section home-page\" data-landing-section=\"comparison\"><section class=\"section\" data-copy-section=\"comparison\" id=\"comparison\">\n<div class=\"container\">\n<span class=\"section-kicker\" data-copy=\"comparison.kicker\">Comparativo</span>\n<h2 class=\"section-title\" data-copy=\"comparison.title\">A diferença não está em usar mais ferramentas. Está em fazer tudo trabalhar junto.</h2>\n<p class=\"section-lead\" data-copy=\"comparison.lead\">Quando canais, mensagens, páginas e dados funcionam separados, a operação perde força e o cliente encontra atritos em pontos que deveriam facilitar a decisão. Quando tudo segue uma direção estratégica, cada contato passa a cumprir um papel claro na jornada e ajuda o cliente a avançar com mais segurança.</p>\n<div style=\"overflow-x: auto; margin-top: 32px;\">\n<table class=\"comparison-table\">\n<thead>\n<tr>\n<th>Critério</th>\n<th>Modelo tradicional</th>\n<th>Modelo ideal</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td data-copy=\"comparison.row1Criteria\">Atendimento</td>\n<td data-copy=\"comparison.row1Traditional\">Respostas manuais, lentas e sem padrão entre canais.</td>\n<td data-copy=\"comparison.row1Ideal\">Fluxos organizados que aceleram respostas e qualificam oportunidades.</td>\n</tr>\n<tr>\n<td data-copy=\"comparison.row2Criteria\">Conversão</td>\n<td data-copy=\"comparison.row2Traditional\">Conteúdos e páginas que informam, mas não conduzem para ação.</td>\n<td data-copy=\"comparison.row2Ideal\">Mensagens, páginas e ofertas estruturadas para orientar a decisão.</td>\n</tr>\n<tr>\n<td data-copy=\"comparison.row3Criteria\">Dados</td>\n<td data-copy=\"comparison.row3Traditional\">Informações espalhadas em conversas, planilhas e ferramentas soltas.</td>\n<td data-copy=\"comparison.row3Ideal\">Dados centralizados para enxergar gargalos e próximos passos.</td>\n</tr>\n</tbody>\n</table>\n</div>\n</div>\n</section>\n\n</div>"
+        }
+      ]
+    },
+    {
+      "id": "landing-ia-services",
+      "name": "Carrossel de seis serviços",
+      "slug": "landing-ia-services",
+      "x": 100,
+      "y": 4730,
+      "width": 1200,
+      "hidden": true,
+      "blocks": [
+        {
+          "id": "instance-landing-ia-services",
+          "blockId": "landing-ia-services",
+          "html": "<div class=\"lp-section home-page\" data-landing-section=\"services\"><section class=\"section services-carousel-section\" data-copy-section=\"services\" id=\"services\">\n<div class=\"container\">\n<span class=\"section-kicker\" data-copy=\"services.kicker\">Serviços prestados</span>\n<h2 class=\"section-title\" data-copy=\"services.title\">Soluções e serviços prestados</h2>\n<p class=\"section-lead\" data-copy=\"services.lead\">Você pode começar por uma frente específica ou combinar soluções de acordo com o momento do negócio, sempre com foco em tornar a operação mais clara, rápida e eficiente sem criar uma estrutura pesada demais para manter.</p>\n<div class=\"carousel-wrapper\">\n<div class=\"services-carousel\" data-services-carousel=\"\">\n<article class=\"card service-slide\">\n<div class=\"service-placeholder-icon\">\n<span>01</span>\n</div>\n<span class=\"service-category\" data-copy=\"services.card1Category\">Automação</span>\n<h3 data-copy=\"services.card1Title\">Agentes de IA para atendimento e vendas</h3>\n<p data-copy=\"services.card1Text\">Automatize conversas, qualifique contatos e conduza clientes com mais velocidade até o próximo passo comercial, mantendo a experiência mais organizada desde o primeiro contato.</p>\n<a class=\"btn btn-secondary\" data-copy=\"services.card1Button\" href=\"fontes/landing/servicos/agentes-ia.html\">Conhecer solução</a>\n</article>\n<article class=\"card service-slide\">\n<div class=\"service-placeholder-icon\">\n<span>02</span>\n</div>\n<span class=\"service-category\" data-copy=\"services.card2Category\">Conversão</span>\n<h3 data-copy=\"services.card2Title\">Landing pages estratégicas</h3>\n<p data-copy=\"services.card2Text\">Páginas criadas para apresentar sua oferta com clareza e transformar visitantes em contatos, orçamentos, agendamentos ou vendas.</p>\n<a class=\"btn btn-secondary\" data-copy=\"services.card2Button\" href=\"fontes/landing/servicos/landing-pages.html\">Conhecer solução</a>\n</article>\n<article class=\"card service-slide\">\n<div class=\"service-placeholder-icon\">\n<span>03</span>\n</div>\n<span class=\"service-category\" data-copy=\"services.card3Category\">Estratégia</span>\n<h3 data-copy=\"services.card3Title\">Estratégia de Marketing</h3>\n<p data-copy=\"services.card3Text\">Direção estratégica para posicionar a oferta, organizar a comunicação e transformar ações soltas em um caminho mais claro de atração, conversão e relacionamento.</p>\n<a class=\"btn btn-secondary\" data-copy=\"services.card3Button\" href=\"fontes/landing/servicos/estrategia-marketing.html\">Conhecer solução</a>\n</article>\n<article class=\"card service-slide\">\n<div class=\"service-placeholder-icon\">\n<span>04</span>\n</div>\n<span class=\"service-category\" data-copy=\"services.card4Category\">Dados</span>\n<h3 data-copy=\"services.card4Title\">Dashboards e análise de dados</h3>\n<p data-copy=\"services.card4Text\">Painéis claros para acompanhar desempenho, enxergar gargalos e tomar decisões com mais segurança a partir dos dados que já existem na operação.</p>\n<a class=\"btn btn-secondary\" data-copy=\"services.card4Button\" href=\"fontes/landing/servicos/dashboards-pmes.html\">Conhecer solução</a>\n</article>\n<article class=\"card service-slide\">\n<div class=\"service-placeholder-icon\">\n<span>05</span>\n</div>\n<span class=\"service-category\" data-copy=\"services.card5Category\">Personalização</span>\n<h3 data-copy=\"services.card5Title\">Conteúdo personalizado por segmento</h3>\n<p data-copy=\"services.card5Text\">Mensagens adaptadas ao nicho, à linguagem, às dores e às objeções reais de cada tipo de cliente, tornando a comunicação mais relevante e menos genérica.</p>\n<a class=\"btn btn-secondary\" data-copy=\"services.card5Button\" href=\"fontes/landing/servicos/conteudo-personalizado.html\">Conhecer solução</a>\n</article>\n\n<article class=\"card service-slide\" data-service-key=\"sistema-operacional-completo\">\n<div class=\"service-placeholder-icon\">\n<span>06</span>\n</div>\n<span class=\"service-category\" data-copy=\"services.card6Category\">Sistema completo</span>\n<h3 data-copy=\"services.card6Title\">Sistema operacional completo</h3>\n<p data-copy=\"services.card6Text\">Uma estrutura integrada para unir landing page, automação, estratégia, conteúdo e dados em um mesmo fluxo de atração, atendimento, conversão e acompanhamento.</p>\n<a class=\"btn btn-secondary\" data-copy=\"services.card6Button\" href=\"fontes/landing/servicos/sistema-operacional-completo.html\">Conhecer solução</a>\n</article>\n</div>\n</div>\n</div>\n</section>\n\n</div>"
+        }
+      ]
+    },
+    {
+      "id": "landing-ia-lead-qualifier",
+      "name": "Formulário de diagnóstico",
+      "slug": "landing-ia-lead-qualifier",
+      "x": 1600,
+      "y": 4730,
+      "width": 1200,
+      "hidden": true,
+      "blocks": [
+        {
+          "id": "instance-landing-ia-lead-qualifier",
+          "blockId": "landing-ia-lead-qualifier",
+          "html": "<div class=\"lp-section home-page\" data-landing-section=\"lead-qualifier\"><section class=\"section\" data-copy-section=\"lead\" id=\"lead\">\n<div class=\"container grid-2\">\n<div>\n<span class=\"section-kicker\" data-copy=\"lead.kicker\">Diagnóstico</span>\n<h2 class=\"section-title\" data-copy=\"lead.title\">Antes de criar qualquer solução, descubra o que realmente precisa ser estruturado.</h2>\n<p class=\"section-lead\" data-copy=\"lead.lead\">O diagnóstico ajuda a identificar onde a operação perde tempo, clareza ou oportunidades. A partir disso, fica mais fácil entender se o primeiro passo deve ser atendimento com IA, uma página estratégica, automação, conteúdo, inteligência de dados ou uma combinação entre essas frentes.</p>\n</div>\n<form class=\"card\" data-landing-form=\"\">\n<div class=\"form-grid\">\n<div class=\"form-field\">\n<label data-copy=\"lead.nameLabel\" for=\"name\">Nome</label>\n<input data-copy=\"lead.namePlaceholder\" data-copy-target=\"placeholder\" id=\"name\" name=\"name\" placeholder=\"Seu nome\" type=\"text\" required aria-required=\"true\">\n</div>\n<div class=\"form-field\">\n<label data-copy=\"lead.emailLabel\" for=\"email\">Email</label>\n<input id=\"email\" name=\"email\" placeholder=\"seu@email.com\" type=\"email\" required aria-required=\"true\">\n</div>\n<div class=\"form-field\">\n<label data-copy=\"lead.selectLabel\" for=\"select\">Prioridade do negócio</label>\n<select id=\"select\" name=\"select\"><option>Atendimento com IA</option><option>Landing page estratégica</option><option>Automação ou dashboard</option><option>Conteúdo com IA</option><option>Ainda não sei</option></select>\n</div>\n<div class=\"form-field\">\n<label data-copy=\"lead.phoneLabel\" for=\"phone\">WhatsApp</label>\n<input id=\"phone\" name=\"phone\" placeholder=\"(00) 00000-0000\" type=\"tel\" required aria-required=\"true\">\n</div>\n<div class=\"form-field full\">\n<label data-copy=\"lead.messageLabel\" for=\"message\">Mensagem</label>\n<textarea data-copy=\"lead.messagePlaceholder\" data-copy-target=\"placeholder\" id=\"message\" name=\"message\" placeholder=\"Conte como seu negócio atende, vende e organiza informações hoje.\" rows=\"4\"></textarea>\n</div>\n</div>\n<button class=\"btn btn-accent\" data-copy=\"lead.button\" style=\"width: 100%; margin-top: 18px;\" type=\"submit\">Solicitar diagnóstico</button>\n<p class=\"microcopy\" data-copy=\"lead.microcopy\">Você recebe uma direção inicial clara para começar pelo que tende a gerar mais impacto, sem precisar montar uma estrutura maior do que o negócio precisa neste momento.</p>\n<p data-landing-status=\"\" role=\"status\">Demonstração: nenhum dado é enviado.</p></form>\n</div>\n</section>\n\n</div>"
+        }
+      ]
+    },
+    {
+      "id": "landing-ia-faq",
+      "name": "Perguntas frequentes",
+      "slug": "landing-ia-faq",
+      "x": 3100,
+      "y": 4730,
+      "width": 1200,
+      "hidden": true,
+      "blocks": [
+        {
+          "id": "instance-landing-ia-faq",
+          "blockId": "landing-ia-faq",
+          "html": "<div class=\"lp-section home-page\" data-landing-section=\"faq\"><section class=\"section\" data-copy-section=\"faq\" id=\"faq\">\n<div class=\"container grid-2 layout-reverse\">\n<div>\n<span class=\"section-kicker\" data-copy=\"faq.kicker\">FAQ</span>\n<h2 class=\"section-title\" data-copy=\"faq.title\">Dúvidas comuns antes de começar.</h2>\n<p class=\"section-lead\" data-copy=\"faq.lead\">As soluções são adaptadas ao momento do negócio. A ideia é começar pelo que gera mais impacto agora e evoluir conforme a operação ganha maturidade, sem transformar tecnologia em uma camada desnecessária de complexidade.</p>\n</div>\n<div class=\"faq-list\">\n<details>\n<summary data-copy=\"faq.q1\">Preciso ter uma equipe técnica?</summary>\n<p data-copy=\"faq.a1\">Não. A solução é pensada para ser simples de usar no dia a dia, enquanto a parte técnica fica concentrada na criação, configuração e ajustes do projeto.</p>\n</details>\n<details>\n<summary data-copy=\"faq.q2\">Posso começar com apenas uma solução?</summary>\n<p data-copy=\"faq.a2\">Sim. Você pode começar com um agente de IA, uma landing page, uma automação, um planejamento de conteúdo ou um dashboard específico, de acordo com a prioridade atual do negócio.</p>\n</details>\n<details>\n<summary data-copy=\"faq.q3\">Isso funciona para negócios que ainda não têm uma operação digital madura?</summary>\n<p data-copy=\"faq.a3\">Sim. Justamente por isso o processo começa pelo diagnóstico. Primeiro entendemos o cenário atual, depois indicamos a estrutura mais simples para gerar avanço sem criar uma operação difícil de sustentar.</p>\n</details>\n<details>\n<summary data-copy=\"faq.q4\">O diagnóstico já define o projeto completo?</summary>\n<p data-copy=\"faq.a4\">Não necessariamente. O diagnóstico define o melhor ponto de partida. Depois disso, o projeto é desenhado com escopo, etapas e investimento compatíveis com a necessidade real.</p>\n</details>\n</div>\n</div>\n</section>\n\n\n<!-- Schema.org: FAQPage -->\n</div>"
+        }
+      ]
+    },
+    {
+      "id": "landing-ia-final-cta",
+      "name": "Chamada final de diagnóstico",
+      "slug": "landing-ia-final-cta",
+      "x": 4600,
+      "y": 4730,
+      "width": 1200,
+      "hidden": true,
+      "blocks": [
+        {
+          "id": "instance-landing-ia-final-cta",
+          "blockId": "landing-ia-final-cta",
+          "html": "<div class=\"lp-section home-page\" data-landing-section=\"final-cta\"><section class=\"section\" data-copy-section=\"finalCta\" id=\"final-cta\">\n<div class=\"container\">\n<div class=\"final-cta-box\">\n<span class=\"section-kicker\" data-copy=\"finalCta.kicker\" style=\"color: rgba(255,255,255,.6);\">Próximo passo</span>\n<h2 class=\"section-title\" data-copy=\"finalCta.title\">Comece pelo ponto certo da sua operação digital.</h2>\n<p class=\"section-lead\" data-copy=\"finalCta.lead\">Conte como seu negócio atende, vende e organiza informações hoje. A partir disso, identificamos qual solução pode gerar mais impacto primeiro e como começar com mais clareza, sem depender de tentativa e erro.</p>\n<div class=\"btn-row\" style=\"justify-content: center;\">\n<a class=\"btn btn-accent\" data-copy=\"finalCta.primaryButton\" href=\"#lead\">Solicitar diagnóstico</a>\n<a class=\"btn\" data-copy=\"finalCta.secondaryButton\" href=\"#faq\" style=\"border-color: rgba(255,255,255,.35);\">Tirar dúvidas</a>\n</div>\n</div>\n</div>\n</section>\n\n</div>"
+        }
+      ]
+    },
+    {
+      "id": "landing-ia-footer",
+      "name": "Rodapé da landing de IA",
+      "slug": "landing-ia-footer",
+      "x": 100,
+      "y": 7030,
+      "width": 1200,
+      "hidden": true,
+      "blocks": [
+        {
+          "id": "instance-landing-ia-footer",
+          "blockId": "landing-ia-footer",
+          "html": "<div class=\"lp-section home-page\" data-landing-section=\"footer\"><footer class=\"site-footer\" data-copy-section=\"brand\">\n  <div class=\"container footer-grid\">\n    <div>\n      <a href=\"#main\" class=\"logo\" aria-label=\"Página inicial\">\n        <span class=\"logo-mark\" aria-hidden=\"true\"></span>\n        <span data-copy=\"brand.name\">Brand</span>\n      </a>\n      <p data-copy=\"footer.description\">Soluções digitais para estruturar atendimento, conversão, conteúdo e dados com mais clareza e menos improviso.</p>\n    </div>\n\n    <div>\n      <h4>Empresa</h4>\n      <a href=\"#benefits\">Benefícios</a>\n      <a href=\"#how-it-works\">Como funciona</a>\n    </div>\n\n    <div>\n      <h4>Serviços</h4>\n      <a href=\"#services\">Soluções e serviços prestados</a>\n      <a href=\"#case\">Caso de uso</a>\n      <a href=\"#faq\">FAQ</a>\n    </div>\n\n    <div>\n      <h4>Legal</h4>\n      <a href=\"#\">Privacidade</a>\n      <a href=\"#\">Termos</a>\n      <a href=\"#lead\">Contato</a>\n    </div>\n  </div>\n</footer>\n</div>"
+        }
+      ]
+    }
+  ],
+  "links": [],
+  "sequences": [
+    {
+      "from": "landing-ia-header",
+      "to": "landing-ia-hero"
+    },
+    {
+      "from": "landing-ia-hero",
+      "to": "landing-ia-trust-strip"
+    },
+    {
+      "from": "landing-ia-trust-strip",
+      "to": "landing-ia-problem"
+    },
+    {
+      "from": "landing-ia-problem",
+      "to": "landing-ia-benefits"
+    },
+    {
+      "from": "landing-ia-benefits",
+      "to": "landing-ia-how-it-works"
+    },
+    {
+      "from": "landing-ia-how-it-works",
+      "to": "landing-ia-case-preview"
+    },
+    {
+      "from": "landing-ia-case-preview",
+      "to": "landing-ia-comparison"
+    },
+    {
+      "from": "landing-ia-comparison",
+      "to": "landing-ia-services"
+    },
+    {
+      "from": "landing-ia-services",
+      "to": "landing-ia-lead-qualifier"
+    },
+    {
+      "from": "landing-ia-lead-qualifier",
+      "to": "landing-ia-faq"
+    },
+    {
+      "from": "landing-ia-faq",
+      "to": "landing-ia-final-cta"
+    },
+    {
+      "from": "landing-ia-final-cta",
+      "to": "landing-ia-footer"
+    }
+  ],
+  "catalogUpgrades": [
+    "footers-v1"
+  ]
+}

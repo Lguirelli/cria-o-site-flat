@@ -1,0 +1,15 @@
+{
+  "name": "forma-studio-page-builder",
+  "version": "1.5.0",
+  "private": true,
+  "type": "module",
+  "description": "Construtor visual de p\u00e1ginas e subp\u00e1ginas com blocos, pranchetas e conex\u00f5es de prot\u00f3tipo.",
+  "scripts": {
+    "dev": "node server.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "check": "node --check editor.js && node --check runtime.js && node --test tests/*.test.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

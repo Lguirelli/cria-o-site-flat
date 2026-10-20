@@ -1,0 +1,1069 @@
+{
+  "version": 1,
+  "blocks": [
+    {
+      "id": "form-01",
+      "name": "Space to slow down.",
+      "source": "Form / Retreat",
+      "theme": "form-page",
+      "category": "hero",
+      "file": "blocks/form-01.html",
+      "thumbnail": "thumbnails/form-01.svg"
+    },
+    {
+      "id": "form-02",
+      "name": "Quartos",
+      "source": "Form / Retreat",
+      "theme": "form-page",
+      "category": "rooms",
+      "file": "blocks/form-02.html",
+      "thumbnail": "thumbnails/form-02.svg"
+    },
+    {
+      "id": "emily-01",
+      "name": "GRAND EMILY HOTEL",
+      "source": "Grand Emily",
+      "theme": "emily-page",
+      "category": "hero",
+      "file": "blocks/emily-01.html",
+      "thumbnail": "thumbnails/emily-01.svg"
+    },
+    {
+      "id": "emily-02",
+      "name": "HOTEL GUEST AREA",
+      "source": "Grand Emily",
+      "theme": "emily-page",
+      "category": "content",
+      "file": "blocks/emily-02.html",
+      "thumbnail": "thumbnails/emily-02.svg"
+    },
+    {
+      "id": "emily-03",
+      "name": "KING-SIZE BED LAKE-VIEW ROOM",
+      "source": "Grand Emily",
+      "theme": "emily-page",
+      "category": "rooms",
+      "file": "blocks/emily-03.html",
+      "thumbnail": "thumbnails/emily-03.svg"
+    },
+    {
+      "id": "qelli-01",
+      "name": "Navegação",
+      "source": "Qelli",
+      "theme": "qelli-page",
+      "category": "header",
+      "file": "blocks/qelli-01.html",
+      "thumbnail": "thumbnails/qelli-01.svg"
+    },
+    {
+      "id": "qelli-02",
+      "name": "Where Nature Embraces Luxury",
+      "source": "Qelli",
+      "theme": "qelli-page",
+      "category": "content",
+      "file": "blocks/qelli-02.html",
+      "thumbnail": "thumbnails/qelli-02.svg"
+    },
+    {
+      "id": "qelli-03",
+      "name": "Immerse Yourself in the Embrace of Nature",
+      "source": "Qelli",
+      "theme": "qelli-page",
+      "category": "content",
+      "file": "blocks/qelli-03.html",
+      "thumbnail": "thumbnails/qelli-03.svg"
+    },
+    {
+      "id": "qelli-04",
+      "name": "Comfort and Space Combined",
+      "source": "Qelli",
+      "theme": "qelli-page",
+      "category": "rooms",
+      "file": "blocks/qelli-04.html",
+      "thumbnail": "thumbnails/qelli-04.svg"
+    },
+    {
+      "id": "verina-01",
+      "name": "Navegação",
+      "source": "Verina Sifnos",
+      "theme": "verina-page",
+      "category": "header",
+      "file": "blocks/verina-01.html",
+      "thumbnail": "thumbnails/verina-01.svg"
+    },
+    {
+      "id": "verina-02",
+      "name": "Sea View Sifnos Reason VERINA SIFNOS",
+      "source": "Verina Sifnos",
+      "theme": "verina-page",
+      "category": "booking",
+      "file": "blocks/verina-02.html",
+      "thumbnail": "thumbnails/verina-02.svg"
+    },
+    {
+      "id": "amenities-01",
+      "name": "Amenities Designed for Every Kind of Traveler Waterfront Access Adventure Ready Nearby Golf Courses ",
+      "source": "Amenities",
+      "theme": "amenities-page",
+      "category": "features",
+      "file": "blocks/amenities-01.html",
+      "thumbnail": "thumbnails/amenities-01.svg"
+    },
+    {
+      "id": "amenities-02",
+      "name": "Ready to Book Your Stay?",
+      "source": "Amenities",
+      "theme": "amenities-page",
+      "category": "booking",
+      "file": "blocks/amenities-02.html",
+      "thumbnail": "thumbnails/amenities-02.svg"
+    },
+    {
+      "id": "deluxe-01",
+      "name": "Double Deluxe Room",
+      "source": "Double Deluxe",
+      "theme": "deluxe-page",
+      "category": "hero",
+      "file": "blocks/deluxe-01.html",
+      "thumbnail": "thumbnails/deluxe-01.svg"
+    },
+    {
+      "id": "deluxe-02",
+      "name": "Double Deluxe with Ocean View",
+      "source": "Double Deluxe",
+      "theme": "deluxe-page",
+      "category": "rooms",
+      "file": "blocks/deluxe-02.html",
+      "thumbnail": "thumbnails/deluxe-02.svg"
+    },
+    {
+      "id": "deluxe-03",
+      "name": "Room Facilities",
+      "source": "Double Deluxe",
+      "theme": "deluxe-page",
+      "category": "features",
+      "file": "blocks/deluxe-03.html",
+      "thumbnail": "thumbnails/deluxe-03.svg"
+    },
+    {
+      "id": "deluxe-04",
+      "name": "Comodidades",
+      "source": "Double Deluxe",
+      "theme": "deluxe-page",
+      "category": "features",
+      "file": "blocks/deluxe-04.html",
+      "thumbnail": "thumbnails/deluxe-04.svg"
+    },
+    {
+      "id": "deluxe-05",
+      "name": "Conteúdo",
+      "source": "Double Deluxe",
+      "theme": "deluxe-page",
+      "category": "content",
+      "file": "blocks/deluxe-05.html",
+      "thumbnail": "thumbnails/deluxe-05.svg"
+    },
+    {
+      "id": "realtoro-01",
+      "name": "FEWER HOMES, KNOWN BETTER.",
+      "source": "RealToro",
+      "theme": "realtoro-page",
+      "category": "hero",
+      "file": "blocks/realtoro-01.html",
+      "thumbnail": "thumbnails/realtoro-01.svg"
+    },
+    {
+      "id": "realtoro-02",
+      "name": "Comodidades",
+      "source": "RealToro",
+      "theme": "realtoro-page",
+      "category": "features",
+      "file": "blocks/realtoro-02.html",
+      "thumbnail": "thumbnails/realtoro-02.svg"
+    },
+    {
+      "id": "realtoro-03",
+      "name": "We keep the list short on purpose",
+      "source": "RealToro",
+      "theme": "realtoro-page",
+      "category": "content",
+      "file": "blocks/realtoro-03.html",
+      "thumbnail": "thumbnails/realtoro-03.svg"
+    },
+    {
+      "id": "retreats-01",
+      "name": "Welcome to a world where  luxury  meets  serenity",
+      "source": "W Retreats",
+      "theme": "retreats-page",
+      "category": "hero",
+      "file": "blocks/retreats-01.html",
+      "thumbnail": "thumbnails/retreats-01.svg"
+    },
+    {
+      "id": "retreats-02",
+      "name": "Explore our carefully curated selection of Private Villas and Health Retreats, meticulously designed",
+      "source": "W Retreats",
+      "theme": "retreats-page",
+      "category": "content",
+      "file": "blocks/retreats-02.html",
+      "thumbnail": "thumbnails/retreats-02.svg"
+    },
+    {
+      "id": "retreats-03",
+      "name": "Trending  Destinations",
+      "source": "W Retreats",
+      "theme": "retreats-page",
+      "category": "content",
+      "file": "blocks/retreats-03.html",
+      "thumbnail": "thumbnails/retreats-03.svg"
+    },
+    {
+      "id": "footer-solitude",
+      "name": "Solitude Press · Editorial · Creme",
+      "source": "Footer Collection",
+      "theme": "footer-solitude-theme",
+      "category": "footer",
+      "file": "blocks/footer-solitude.html",
+      "thumbnail": "thumbnails/footer-solitude.svg"
+    },
+    {
+      "id": "footer-techflow",
+      "name": "TechFlow · Tecnologia · Escuro",
+      "source": "Footer Collection",
+      "theme": "footer-techflow-theme",
+      "category": "footer",
+      "file": "blocks/footer-techflow.html",
+      "thumbnail": "thumbnails/footer-techflow.svg"
+    },
+    {
+      "id": "footer-travelco",
+      "name": "TravelCo · Viagens · Contatos",
+      "source": "Footer Collection",
+      "theme": "footer-travelco-theme",
+      "category": "footer",
+      "file": "blocks/footer-travelco.html",
+      "thumbnail": "thumbnails/footer-travelco.svg"
+    },
+    {
+      "id": "footer-ai-platform",
+      "name": "AI Platform · IA · Azul-marinho",
+      "source": "Footer Collection",
+      "theme": "footer-ai-theme",
+      "category": "footer",
+      "file": "blocks/footer-ai-platform.html",
+      "thumbnail": "thumbnails/footer-ai-platform.svg"
+    },
+    {
+      "id": "fulfillix-hero",
+      "name": "Mapa e chamada de logística",
+      "source": "Fulfillix",
+      "theme": "ref-fulfillix",
+      "category": "hero",
+      "file": "blocks/fulfillix-hero.html",
+      "thumbnail": "thumbnails/fulfillix-hero.svg",
+      "reference": 1
+    },
+    {
+      "id": "fulfillix-problems",
+      "name": "Quatro desafios de fulfillment",
+      "source": "Fulfillix",
+      "theme": "ref-fulfillix",
+      "category": "features",
+      "file": "blocks/fulfillix-problems.html",
+      "thumbnail": "thumbnails/fulfillix-problems.svg",
+      "reference": 1
+    },
+    {
+      "id": "fulfillix-solutions",
+      "name": "Texto e soluções em faixas",
+      "source": "Fulfillix",
+      "theme": "ref-fulfillix",
+      "category": "content",
+      "file": "blocks/fulfillix-solutions.html",
+      "thumbnail": "thumbnails/fulfillix-solutions.svg",
+      "reference": 1
+    },
+    {
+      "id": "fulfillix-why",
+      "name": "Por que Fulfillix · seis diferenciais",
+      "source": "Fulfillix",
+      "theme": "ref-fulfillix",
+      "category": "features",
+      "file": "blocks/fulfillix-why.html",
+      "thumbnail": "thumbnails/fulfillix-why.svg",
+      "reference": 1
+    },
+    {
+      "id": "fulfillix-reviews",
+      "name": "Depoimentos de clientes",
+      "source": "Fulfillix",
+      "theme": "ref-fulfillix",
+      "category": "content",
+      "file": "blocks/fulfillix-reviews.html",
+      "thumbnail": "thumbnails/fulfillix-reviews.svg",
+      "reference": 1
+    },
+    {
+      "id": "fulfillix-steps",
+      "name": "Onboarding em três etapas",
+      "source": "Fulfillix",
+      "theme": "ref-fulfillix",
+      "category": "content",
+      "file": "blocks/fulfillix-steps.html",
+      "thumbnail": "thumbnails/fulfillix-steps.svg",
+      "reference": 1
+    },
+    {
+      "id": "fulfillix-faq",
+      "name": "Perguntas de logística",
+      "source": "Fulfillix",
+      "theme": "ref-fulfillix",
+      "category": "content",
+      "file": "blocks/fulfillix-faq.html",
+      "thumbnail": "thumbnails/fulfillix-faq.svg",
+      "reference": 1
+    },
+    {
+      "id": "fulfillix-journey",
+      "name": "Dois caminhos para começar",
+      "source": "Fulfillix",
+      "theme": "ref-fulfillix",
+      "category": "content",
+      "file": "blocks/fulfillix-journey.html",
+      "thumbnail": "thumbnails/fulfillix-journey.svg",
+      "reference": 1
+    },
+    {
+      "id": "fulfillix-cta",
+      "name": "Chamada final com destaque verde",
+      "source": "Fulfillix",
+      "theme": "ref-fulfillix",
+      "category": "content",
+      "file": "blocks/fulfillix-cta.html",
+      "thumbnail": "thumbnails/fulfillix-cta.svg",
+      "reference": 1
+    },
+    {
+      "id": "fulfillix-footer",
+      "name": "Rodapé compacto Fulfillix",
+      "source": "Fulfillix",
+      "theme": "ref-fulfillix",
+      "category": "footer",
+      "file": "blocks/fulfillix-footer.html",
+      "thumbnail": "thumbnails/fulfillix-footer.svg",
+      "reference": 1
+    },
+    {
+      "id": "aegis-security",
+      "name": "Segurança em quatro painéis",
+      "source": "Aegis · Segurança",
+      "theme": "ref-aegis",
+      "category": "features",
+      "file": "blocks/aegis-security.html",
+      "thumbnail": "thumbnails/aegis-security.svg",
+      "reference": 2
+    },
+    {
+      "id": "aegis-reviews",
+      "name": "Depoimentos em grade 3 × 2",
+      "source": "Aegis · Segurança",
+      "theme": "ref-aegis",
+      "category": "content",
+      "file": "blocks/aegis-reviews.html",
+      "thumbnail": "thumbnails/aegis-reviews.svg",
+      "reference": 2
+    },
+    {
+      "id": "aegis-pricing",
+      "name": "Planos com brilho turquesa",
+      "source": "Aegis · Segurança",
+      "theme": "ref-aegis",
+      "category": "content",
+      "file": "blocks/aegis-pricing.html",
+      "thumbnail": "thumbnails/aegis-pricing.svg",
+      "reference": 2
+    },
+    {
+      "id": "geolava-nav",
+      "name": "Faixa de navegação sobre mapa urbano",
+      "source": "Geolava",
+      "theme": "ref-geolava",
+      "category": "header",
+      "file": "blocks/geolava-nav.html",
+      "thumbnail": "thumbnails/geolava-nav.svg",
+      "reference": 3
+    },
+    {
+      "id": "geolava-footer",
+      "name": "Rodapé editorial com quatro colunas",
+      "source": "Geolava",
+      "theme": "ref-geolava",
+      "category": "footer",
+      "file": "blocks/geolava-footer.html",
+      "thumbnail": "thumbnails/geolava-footer.svg",
+      "reference": 3
+    },
+    {
+      "id": "aurient-hero",
+      "name": "Hero de investimentos com retrato e métricas",
+      "source": "Aurient",
+      "theme": "ref-aurient",
+      "category": "hero",
+      "file": "blocks/aurient-hero.html",
+      "thumbnail": "thumbnails/aurient-hero.svg",
+      "reference": 4
+    },
+    {
+      "id": "seotalos-hero",
+      "name": "Hero SEO com estrelas cromadas",
+      "source": "SEOtalos",
+      "theme": "ref-seotalos",
+      "category": "hero",
+      "file": "blocks/seotalos-hero.html",
+      "thumbnail": "thumbnails/seotalos-hero.svg",
+      "reference": 5
+    },
+    {
+      "id": "seotalos-features",
+      "name": "Bento de ferramentas e analytics",
+      "source": "SEOtalos",
+      "theme": "ref-seotalos",
+      "category": "features",
+      "file": "blocks/seotalos-features.html",
+      "thumbnail": "thumbnails/seotalos-features.svg",
+      "reference": 5
+    },
+    {
+      "id": "seotalos-results",
+      "name": "Resultados com cartões inclinados",
+      "source": "SEOtalos",
+      "theme": "ref-seotalos",
+      "category": "features",
+      "file": "blocks/seotalos-results.html",
+      "thumbnail": "thumbnails/seotalos-results.svg",
+      "reference": 5
+    },
+    {
+      "id": "seotalos-pricing",
+      "name": "Planos SEO com opção clara central",
+      "source": "SEOtalos",
+      "theme": "ref-seotalos",
+      "category": "content",
+      "file": "blocks/seotalos-pricing.html",
+      "thumbnail": "thumbnails/seotalos-pricing.svg",
+      "reference": 5
+    },
+    {
+      "id": "seotalos-reviews",
+      "name": "Avaliações SEO em três cards",
+      "source": "SEOtalos",
+      "theme": "ref-seotalos",
+      "category": "content",
+      "file": "blocks/seotalos-reviews.html",
+      "thumbnail": "thumbnails/seotalos-reviews.svg",
+      "reference": 5
+    },
+    {
+      "id": "seotalos-faq",
+      "name": "FAQ em duas colunas",
+      "source": "SEOtalos",
+      "theme": "ref-seotalos",
+      "category": "content",
+      "file": "blocks/seotalos-faq.html",
+      "thumbnail": "thumbnails/seotalos-faq.svg",
+      "reference": 5
+    },
+    {
+      "id": "seotalos-footer",
+      "name": "Rodapé com assinatura tipográfica grande",
+      "source": "SEOtalos",
+      "theme": "ref-seotalos",
+      "category": "footer",
+      "file": "blocks/seotalos-footer.html",
+      "thumbnail": "thumbnails/seotalos-footer.svg",
+      "reference": 5
+    },
+    {
+      "id": "dominic-hero",
+      "name": "Portfólio com retrato e nome gigante",
+      "source": "Dominic",
+      "theme": "ref-dominic",
+      "category": "hero",
+      "file": "blocks/dominic-hero.html",
+      "thumbnail": "thumbnails/dominic-hero.svg",
+      "reference": 6
+    },
+    {
+      "id": "dominic-about",
+      "name": "Apresentação editorial do designer",
+      "source": "Dominic",
+      "theme": "ref-dominic",
+      "category": "content",
+      "file": "blocks/dominic-about.html",
+      "thumbnail": "thumbnails/dominic-about.svg",
+      "reference": 6
+    },
+    {
+      "id": "dominic-projects",
+      "name": "Galeria de três projetos",
+      "source": "Dominic",
+      "theme": "ref-dominic",
+      "category": "content",
+      "file": "blocks/dominic-projects.html",
+      "thumbnail": "thumbnails/dominic-projects.svg",
+      "reference": 6
+    },
+    {
+      "id": "dominic-services",
+      "name": "Serviços numerados em três cards",
+      "source": "Dominic",
+      "theme": "ref-dominic",
+      "category": "features",
+      "file": "blocks/dominic-services.html",
+      "thumbnail": "thumbnails/dominic-services.svg",
+      "reference": 6
+    },
+    {
+      "id": "dominic-contact-arc",
+      "name": "Contato com arco de projetos",
+      "source": "Dominic",
+      "theme": "ref-dominic",
+      "category": "content",
+      "file": "blocks/dominic-contact-arc.html",
+      "thumbnail": "thumbnails/dominic-contact-arc.svg",
+      "reference": 6
+    },
+    {
+      "id": "dominic-reviews",
+      "name": "Avaliações com estrelas laranja",
+      "source": "Dominic",
+      "theme": "ref-dominic",
+      "category": "content",
+      "file": "blocks/dominic-reviews.html",
+      "thumbnail": "thumbnails/dominic-reviews.svg",
+      "reference": 6
+    },
+    {
+      "id": "dominic-pricing",
+      "name": "Pacotes de design com destaque laranja",
+      "source": "Dominic",
+      "theme": "ref-dominic",
+      "category": "content",
+      "file": "blocks/dominic-pricing.html",
+      "thumbnail": "thumbnails/dominic-pricing.svg",
+      "reference": 6
+    },
+    {
+      "id": "dominic-banner",
+      "name": "Banner de contato sobre retrato",
+      "source": "Dominic",
+      "theme": "ref-dominic",
+      "category": "content",
+      "file": "blocks/dominic-banner.html",
+      "thumbnail": "thumbnails/dominic-banner.svg",
+      "reference": 6
+    },
+    {
+      "id": "dominic-footer",
+      "name": "Rodapé do portfólio Dominic",
+      "source": "Dominic",
+      "theme": "ref-dominic",
+      "category": "footer",
+      "file": "blocks/dominic-footer.html",
+      "thumbnail": "thumbnails/dominic-footer.svg",
+      "reference": 6
+    },
+    {
+      "id": "codeconsult-hero",
+      "name": "Consultoria com retrato à direita",
+      "source": "Code Consult",
+      "theme": "ref-codeconsult",
+      "category": "hero",
+      "file": "blocks/codeconsult-hero.html",
+      "thumbnail": "thumbnails/codeconsult-hero.svg",
+      "reference": 7
+    },
+    {
+      "id": "codeconsult-brands",
+      "name": "Faixa de marcas parceiras",
+      "source": "Code Consult",
+      "theme": "ref-codeconsult",
+      "category": "content",
+      "file": "blocks/codeconsult-brands.html",
+      "thumbnail": "thumbnails/codeconsult-brands.svg",
+      "reference": 7
+    },
+    {
+      "id": "codeconsult-services",
+      "name": "Serviços 2 × 2 com card azul",
+      "source": "Code Consult",
+      "theme": "ref-codeconsult",
+      "category": "features",
+      "file": "blocks/codeconsult-services.html",
+      "thumbnail": "thumbnails/codeconsult-services.svg",
+      "reference": 7
+    },
+    {
+      "id": "codeconsult-process",
+      "name": "Processo horizontal em quatro etapas",
+      "source": "Code Consult",
+      "theme": "ref-codeconsult",
+      "category": "content",
+      "file": "blocks/codeconsult-process.html",
+      "thumbnail": "thumbnails/codeconsult-process.svg",
+      "reference": 7
+    },
+    {
+      "id": "codeconsult-reviews",
+      "name": "Depoimento com imagem lateral",
+      "source": "Code Consult",
+      "theme": "ref-codeconsult",
+      "category": "content",
+      "file": "blocks/codeconsult-reviews.html",
+      "thumbnail": "thumbnails/codeconsult-reviews.svg",
+      "reference": 7
+    },
+    {
+      "id": "artfolio-hero",
+      "name": "Hero editorial de artistas",
+      "source": "Artfolio",
+      "theme": "ref-artfolio",
+      "category": "hero",
+      "file": "blocks/artfolio-hero.html",
+      "thumbnail": "thumbnails/artfolio-hero.svg",
+      "reference": 8
+    },
+    {
+      "id": "artfolio-artists",
+      "name": "Três perfis de artistas",
+      "source": "Artfolio",
+      "theme": "ref-artfolio",
+      "category": "content",
+      "file": "blocks/artfolio-artists.html",
+      "thumbnail": "thumbnails/artfolio-artists.svg",
+      "reference": 8
+    },
+    {
+      "id": "artfolio-gallery",
+      "name": "Mosaico de dezoito retratos",
+      "source": "Artfolio",
+      "theme": "ref-artfolio",
+      "category": "content",
+      "file": "blocks/artfolio-gallery.html",
+      "thumbnail": "thumbnails/artfolio-gallery.svg",
+      "reference": 8
+    },
+    {
+      "id": "artfolio-community",
+      "name": "Chamada editorial para comunidade",
+      "source": "Artfolio",
+      "theme": "ref-artfolio",
+      "category": "content",
+      "file": "blocks/artfolio-community.html",
+      "thumbnail": "thumbnails/artfolio-community.svg",
+      "reference": 8
+    },
+    {
+      "id": "artfolio-footer",
+      "name": "Rodapé em dois painéis com newsletter",
+      "source": "Artfolio",
+      "theme": "ref-artfolio",
+      "category": "footer",
+      "file": "blocks/artfolio-footer.html",
+      "thumbnail": "thumbnails/artfolio-footer.svg",
+      "reference": 8
+    },
+    {
+      "id": "arthub-hero",
+      "name": "Agência criativa com esfera vermelha",
+      "source": "ArtHub",
+      "theme": "ref-arthub",
+      "category": "hero",
+      "file": "blocks/arthub-hero.html",
+      "thumbnail": "thumbnails/arthub-hero.svg",
+      "reference": 9
+    },
+    {
+      "id": "arthub-story",
+      "name": "Manifesto e história da marca",
+      "source": "ArtHub",
+      "theme": "ref-arthub",
+      "category": "content",
+      "file": "blocks/arthub-story.html",
+      "thumbnail": "thumbnails/arthub-story.svg",
+      "reference": 9
+    },
+    {
+      "id": "arthub-numbers",
+      "name": "Métricas de sucesso com esfera",
+      "source": "ArtHub",
+      "theme": "ref-arthub",
+      "category": "features",
+      "file": "blocks/arthub-numbers.html",
+      "thumbnail": "thumbnails/arthub-numbers.svg",
+      "reference": 9
+    },
+    {
+      "id": "arthub-services",
+      "name": "Serviços da ideia à realização",
+      "source": "ArtHub",
+      "theme": "ref-arthub",
+      "category": "features",
+      "file": "blocks/arthub-services.html",
+      "thumbnail": "thumbnails/arthub-services.svg",
+      "reference": 9
+    },
+    {
+      "id": "arthub-manifesto",
+      "name": "Manifesto com grade de princípios",
+      "source": "ArtHub",
+      "theme": "ref-arthub",
+      "category": "content",
+      "file": "blocks/arthub-manifesto.html",
+      "thumbnail": "thumbnails/arthub-manifesto.svg",
+      "reference": 9
+    },
+    {
+      "id": "arthub-team",
+      "name": "Equipe em mosaico 2 × 2",
+      "source": "ArtHub",
+      "theme": "ref-arthub",
+      "category": "content",
+      "file": "blocks/arthub-team.html",
+      "thumbnail": "thumbnails/arthub-team.svg",
+      "reference": 9
+    },
+    {
+      "id": "arthub-partners",
+      "name": "Marcas parceiras em oito células",
+      "source": "ArtHub",
+      "theme": "ref-arthub",
+      "category": "content",
+      "file": "blocks/arthub-partners.html",
+      "thumbnail": "thumbnails/arthub-partners.svg",
+      "reference": 9
+    },
+    {
+      "id": "arthub-contact",
+      "name": "Contato com formulário de briefing",
+      "source": "ArtHub",
+      "theme": "ref-arthub",
+      "category": "booking",
+      "file": "blocks/arthub-contact.html",
+      "thumbnail": "thumbnails/arthub-contact.svg",
+      "reference": 9
+    },
+    {
+      "id": "arthub-footer",
+      "name": "Rodapé de agência com contatos grandes",
+      "source": "ArtHub",
+      "theme": "ref-arthub",
+      "category": "footer",
+      "file": "blocks/arthub-footer.html",
+      "thumbnail": "thumbnails/arthub-footer.svg",
+      "reference": 9
+    },
+    {
+      "id": "blueprint-hero",
+      "name": "Hero futurista com visor e indicadores",
+      "source": "Blueprint",
+      "theme": "ref-blueprint",
+      "category": "hero",
+      "file": "blocks/blueprint-hero.html",
+      "thumbnail": "thumbnails/blueprint-hero.svg",
+      "reference": 10
+    },
+    {
+      "id": "blueprint-vision",
+      "name": "Manifesto com três painéis de imagem",
+      "source": "Blueprint",
+      "theme": "ref-blueprint",
+      "category": "content",
+      "file": "blocks/blueprint-vision.html",
+      "thumbnail": "thumbnails/blueprint-vision.svg",
+      "reference": 10
+    },
+    {
+      "id": "blueprint-strategy",
+      "name": "Estratégia com quatro cards desencontrados",
+      "source": "Blueprint",
+      "theme": "ref-blueprint",
+      "category": "features",
+      "file": "blocks/blueprint-strategy.html",
+      "thumbnail": "thumbnails/blueprint-strategy.svg",
+      "reference": 10
+    }
+  ],
+  "presets": [
+    {
+      "id": "form",
+      "name": "Form / Retreat",
+      "blocks": [
+        "form-01",
+        "form-02"
+      ]
+    },
+    {
+      "id": "emily",
+      "name": "Grand Emily",
+      "blocks": [
+        "emily-01",
+        "emily-02",
+        "emily-03"
+      ]
+    },
+    {
+      "id": "qelli",
+      "name": "Qelli",
+      "blocks": [
+        "qelli-01",
+        "qelli-02",
+        "qelli-03",
+        "qelli-04"
+      ]
+    },
+    {
+      "id": "verina",
+      "name": "Verina Sifnos",
+      "blocks": [
+        "verina-01",
+        "verina-02"
+      ]
+    },
+    {
+      "id": "amenities",
+      "name": "Amenities",
+      "blocks": [
+        "amenities-01",
+        "amenities-02"
+      ]
+    },
+    {
+      "id": "deluxe",
+      "name": "Double Deluxe",
+      "blocks": [
+        "deluxe-01",
+        "deluxe-02",
+        "deluxe-03",
+        "deluxe-04",
+        "deluxe-05"
+      ]
+    },
+    {
+      "id": "realtoro",
+      "name": "RealToro",
+      "blocks": [
+        "realtoro-01",
+        "realtoro-02",
+        "realtoro-03"
+      ]
+    },
+    {
+      "id": "retreats",
+      "name": "W Retreats",
+      "blocks": [
+        "retreats-01",
+        "retreats-02",
+        "retreats-03"
+      ]
+    },
+    {
+      "id": "fulfillix",
+      "name": "Fulfillix",
+      "blocks": [
+        "fulfillix-hero",
+        "fulfillix-problems",
+        "fulfillix-solutions",
+        "fulfillix-why",
+        "fulfillix-reviews",
+        "fulfillix-steps",
+        "fulfillix-faq",
+        "fulfillix-journey",
+        "fulfillix-cta",
+        "fulfillix-footer"
+      ]
+    },
+    {
+      "id": "aegis",
+      "name": "Aegis · Segurança",
+      "blocks": [
+        "aegis-security",
+        "aegis-reviews",
+        "aegis-pricing"
+      ]
+    },
+    {
+      "id": "geolava",
+      "name": "Geolava",
+      "blocks": [
+        "geolava-nav",
+        "geolava-footer"
+      ]
+    },
+    {
+      "id": "aurient",
+      "name": "Aurient",
+      "blocks": [
+        "aurient-hero"
+      ]
+    },
+    {
+      "id": "seotalos",
+      "name": "SEOtalos",
+      "blocks": [
+        "seotalos-hero",
+        "seotalos-features",
+        "seotalos-results",
+        "seotalos-pricing",
+        "seotalos-reviews",
+        "seotalos-faq",
+        "seotalos-footer"
+      ]
+    },
+    {
+      "id": "dominic",
+      "name": "Dominic",
+      "blocks": [
+        "dominic-hero",
+        "dominic-about",
+        "dominic-projects",
+        "dominic-services",
+        "dominic-contact-arc",
+        "dominic-reviews",
+        "dominic-pricing",
+        "dominic-banner",
+        "dominic-footer"
+      ]
+    },
+    {
+      "id": "codeconsult",
+      "name": "Code Consult",
+      "blocks": [
+        "codeconsult-hero",
+        "codeconsult-brands",
+        "codeconsult-services",
+        "codeconsult-process",
+        "codeconsult-reviews"
+      ]
+    },
+    {
+      "id": "artfolio",
+      "name": "Artfolio",
+      "blocks": [
+        "artfolio-hero",
+        "artfolio-artists",
+        "artfolio-gallery",
+        "artfolio-community",
+        "artfolio-footer"
+      ]
+    },
+    {
+      "id": "arthub",
+      "name": "ArtHub",
+      "blocks": [
+        "arthub-hero",
+        "arthub-story",
+        "arthub-numbers",
+        "arthub-services",
+        "arthub-manifesto",
+        "arthub-team",
+        "arthub-partners",
+        "arthub-contact",
+        "arthub-footer"
+      ]
+    },
+    {
+      "id": "blueprint",
+      "name": "Blueprint",
+      "blocks": [
+        "blueprint-hero",
+        "blueprint-vision",
+        "blueprint-strategy"
+      ]
+    }
+  ],
+  "assets": [
+    "assets/amenities-1.webp",
+    "assets/deluxe-1.webp",
+    "assets/deluxe-hero.webp",
+    "assets/emily-1.webp",
+    "assets/emily-2.webp",
+    "assets/emily-3.webp",
+    "assets/emily-4.webp",
+    "assets/emily-hero.webp",
+    "assets/font-0.ttf",
+    "assets/font-1.ttf",
+    "assets/font-10.ttf",
+    "assets/font-11.ttf",
+    "assets/font-2.ttf",
+    "assets/font-3.ttf",
+    "assets/font-4.ttf",
+    "assets/font-5.ttf",
+    "assets/font-6.ttf",
+    "assets/font-7.ttf",
+    "assets/font-8.ttf",
+    "assets/font-9.ttf",
+    "assets/fonts-remote.css",
+    "assets/fonts.css",
+    "assets/form-1.webp",
+    "assets/form-2.webp",
+    "assets/form-3.webp",
+    "assets/form-hero.webp",
+    "assets/qelli-1.webp",
+    "assets/qelli-2.webp",
+    "assets/qelli-3.webp",
+    "assets/qelli-4.webp",
+    "assets/qelli-5.webp",
+    "assets/qelli-6.webp",
+    "assets/qelli-7.webp",
+    "assets/qelli-8.webp",
+    "assets/realtoro-1.webp",
+    "assets/realtoro-2.webp",
+    "assets/realtoro-hero.webp",
+    "assets/retreats-1.webp",
+    "assets/retreats-2.webp",
+    "assets/retreats-3.webp",
+    "assets/retreats-4.webp",
+    "assets/retreats-5.webp",
+    "assets/retreats-6.webp",
+    "assets/retreats-7.webp",
+    "assets/retreats-8.webp",
+    "assets/retreats-hero.webp",
+    "assets/verina-1.webp",
+    "assets/verina-2.webp",
+    "assets/verina-3.webp",
+    "assets/verina-4.webp",
+    "assets/verina-5.webp",
+    "assets/references/chrome-stars.svg",
+    "assets/references/city-grid.svg",
+    "assets/references/logistics-map.svg",
+    "assets/references/portrait-01.svg",
+    "assets/references/portrait-02.svg",
+    "assets/references/portrait-03.svg",
+    "assets/references/portrait-04.svg",
+    "assets/references/portrait-05.svg",
+    "assets/references/portrait-06.svg",
+    "assets/references/portrait-07.svg",
+    "assets/references/portrait-08.svg",
+    "assets/references/portrait-09.svg",
+    "assets/references/portrait-10.svg",
+    "assets/references/portrait-11.svg",
+    "assets/references/portrait-12.svg",
+    "assets/references/portrait-13.svg",
+    "assets/references/portrait-14.svg",
+    "assets/references/portrait-15.svg",
+    "assets/references/portrait-16.svg",
+    "assets/references/project-1.svg",
+    "assets/references/project-2.svg",
+    "assets/references/project-3.svg",
+    "assets/references/project-4.svg",
+    "assets/references/red-orbit.svg",
+    "assets/references/security-core.svg",
+    "assets/references/seo-chart.svg",
+    "references.css",
+    "assets/references/warehouse.svg",
+    "assets/references/database-core.svg",
+    "assets/references/code-security.svg",
+    "assets/references/network-security.svg"
+  ]
+}
