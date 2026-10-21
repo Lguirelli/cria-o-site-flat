@@ -48,8 +48,8 @@ function render(){
 }
 function renderPanels(){renderPages();renderLayers();renderInspector();renderGlobals();updateNodeSelectionChrome();updateHistory()}
 function renderPages(){
- $('#pages-list').innerHTML=project.pages.map(p=>`<div draggable="true" data-page-drag="${esc(p.id)}" class="page-item ${p.id===active?'active':''}"><button data-page-select="${esc(p.id)}"><span class="icon">${p.id===project.home?'home':'web_asset'}</span><span>${esc(p.name)}${p.hidden?" · oculta":""}<small>${esc(fileFor(composeProject(project,catalog),rootOf(project,p.id)))}${rootOf(project,p.id)!==p.id?' · continuação':''}</small></span></button></div>`).join('');
- $$('[data-page-select]').forEach(b=>b.onclick=()=>{showBoard(b.dataset.pageSelect);focusPage()});
+ // Pranchetas são nodes do canvas. O painel lateral não replica mais a lista de páginas;
+ // a aba Blocos é a única biblioteca de modelos.
 }
 function showBoard(id){const p=project.pages.find(p=>p.id===id);if(p.hidden)commit(()=>{p.hidden=false;active=id;selection=null});else setActive(id)}
 function overMenu(e){const r=$('.left-panel').getBoundingClientRect();return e.clientX>=r.left&&e.clientX<=r.right&&e.clientY>=r.top&&e.clientY<=r.bottom}
@@ -126,8 +126,8 @@ function refreshBoard(pageId){
 }
 function commitBoard(mutator,pageId){checkpoint();mutator();persist();renderPanels();refreshBoard(pageId);updateHistory()}
 function dragBoard(handle,board,p){handle.onpointerdown=e=>{if(e.button!==0||e.target.closest('button,input,select,textarea,.node-properties'))return;const start={x:e.clientX,y:e.clientY,px:p.x,py:p.y};let moved=false;handle.setPointerCapture(e.pointerId);
- handle.onpointermove=ev=>{if(!moved&&Math.hypot(ev.clientX-start.x,ev.clientY-start.y)>4){checkpoint();moved=true}if(!moved)return;$('.left-panel').classList.toggle('drop-board',overMenu(ev));p.x=Math.max(20,Math.min(48000,start.px+(ev.clientX-start.x)/zoom));p.y=Math.max(70,Math.min(48000,start.py+(ev.clientY-start.y)/zoom));board.style.left=p.x+'px';board.style.top=p.y+'px';drawConnections()};
- handle.onpointerup=ev=>{handle.onpointermove=null;handle.onpointerup=null;$('.left-panel').classList.remove('drop-board');if(moved){if(overMenu(ev)){p.x=start.px;p.y=start.py;p.hidden=true;if(selection?.page===p.id)selection=null;persist();render();notify('Prancheta guardada no menu. Clique no nome para mostrar novamente.')}else{persist();updateHistory()}}};
+ handle.onpointermove=ev=>{if(!moved&&Math.hypot(ev.clientX-start.x,ev.clientY-start.y)>4){checkpoint();moved=true}if(!moved)return;p.x=Math.max(20,Math.min(48000,start.px+(ev.clientX-start.x)/zoom));p.y=Math.max(70,Math.min(48000,start.py+(ev.clientY-start.y)/zoom));board.style.left=p.x+'px';board.style.top=p.y+'px';drawConnections()};
+ handle.onpointerup=()=>{handle.onpointermove=null;handle.onpointerup=null;$('.left-panel').classList.remove('drop-board');if(moved){persist();updateHistory()}};
  handle.onpointercancel=()=>{handle.onpointermove=null;handle.onpointerup=null;$('.left-panel').classList.remove('drop-board');if(moved){p.x=start.px;p.y=start.py;persist();render()}};
 }}
 function applyZoom(){zoom=Math.max(.15,Math.min(1.1,zoom));document.body.classList.toggle('compact-nodes',zoom<.23);$('#scene').style.transform=`scale(${zoom})`;$('#scene').style.setProperty('--inverse-zoom',1/zoom);drawConnections();$('#zoom-label').textContent=Math.round(zoom*100)+'%';const extentX=Math.max(7000,...project.pages.filter(p=>!p.hidden).map(p=>p.x+p.width+1000)),extentY=Math.max(5000,...project.pages.filter(p=>!p.hidden).map(p=>p.y+(metrics.get(p.id)?.height||2000)+1500));$('#scene').style.width=extentX+'px';$('#scene').style.height=extentY+'px';$('#scene-container').style.width=extentX*zoom+'px';$('#scene-container').style.height=extentY*zoom+'px'}
@@ -243,7 +243,7 @@ $('#workspace').addEventListener('wheel',e=>{e.preventDefault();zoomFromWheel(e.
 $('#workspace').onpointerdown=e=>{if(!(space||e.button===1)||e.target.closest('button'))return;e.preventDefault();const w=$('#workspace'),x=e.clientX,y=e.clientY,left=w.scrollLeft,top=w.scrollTop;w.classList.add('canvas-panning');w.setPointerCapture(e.pointerId);w.onpointermove=ev=>{w.scrollLeft=left-(ev.clientX-x);w.scrollTop=top-(ev.clientY-y)};const end=()=>{w.classList.remove('canvas-panning');w.onpointermove=null;w.onpointerup=null;w.onpointercancel=null};w.onpointerup=end;w.onpointercancel=end};
 
 async function floatingProject(){const pages=[];for(let i=0;i<catalog.blocks.length;i++){const def=catalog.blocks[i],page=await makePage(null,i);page.name=def.source+' · '+def.name.slice(0,42);page.slug=def.id;page.hidden=false;page.blocks=[await instance(def.id)];pages.push(page)}return{version:VERSION,name:'Biblioteca · Blocos flutuantes',home:pages[0].id,pages,links:[],sequences:[]}}
-$('#all-blocks').onclick=async()=>{try{const next=await floatingProject();commit(()=>{project=next;active=next.home;selection=null});focusPage()}catch(e){notify(e.message)}};
+$('#all-blocks')?.addEventListener('click',async()=>{try{const next=await floatingProject();commit(()=>{project=next;active=next.home;selection=null});focusPage()}catch(e){notify(e.message)}});
 
 async function start(){
  if(location.protocol==='file:')throw Error('Execute npm run dev e abra http://localhost:4173. O editor também funciona no GitHub Pages.');
@@ -261,11 +261,12 @@ async function start(){
  for(const def of catalog.blocks.filter(b=>b.id.startsWith('r20-')&&!existing.has(b.id))){if(project.pages.length>=120){notify('Biblioteca atualizada. Use Blocos para inserir as novas seções.');break}const page=await makePage(null,project.pages.length);page.name=def.source+' · '+def.name;page.slug=uniqueSlug(def.id);page.blocks=[await instance(def.id)];project.pages.push(page)}
  project.catalogUpgrades=[...(project.catalogUpgrades||[]),'references-20261020'];organize();
  }
+ if(!project.uiMigrations?.includes('canvas-nodes-v1')){project.pages.forEach(p=>p.hidden=false);project.uiMigrations=[...(project.uiMigrations||[]),'canvas-nodes-v1']}
  project.prototypeOutput=project.pages.some(p=>p.id===project.prototypeOutput)?project.prototypeOutput:project.home;active=project.home;render();renderLibrary();persist();
 }
 start().catch(e=>{notify(e.message);$('#save-status').textContent='Não foi possível iniciar';$('#inspector').textContent=e.message});
 
-$('.left-panel').addEventListener('dragstart',e=>{const row=e.target.closest('[data-page-drag]');if(row){e.dataTransfer.setData('application/x-forma-page',row.dataset.pageDrag);e.dataTransfer.effectAllowed='move'}});
+// A lista duplicada de pranchetas foi removida do menu lateral; nodes são manipulados direto no canvas.
 $('#workspace').addEventListener('dragover',e=>{if([...e.dataTransfer.types].includes('application/x-forma-page'))e.preventDefault()});
 $('#workspace').addEventListener('drop',e=>{const id=e.dataTransfer.getData('application/x-forma-page'),page=project.pages.find(p=>p.id===id);if(!page)return;e.preventDefault();const r=$('#scene').getBoundingClientRect();commit(()=>{page.hidden=false;page.x=Math.max(20,Math.min(48000,(e.clientX-r.left)/zoom));page.y=Math.max(70,Math.min(48000,(e.clientY-r.top)/zoom));active=id;selection=null})});
 
@@ -278,6 +279,9 @@ function renderGlobals(){
 }
 $('#organize').onclick=()=>{commit(organize);focusPage();notify('Todas as pranchetas organizadas por referência. Você pode desfazer.')};
 for(const side of ['left','right']){const toggle=$('#toggle-'+side);if(!toggle)continue;toggle.onclick=()=>{const next=!document.body.classList.contains(side+'-open');document.body.classList.remove('left-open','right-open');document.body.classList.toggle(side+'-open',next);for(const name of ['left','right'])$('#toggle-'+name)?.setAttribute('aria-expanded',document.body.classList.contains(name+'-open'))}};
+function setSidebarCollapsed(collapsed){document.body.classList.toggle('left-collapsed',collapsed);const expand=$('#expand-left');if(expand)expand.hidden=!collapsed;$('#collapse-left')?.setAttribute('aria-expanded',String(!collapsed));requestAnimationFrame(()=>drawConnections())}
+$('#collapse-left')?.addEventListener('click',()=>setSidebarCollapsed(true));
+$('#expand-left')?.addEventListener('click',()=>setSidebarCollapsed(false));
 new ResizeObserver(entries=>{document.documentElement.style.setProperty('--toolbar-height',entries[0].target.getBoundingClientRect().height+'px')}).observe($('.toolbar'));
 
 // Drag a catalogue block onto an existing board, or create one on empty canvas.
