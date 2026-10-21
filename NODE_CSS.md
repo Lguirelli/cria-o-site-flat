@@ -18,3 +18,6 @@ Botão do meio + arraste usa movimento da tela, sem multiplicar o deslocamento p
 
 ## Verificação
 56 testes automatizados aprovados, incluindo herança de CSS, slots de imagem, desconexão, navegação e exportação. Validação visual no navegador pendente.
+
+## 1.13.0 — Imagens conectadas automaticamente
+Cada espaço de imagem descoberto nas seções recebe um node já conectado e inicialmente vazio, preservando o wireframe. Basta selecionar um arquivo ou URL. Nodes existentes e desconexões manuais são preservados. Novos espaços recebem nodes novos. Os nodes são posicionados fora das áreas estimadas das seções.
