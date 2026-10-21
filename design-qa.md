@@ -17,3 +17,5 @@ Validação visual do editor e gestos reais de arraste pendente: control-browser
 1.8.7: Delete/Backspace exclui o node de página quando o node (e não uma seção/elemento interno) está selecionado; modo escuro persistente adicionado ao chrome do editor; conexões de sequência ganharam endpoint próprio arrastável/teclável para reconectar ou desconectar sem iniciar drag da seção.
 
 1.10: 44 testes automatizados aprovados; build estático gerado. Câmera sem limites de posição, prévia fixa e 84 skeletons vetoriais específicos. Validação de gestos e apresentação em navegador permanece pendente.
+
+1.10.1: diagnóstico pela captura do usuário — botão de expandir sem classe ocupava uma célula da grade. Classes recuperadas; menu e canvas agora têm linha/coluna explícitas e auxiliares ficam fora do fluxo. Validação visual no navegador ainda pendente.

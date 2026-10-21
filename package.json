@@ -1,6 +1,6 @@
 {
   "name": "forma-studio-page-builder",
-  "version": "1.10.0",
+  "version": "1.10.1",
   "private": true,
   "type": "module",
   "description": "Construtor visual de p\u00e1ginas e subp\u00e1ginas com blocos, pranchetas e conex\u00f5es de prot\u00f3tipo.",
