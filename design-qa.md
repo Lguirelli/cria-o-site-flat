@@ -19,3 +19,5 @@ Validação visual do editor e gestos reais de arraste pendente: control-browser
 1.10: 44 testes automatizados aprovados; build estático gerado. Câmera sem limites de posição, prévia fixa e 84 skeletons vetoriais específicos. Validação de gestos e apresentação em navegador permanece pendente.
 
 1.10.1: diagnóstico pela captura do usuário — botão de expandir sem classe ocupava uma célula da grade. Classes recuperadas; menu e canvas agora têm linha/coluna explícitas e auxiliares ficam fora do fluxo. Validação visual no navegador ainda pendente.
+
+1.12.1: centralizar usa limites das seções visíveis; switch desktop/mobile altera só as prévias; botão de recolher contido no menu. 57 testes aprovados; validação visual no navegador pendente.

@@ -8,7 +8,7 @@ function run(preview,tag='P'){
  const location={href:''},parent={postMessage:m=>message=m};
  const p={name:'Demo',home:'a',pages:[{id:'a',name:'Inicial',slug:'inicio',blocks:[{id:'copy',blockId:'sample',html:'<p data-node="text">Saiba mais</p>'}]},{id:'b',name:'Destino',slug:'destino',blocks:[]}],links:[{fromPage:'a',block:'copy',node:'text',toPage:'b'}]};
  const doc=buildDocument(p,p.pages[0],{blocks:[{id:'sample',theme:'test'}]},{preview});
- vm.runInNewContext(doc.match(/<script>([\s\S]*?)<\/script>/)[1],{window:{addEventListener(){}},document,location,parent});
+ vm.runInNewContext([...doc.matchAll(/<script>([\s\S]*?)<\/script>/g)].find(m=>m[1].includes('const links='))[1],{window:{addEventListener(){}},document,location,parent});
  return {node,handlers,attrs,classes,location,get message(){return message}};
 }
 test('paragraph, heading and caption navigate through exported HTML with keyboard access',()=>{
