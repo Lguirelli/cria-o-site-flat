@@ -6,7 +6,7 @@ Foram analisadas as imagens originais, retirando da reconstrução molduras de n
 
 - HTML semântico separado por seção; textos e botões editáveis.
 - Tradução PT-BR de 259 textos. Nomes de marcas, pessoas e produtos preservados. Textos ilegíveis não foram apresentados como transcrição exata: são indicados como demonstrativos.
-- Imagens visuais usam janelas CSS sobre os arquivos de referência originais. Não são imagens independentes de alta resolução. Substituir a imagem pelo inspetor remove a janela de recorte. Rótulos incorporados às fotografias e embalagens permanecem na imagem original.
+- Atualização 1.8: os 51 recortes foram substituídos por 28 imagens independentes e cinco componentes HTML editáveis. As referências permanecem apenas como documentação. As imagens são interpretações dos temas, não réplicas nem fotografias documentais das pessoas ou marcas.
 - Ícones funcionais usam Material Symbols, do Google Fonts. Os SVGs são diagramas estruturais, sem redesenhar os ícones.
 - Estrutura do SVG aproxima hierarquia e proporções; não é uma cópia fotográfica.
 - Grades adaptam colunas, tipografia usa limites fluidos; tabelas e galerias têm rolagem intencional.

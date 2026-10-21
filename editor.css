@@ -12,3 +12,233 @@
 @media(max-width:1200px){body{grid-template-columns:220px minmax(0,1fr) 240px}.canvas-controls{right:252px}}
 @media(max-width:1050px){body{grid-template-columns:minmax(0,1fr)}#toggle-left,#toggle-right{display:inline-flex}.toolbar>#project-name{display:block;flex:1;min-width:120px}.toolbar-actions #load,.toolbar-actions #redo{display:inline-flex}.toolbar-actions{margin-left:0;flex:1}.left-panel,.right-panel{display:none;position:absolute;top:var(--toolbar-height,150px);bottom:0;width:min(340px,100vw);z-index:10;box-shadow:0 8px 30px #0003}.left-panel{left:0}.right-panel{right:0}.left-open .left-panel,.right-open .right-panel{display:block}#workspace{grid-column:1}.canvas-controls{right:12px}.toolbar{max-height:40dvh;overflow:auto}.logo>span:last-child{display:inline}.modes{margin-left:auto}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:0s;transition-duration:0s}}
+
+.block-card[draggable=true]{cursor:grab}.block-card[draggable=true]:active{cursor:grabbing}.dragging-library-block .artboard iframe{pointer-events:none}.artboard.block-drop-target iframe{outline:8px solid #635bdf}.artboard.block-drop-target .artboard-title:after{content:'Solte para adicionar seção';font-size:24px;background:#635bdf;color:white;padding:8px 16px;border-radius:8px}#workspace.block-drop-active{box-shadow:inset 0 0 0 3px #635bdf}
+
+/* Biblioteca agrupada por tipo de seção. */
+.library-group{margin:0 0 18px;padding:0;border:0}.library-group-heading{position:sticky;top:0;z-index:2;display:flex;align-items:center;justify-content:space-between;margin:0 12px 10px;padding:10px 2px 8px;background:linear-gradient(#fff 78%,#fff0);color:#5f5b6c}.library-group-heading strong{font-size:10px;text-transform:uppercase;letter-spacing:1.2px}.library-group-heading small{min-width:24px;padding:3px 6px;border-radius:999px;background:#efedff;color:#635bdf;text-align:center;font-size:9px}.library-group .block-card:last-child{margin-bottom:0}
+#workspace.canvas-panning{cursor:grabbing}.canvas-panning .artboard iframe{cursor:grabbing}
+
+/* 1.8.4 · Pranchetas como nodes: inspector lateral removido e ações no canvas. */
+body{grid-template-columns:260px minmax(0,1fr)!important}
+.right-panel{display:none!important}
+#workspace{grid-column:2!important;left:auto!important;right:auto!important}
+.canvas-controls{right:12px!important}
+#toggle-right{display:none!important}
+
+.artboard{border-radius:14px;background:#fff;box-shadow:0 8px 30px #27243a14;overflow:visible;transition:opacity .16s ease,filter .16s ease}
+.artboard-title{height:58px;padding:0 10px 0 14px;gap:10px;border:1px solid #d9d8e2;border-bottom:0;border-radius:14px 14px 0 0;background:#fbfbfd;color:#5e5a6b;cursor:grab;position:relative}
+.artboard-title:before{height:15px;width:15px;border-width:3px;margin-right:2px}
+.artboard-title strong{font-size:18px!important;font-weight:600;max-width:none;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.artboard-title small{font-size:12px!important;color:#9995a6}
+.artboard.active .artboard-title{background:#f4f2ff;border-color:#9d94ef;color:#554cc6}
+.artboard iframe{outline:0!important;border:1px solid #d9d8e2;border-top:0;border-radius:0;background:#fff;box-shadow:none}
+.artboard.active iframe{outline:0!important;border-color:#9d94ef}
+.artboard.target{box-shadow:0 0 0 5px #635bdf44,0 8px 30px #27243a14}
+.artboard.target iframe{outline:0!important}
+.artboard.muted{opacity:.46;filter:saturate(.35)}
+.artboard.muted .artboard-title:after{content:'MUTE';font-size:10px;letter-spacing:1.4px;color:#8d8997;margin-right:6px}
+.artboard.collapsed{width:430px!important;min-height:58px;overflow:visible}
+.artboard.collapsed iframe,.artboard.collapsed .board-sequence{display:none}
+.artboard.collapsed .artboard-title{border-bottom:1px solid #d9d8e2;border-radius:14px}
+.artboard.collapsed .node-summary{display:inline-flex}
+.node-summary{display:none;font-size:11px;color:#8f8b99;white-space:nowrap}
+.node-actions{display:flex;align-items:center;gap:2px;margin-left:auto;opacity:.2;transition:opacity .15s ease}
+.artboard:hover .node-actions,.artboard.active .node-actions{opacity:1}
+.node-actions button{min-width:34px;min-height:34px;width:34px;height:34px;padding:0;border:0;background:transparent;border-radius:7px;color:#6b6875}
+.node-actions button:hover{background:#ebe8ff;color:#554cc6}
+.node-actions button.active{background:#e9e5ff;color:#554cc6}
+.node-actions button.danger:hover{background:#fff0f2;color:#b0445a}
+.node-actions .icon{font-size:19px}
+.node-properties{position:absolute;right:10px;top:52px;z-index:12;width:280px;padding:12px;border:1px solid #d9d8e2;border-radius:10px;background:#fff;box-shadow:0 12px 34px #1d18352a;cursor:default}
+.node-properties[hidden]{display:none}
+.node-properties label{margin:8px 0 4px;font-size:10px}
+.node-properties input{min-height:38px;padding:8px;font-size:12px}
+.node-properties .two{gap:8px}
+
+/* Add pesquisável, no estilo de um menu de nodes. */
+.add-menu{position:fixed;z-index:80;width:min(420px,calc(100vw - 24px));max-height:min(560px,70vh);overflow:hidden;border:1px solid #d7d4e4;border-radius:12px;background:#fff;box-shadow:0 18px 60px #1e173d32}
+.add-menu[hidden]{display:none}
+.add-menu-head{display:flex;align-items:center;gap:8px;padding:10px;border-bottom:1px solid #eceaf2;background:#faf9fd}
+.add-menu-head input{border:0;margin:0;outline:0!important;box-shadow:none;min-height:38px;padding:6px 4px}
+.add-menu-head kbd{font:10px/1.2 monospace;color:#888397;border:1px solid #ddd9e8;border-bottom-width:2px;border-radius:5px;padding:3px 5px;background:#fff}
+#add-menu-results{overflow:auto;max-height:500px;padding:6px}
+.add-menu-group{padding:7px 8px 4px;font-size:9px;text-transform:uppercase;letter-spacing:1.1px;color:#95909f}
+.add-menu-item{display:flex;width:100%;min-height:48px;border:0;background:#fff;justify-content:flex-start;text-align:left;padding:8px 10px;gap:10px}
+.add-menu-item:hover,.add-menu-item.active{background:#f1efff}
+.add-menu-item .icon{color:#665fd5}
+.add-menu-item span:last-child{display:flex;flex-direction:column;align-items:flex-start;gap:2px}
+.add-menu-item small{font-size:10px;color:#9692a0}
+
+/* Prototype Output é um node especial do canvas. */
+#prototype-output-layer{position:absolute;inset:0;pointer-events:none;z-index:3}
+.prototype-output-node{position:absolute;width:330px;pointer-events:auto;border:1px solid #cfc8f8;border-radius:12px;background:#f8f6ff;box-shadow:0 8px 28px #4e44931c;overflow:visible}
+.prototype-output-head{height:56px;display:flex;align-items:center;gap:10px;padding:0 10px 0 14px;cursor:grab;color:#5148bb}
+.prototype-output-head strong{font-size:16px;flex:1}.prototype-output-head small{font-size:10px;color:#7e78a8;display:block;margin-top:2px}
+.prototype-output-head button{width:34px;height:34px;min-width:34px;min-height:34px;padding:0;border:0;background:transparent}
+.prototype-output-head button:hover{background:#ebe7ff}
+.prototype-output-socket{position:absolute;left:-11px;top:21px;width:22px;height:22px;border-radius:50%;background:#635bdf;border:4px solid white;box-shadow:0 0 0 2px #635bdf}
+#connections path.prototype-output-line{stroke:#635bdf;stroke-width:6;stroke-dasharray:12 8}
+.prototype-output-badge{font-size:9px;padding:3px 6px;border-radius:999px;background:#e8e4ff;color:#5e55ca;letter-spacing:.8px;text-transform:uppercase}
+
+/* O nível de zoom nunca compacta nodes automaticamente. O conteúdo só é ocultado por Collapse explícito. */
+
+@media(max-width:1200px){body{grid-template-columns:220px minmax(0,1fr)!important}}
+@media(max-width:1050px){body{grid-template-columns:minmax(0,1fr)!important}.left-panel{display:none}.left-open .left-panel{display:block}#workspace{grid-column:1!important}}
+
+/* Socket compacto para encadear seções/páginas, em vez do rodapé antigo. */
+.board-sequence{height:46px!important;min-height:46px!important;padding:0 10px!important;justify-content:flex-start!important;gap:8px!important;background:#f5fbf8!important;border:1px solid #b9dfd3!important;border-top:0!important;border-radius:0 0 14px 14px!important;color:#397f70!important}
+.board-sequence>span{font-size:11px!important;letter-spacing:.2px!important;text-transform:none!important;flex:1}
+.board-sequence .sequence-port,.board-sequence .sequence-add{height:28px!important;width:28px!important;min-height:28px!important;min-width:28px!important;border:3px solid white!important;box-shadow:0 0 0 1px #279f86!important;padding:0!important}
+.board-sequence .sequence-port .icon,.board-sequence .sequence-add .icon{font-size:17px!important}
+.board-sequence .sequence-add{background:#fff!important;color:#279f86!important;border:1px solid #a8d9cc!important;box-shadow:none!important;border-radius:7px!important;cursor:pointer!important}
+
+
+/* 1.8.5 · Menu lateral minimizável; pranchetas existem somente como nodes no canvas. */
+.sidebar-tabs-row{display:flex;align-items:stretch;border-bottom:1px solid var(--border);background:#fff;position:sticky;top:0;z-index:8}
+.sidebar-tabs-row .tabs{flex:1;border-bottom:0;min-width:0}
+.sidebar-collapse{align-self:center;width:34px;height:34px;min-width:34px;min-height:34px;margin-right:10px;padding:0;border:0;background:transparent;color:#777382}
+.sidebar-collapse:hover{background:#f1efff;color:var(--accent)}
+.sidebar-collapse .icon{font-size:19px}
+.sidebar-expand{position:fixed;top:calc(var(--toolbar-height,64px) + 12px);left:12px;z-index:25;width:38px;height:38px;min-width:38px;min-height:38px;padding:0;border:1px solid #d8d6e2;background:#fff;box-shadow:0 6px 22px #2923331f;color:#625bca}
+.sidebar-expand[hidden]{display:none!important}
+body.left-collapsed{grid-template-columns:0 minmax(0,1fr)!important}
+body.left-collapsed .left-panel{display:none!important}
+body.left-collapsed #workspace{grid-column:2!important}
+body.left-collapsed .canvas-hint{left:64px!important}
+body.left-collapsed .canvas-controls{right:12px!important}
+/* A aba Prancheta mostra apenas controles do node selecionado; modelos vivem em Blocos. */
+#pages-list{display:none!important}
+@media(max-width:1050px){.sidebar-collapse{display:none}.sidebar-expand{display:none!important}body.left-collapsed{grid-template-columns:minmax(0,1fr)!important}body.left-collapsed #workspace{grid-column:1!important}}
+
+/* 1.8.7 · Endpoints de sequência, Delete de nodes e modo escuro do editor. */
+#connections .sequence-endpoint{fill:#279f86;stroke:var(--socket-ring,#fff);stroke-width:5;pointer-events:all;cursor:grab;touch-action:none}
+#connections .sequence-endpoint:hover,#connections .sequence-endpoint:focus{fill:#177765;stroke-width:7;outline:none}
+.board-sequence .sequence-port{touch-action:none;user-select:none;-webkit-user-drag:none;cursor:crosshair!important}
+
+:root[data-theme="dark"]{
+ color:#e7e7ec;
+ background:#17181d;
+ --border:#343640;
+ --muted:#9b9da8;
+ --socket-ring:#24262d;
+}
+:root[data-theme="dark"] body{background:#17181d;color:#e7e7ec}
+:root[data-theme="dark"] .toolbar,
+:root[data-theme="dark"] .left-panel,
+:root[data-theme="dark"] .right-panel,
+:root[data-theme="dark"] .sidebar-tabs-row,
+:root[data-theme="dark"] .sidebar-footer{background:#202127;color:#e7e7ec;border-color:#343640}
+:root[data-theme="dark"] .logo{color:#f1f1f5}
+:root[data-theme="dark"] .logo>span:last-child{color:#8f919c}
+:root[data-theme="dark"] button,
+:root[data-theme="dark"] input,
+:root[data-theme="dark"] select,
+:root[data-theme="dark"] textarea{background:#282a31;color:#e7e7ec;border-color:#3c3f49}
+:root[data-theme="dark"] button:hover{background:#34313f;border-color:#5f587d}
+:root[data-theme="dark"] button.active{background:#37324f;color:#bdb6ff;border-color:#60578b}
+:root[data-theme="dark"] button.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
+:root[data-theme="dark"] label,
+:root[data-theme="dark"] label input,
+:root[data-theme="dark"] label select,
+:root[data-theme="dark"] label textarea{color:#c2c3cb}
+:root[data-theme="dark"] .modes{background:#18191e}
+:root[data-theme="dark"] .modes button{background:transparent}
+:root[data-theme="dark"] .modes button.active{background:#30313a;box-shadow:none}
+:root[data-theme="dark"] #workspace{background-color:#15161a;background-image:radial-gradient(#393b45 .8px,transparent .8px)}
+:root[data-theme="dark"] .canvas-hint,:root[data-theme="dark"] .canvas-hint span{color:#777985}
+:root[data-theme="dark"] .canvas-controls{background:#24262d;border-color:#3c3e48;box-shadow:0 4px 24px #0006}
+:root[data-theme="dark"] .layer{background:#27292f;border-color:#3b3d46}
+:root[data-theme="dark"] .layer.selected{background:#37324f;border-color:#776ee3}
+:root[data-theme="dark"] .panel-heading h2,
+:root[data-theme="dark"] .panel-tip,
+:root[data-theme="dark"] .empty{color:#9a9ca6}
+:root[data-theme="dark"] .search{border-color:#3c3f49;background:#282a31}
+:root[data-theme="dark"] .search input{background:transparent}
+:root[data-theme="dark"] .block-card{background:#24262d;border-color:#3c3f49}
+:root[data-theme="dark"] .block-cover.wireframe-cover{background:#1b1c21}
+:root[data-theme="dark"] .block-cover span{background:#22242be8;color:#d1d2d9;border-color:#41434d}
+:root[data-theme="dark"] .library-group-heading{background:linear-gradient(#202127 78%,#20212700);color:#b8b9c1}
+:root[data-theme="dark"] .library-group-heading small{background:#37324f;color:#bdb6ff}
+:root[data-theme="dark"] .artboard{background:#24262d;box-shadow:0 8px 30px #0005}
+:root[data-theme="dark"] .artboard-title{background:#282a31;border-color:#444650;color:#c2c3cb}
+:root[data-theme="dark"] .artboard-title small,:root[data-theme="dark"] .node-summary{color:#91939e}
+:root[data-theme="dark"] .artboard.active .artboard-title{background:#37324f;border-color:#8177ef;color:#d0cbff}
+:root[data-theme="dark"] .artboard iframe{border-color:#444650;background:#fff}
+:root[data-theme="dark"] .artboard.active iframe{border-color:#8177ef}
+:root[data-theme="dark"] .node-actions button{background:transparent;color:#b0b1b9;border-color:transparent}
+:root[data-theme="dark"] .node-actions button:hover{background:#403a58;color:#d2ceff}
+:root[data-theme="dark"] .node-actions button.active{background:#443e60;color:#d2ceff}
+:root[data-theme="dark"] .node-actions button.danger:hover{background:#4a2d34;color:#ff9eae}
+:root[data-theme="dark"] .node-properties{background:#25272d;border-color:#41434d;box-shadow:0 12px 34px #0008}
+:root[data-theme="dark"] .board-sequence{background:#1c2e2a!important;border-color:#315f55!important;color:#70cbb8!important}
+:root[data-theme="dark"] .board-sequence .sequence-port{border-color:#24262d!important;box-shadow:0 0 0 1px #45b69e!important}
+:root[data-theme="dark"] .board-sequence .sequence-add{background:#24262d!important;color:#70cbb8!important;border-color:#3f766a!important}
+:root[data-theme="dark"] .add-menu{background:#24262d;border-color:#42444e;box-shadow:0 18px 60px #0009}
+:root[data-theme="dark"] .add-menu-head{background:#202127;border-color:#383a43}
+:root[data-theme="dark"] .add-menu-head input{background:transparent}
+:root[data-theme="dark"] .add-menu-head kbd{background:#30323a;color:#aaa9b2;border-color:#484a54}
+:root[data-theme="dark"] .add-menu-group{color:#8e909b}
+:root[data-theme="dark"] .add-menu-item{background:#24262d;color:#e7e7ec}
+:root[data-theme="dark"] .add-menu-item:hover,:root[data-theme="dark"] .add-menu-item.active{background:#37324f}
+:root[data-theme="dark"] .add-menu-item small{color:#9a9ca6}
+:root[data-theme="dark"] .prototype-output-node{background:#29263a;border-color:#5f5790;box-shadow:0 8px 28px #0007}
+:root[data-theme="dark"] .prototype-output-head{color:#beb7ff}
+:root[data-theme="dark"] .prototype-output-head small{color:#9c97c9}
+:root[data-theme="dark"] .prototype-output-head button{background:transparent}
+:root[data-theme="dark"] .prototype-output-head button:hover{background:#403a58}
+:root[data-theme="dark"] .prototype-output-socket{border-color:#24262d}
+:root[data-theme="dark"] .prototype-output-badge{background:#403a58;color:#c9c3ff}
+:root[data-theme="dark"] .sidebar-collapse{background:transparent;color:#a7a8b1}
+:root[data-theme="dark"] .sidebar-collapse:hover{background:#34313f;color:#c8c3ff}
+:root[data-theme="dark"] .sidebar-expand{background:#24262d;color:#bdb6ff;border-color:#444650;box-shadow:0 6px 22px #0007}
+:root[data-theme="dark"] dialog{background:#202127;color:#e7e7ec;border-color:#41434d}
+:root[data-theme="dark"] dialog header{border-color:#41434d}
+
+:root[data-theme="dark"] .artboard-title:before{background:#24262d}
+:root[data-theme="dark"] #connections .navigation-endpoint{stroke:#24262d}
+
+
+/* 1.9.0 · Seções são os únicos nodes visuais; prancheta é apenas o frame renderizado. */
+.section-node .artboard-title{min-width:0}
+.section-title-copy{display:flex;flex-direction:column;min-width:0;flex:1;gap:2px}
+.section-title-copy strong{display:block;max-width:100%;font-size:18px!important}
+.section-title-copy small{display:block;font-size:10px!important;letter-spacing:.2px}
+.section-socket{display:inline-block;width:14px;height:14px;border-radius:50%;background:#279f86;border:3px solid var(--socket-ring,#fff);box-shadow:0 0 0 1px #279f86;flex:0 0 auto}
+.section-socket-in{margin-left:-22px;margin-right:2px}
+.section-node.collapsed .artboard-title{min-width:430px}
+.section-node.collapsed .section-title-copy strong{max-width:190px}
+.section-node .node-actions{opacity:.28}
+.section-node:hover .node-actions,.section-node.active .node-actions{opacity:1}
+.section-node .node-properties:before{content:'PROPRIEDADES DA SEÇÃO';display:block;margin:0 0 8px;color:#8e8999;font-size:9px;letter-spacing:1px}
+.section-chain-tip{margin-top:0}
+
+/* Skeletons estáticos: representam a estrutura, não um estado real de carregamento. */
+.block-cover.skeleton-cover{position:relative;height:104px;display:block;padding:10px;background:#f4f3f7;overflow:hidden}
+.block-cover.skeleton-cover>span{position:absolute;left:9px;bottom:8px;z-index:2;background:#fffffff0}
+.section-skeleton{height:100%;width:100%;padding:8px;border-radius:7px;background:#fff;border:1px solid #e5e3ea;display:flex;flex-direction:column;gap:6px;overflow:hidden}
+.section-skeleton i{display:block;font-style:normal}
+.sk-line{height:5px;width:var(--w,100%);border-radius:99px;background:#dedde5;flex:0 0 auto}
+.sk-box{display:block;border-radius:5px;background:#e8e7ed;border:1px solid #dcdae4}
+.sk-row,.sk-split,.sk-grid,.sk-form,.sk-footer{display:flex;gap:6px;min-height:0;flex:1}
+.sk-row{align-items:center}.sk-row>span{display:flex;gap:5px;flex:1}.sk-row .sk-line{width:var(--w)!important}
+.sk-logo{width:19px;height:19px;flex:0 0 auto}.sk-pill{width:36px;height:14px;flex:0 0 auto;border-radius:99px}
+.sk-split>span{display:flex;flex-direction:column;gap:5px;flex:1;padding-top:2px}.sk-split>.sk-media{width:40%;height:100%}
+.sk-button{width:38px;height:12px;margin-top:auto;border-radius:99px}
+.sk-grid{align-items:stretch;margin-top:2px}.sk-grid .sk-box{flex:1}.sk-grid-3 .sk-card{min-height:48px}.sk-grid-4{display:grid;grid-template-columns:1fr 1fr}.sk-grid-4 .sk-tile{min-height:22px}
+.sk-form{align-items:flex-end}.sk-field{height:22px;flex:1}.sk-form .sk-button{height:22px;width:35px;margin:0}
+.sk-footer{align-items:flex-start}.sk-footer>span{display:flex;flex-direction:column;gap:5px;flex:1}.sk-footer .sk-logo{width:28px;height:28px}
+.sk-content{margin-top:2px}.sk-content>.sk-media{height:100%}
+
+.board-sequence .sequence-disconnect{height:28px!important;width:28px!important;min-height:28px!important;min-width:28px!important;padding:0!important;border:1px solid #e0c9cf!important;background:#fff7f8!important;color:#a64a5d!important;border-radius:7px!important;touch-action:none;user-select:none}
+.board-sequence .sequence-disconnect .icon{font-size:17px!important}
+.board-sequence .sequence-port,.board-sequence .sequence-add,.board-sequence .sequence-disconnect{position:relative;z-index:5}
+.artboard.block-drop-target .artboard-title:after{content:'Solte para criar + conectar seção'!important}
+
+:root[data-theme="dark"] .block-cover.skeleton-cover{background:#1b1c21}
+:root[data-theme="dark"] .section-skeleton{background:#24262d;border-color:#3c3e48}
+:root[data-theme="dark"] .sk-line{background:#444650}
+:root[data-theme="dark"] .sk-box{background:#32343c;border-color:#454751}
+:root[data-theme="dark"] .block-cover.skeleton-cover>span{background:#22242be8;color:#d1d2d9;border-color:#41434d}
+:root[data-theme="dark"] .board-sequence .sequence-disconnect{background:#38272d!important;color:#ff9eae!important;border-color:#5a3942!important}
+:root[data-theme="dark"] .section-socket{border-color:#282a31}

@@ -3,7 +3,7 @@
   "blocks": [
     {
       "id": "form-01",
-      "name": "Space to slow down.",
+      "name": "Espaço para desacelerar",
       "source": "Form / Retreat",
       "theme": "form-page",
       "category": "hero",
@@ -21,7 +21,7 @@
     },
     {
       "id": "emily-01",
-      "name": "GRAND EMILY HOTEL",
+      "name": "Grand Emily Hotel",
       "source": "Grand Emily",
       "theme": "emily-page",
       "category": "hero",
@@ -30,7 +30,7 @@
     },
     {
       "id": "emily-02",
-      "name": "HOTEL GUEST AREA",
+      "name": "Área dos hóspedes",
       "source": "Grand Emily",
       "theme": "emily-page",
       "category": "content",
@@ -39,7 +39,7 @@
     },
     {
       "id": "emily-03",
-      "name": "KING-SIZE BED LAKE-VIEW ROOM",
+      "name": "Quarto com vista para o lago",
       "source": "Grand Emily",
       "theme": "emily-page",
       "category": "rooms",
@@ -57,7 +57,7 @@
     },
     {
       "id": "qelli-02",
-      "name": "Where Nature Embraces Luxury",
+      "name": "Onde a natureza abraça o luxo",
       "source": "Qelli",
       "theme": "qelli-page",
       "category": "content",
@@ -66,7 +66,7 @@
     },
     {
       "id": "qelli-03",
-      "name": "Immerse Yourself in the Embrace of Nature",
+      "name": "No abraço da natureza",
       "source": "Qelli",
       "theme": "qelli-page",
       "category": "content",
@@ -75,7 +75,7 @@
     },
     {
       "id": "qelli-04",
-      "name": "Comfort and Space Combined",
+      "name": "Conforto e espaço",
       "source": "Qelli",
       "theme": "qelli-page",
       "category": "rooms",
@@ -93,7 +93,7 @@
     },
     {
       "id": "verina-02",
-      "name": "Sea View Sifnos Reason VERINA SIFNOS",
+      "name": "Verina Sifnos · Vista para o mar",
       "source": "Verina Sifnos",
       "theme": "verina-page",
       "category": "booking",
@@ -102,7 +102,7 @@
     },
     {
       "id": "amenities-01",
-      "name": "Amenities Designed for Every Kind of Traveler Waterfront Access Adventure Ready Nearby Golf Courses ",
+      "name": "Comodidades para cada viajante",
       "source": "Amenities",
       "theme": "amenities-page",
       "category": "features",
@@ -111,7 +111,7 @@
     },
     {
       "id": "amenities-02",
-      "name": "Ready to Book Your Stay?",
+      "name": "Reserve sua estadia",
       "source": "Amenities",
       "theme": "amenities-page",
       "category": "booking",
@@ -120,7 +120,7 @@
     },
     {
       "id": "deluxe-01",
-      "name": "Double Deluxe Room",
+      "name": "Quarto duplo deluxe",
       "source": "Double Deluxe",
       "theme": "deluxe-page",
       "category": "hero",
@@ -129,7 +129,7 @@
     },
     {
       "id": "deluxe-02",
-      "name": "Double Deluxe with Ocean View",
+      "name": "Duplo deluxe com vista para o mar",
       "source": "Double Deluxe",
       "theme": "deluxe-page",
       "category": "rooms",
@@ -138,7 +138,7 @@
     },
     {
       "id": "deluxe-03",
-      "name": "Room Facilities",
+      "name": "Comodidades do quarto",
       "source": "Double Deluxe",
       "theme": "deluxe-page",
       "category": "features",
@@ -147,7 +147,7 @@
     },
     {
       "id": "deluxe-04",
-      "name": "Comodidades",
+      "name": "Serviços do hotel",
       "source": "Double Deluxe",
       "theme": "deluxe-page",
       "category": "features",
@@ -156,7 +156,7 @@
     },
     {
       "id": "deluxe-05",
-      "name": "Conteúdo",
+      "name": "Outros quartos",
       "source": "Double Deluxe",
       "theme": "deluxe-page",
       "category": "content",
@@ -165,7 +165,7 @@
     },
     {
       "id": "realtoro-01",
-      "name": "FEWER HOMES, KNOWN BETTER.",
+      "name": "Menos imóveis, mais conhecimento",
       "source": "RealToro",
       "theme": "realtoro-page",
       "category": "hero",
@@ -174,7 +174,7 @@
     },
     {
       "id": "realtoro-02",
-      "name": "Comodidades",
+      "name": "Empresas parceiras",
       "source": "RealToro",
       "theme": "realtoro-page",
       "category": "features",
@@ -183,7 +183,7 @@
     },
     {
       "id": "realtoro-03",
-      "name": "We keep the list short on purpose",
+      "name": "Uma seleção pequena de propósito",
       "source": "RealToro",
       "theme": "realtoro-page",
       "category": "content",
@@ -192,7 +192,7 @@
     },
     {
       "id": "retreats-01",
-      "name": "Welcome to a world where  luxury  meets  serenity",
+      "name": "O luxo encontra a serenidade",
       "source": "W Retreats",
       "theme": "retreats-page",
       "category": "hero",
@@ -201,7 +201,7 @@
     },
     {
       "id": "retreats-02",
-      "name": "Explore our carefully curated selection of Private Villas and Health Retreats, meticulously designed",
+      "name": "Vilas e refúgios de bem-estar",
       "source": "W Retreats",
       "theme": "retreats-page",
       "category": "content",
@@ -210,7 +210,7 @@
     },
     {
       "id": "retreats-03",
-      "name": "Trending  Destinations",
+      "name": "Destinos em destaque",
       "source": "W Retreats",
       "theme": "retreats-page",
       "category": "content",
@@ -908,7 +908,7 @@
     },
     {
       "id": "amenities",
-      "name": "Amenities",
+      "name": "Comodidades",
       "blocks": [
         "amenities-01",
         "amenities-02"
@@ -916,7 +916,7 @@
     },
     {
       "id": "deluxe",
-      "name": "Double Deluxe",
+      "name": "Duplo deluxe",
       "blocks": [
         "deluxe-01",
         "deluxe-02",
@@ -1139,19 +1139,33 @@
     "responsive.css",
     "new-sections.css",
     "new-sections.js",
-    "assets/references-20261020/fulfillix.png",
-    "assets/references-20261020/statue.png",
-    "assets/references-20261020/apex.png",
-    "assets/references-20261020/folio.png",
-    "assets/references-20261020/kianro.png",
-    "assets/references-20261020/onepoint.png",
-    "assets/references-20261020/gioia.png",
-    "assets/references-20261020/bruno.png",
-    "assets/references-20261020/orbit.png",
-    "assets/references-20261020/onion.png",
-    "assets/references-20261020/vellum.png",
-    "assets/references-20261020/august.png",
-    "assets/references-20261020/peptide.png",
-    "assets/references-20261020/genex.png"
+    "assets/generated/statue.webp",
+    "assets/generated/warehouse.webp",
+    "assets/generated/portrait.webp",
+    "assets/generated/bloodhound.webp",
+    "assets/generated/headphones.webp",
+    "assets/generated/jacket.webp",
+    "assets/generated/bottle.webp",
+    "assets/generated/car.webp",
+    "assets/generated/shoe.webp",
+    "assets/generated/vial.webp",
+    "assets/generated/abstract.webp",
+    "assets/generated/waves.webp",
+    "assets/generated/green.webp",
+    "assets/generated/lab.webp",
+    "assets/generated/building.webp",
+    "assets/generated/microscope.webp",
+    "assets/generated/street.webp",
+    "assets/generated/woman.webp",
+    "assets/generated/hoodie.webp",
+    "assets/generated/blue.webp",
+    "assets/generated/designer.webp",
+    "assets/generated/eye.webp",
+    "assets/generated/redforms.webp",
+    "assets/generated/forest.webp",
+    "assets/generated/watch.webp",
+    "assets/generated/train.webp",
+    "assets/generated/eventgreen.webp",
+    "assets/generated/eventpink.webp"
   ]
 }
