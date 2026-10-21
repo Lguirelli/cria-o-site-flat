@@ -4,7 +4,7 @@ function harness(){
  const button={tagName:'BUTTON',dataset:{node:'button'},classList:{add(){},remove(){}},getBoundingClientRect:()=>({x:30,y:40,width:100,height:44}),closest:s=>s==='[data-block-instance]'?block:null,removeAttribute(k){if(k==='contenteditable')this.contentEditable='inherit'}};
  const child={closest:s=>s.startsWith('button[')?button:s==='[data-node]'?button:null};
  const doc={querySelectorAll:s=>s==='[data-node]'?[button]:[],addEventListener:(k,f)=>events[k]=f,body:{getBoundingClientRect:()=>({height:200})},fonts:{ready:{then(){}}}};
- vm.runInNewContext(bridgeSource('p','prototype'),{document:doc,parent:{postMessage:m=>messages.push(m)},window:{addEventListener(){}},ResizeObserver:class{observe(){}}});
+ vm.runInNewContext(bridgeSource('p','prototype'),{document:doc,parent:{postMessage:m=>messages.push(m)},window:{innerWidth:1000,innerHeight:800,addEventListener(){}},ResizeObserver:class{observe(){}}});
  const fire=(type)=>{let prevented=false;events[type]({target:child,key:'x',preventDefault(){prevented=true},stopImmediatePropagation(){}});return prevented};
  return {button,events,messages,fire};
 }
@@ -18,3 +18,5 @@ test('connectors follow element edges at different zoom levels, including canvas
   assert.equal(left.x,300/zoom+40-28/zoom);assert.ok(Math.abs(right.x-(300/zoom+240+28/zoom))<1e-8);assert.equal(left.y,300/zoom+105);assert.equal(left.y,right.y);
  }
 });
+
+test('wheel inside an artboard is forwarded as canvas zoom instead of scrolling the iframe',()=>{const h=harness();let prevented=false,stopped=false;h.events.wheel({deltaY:-120,deltaMode:0,clientX:250,clientY:200,preventDefault(){prevented=true},stopImmediatePropagation(){stopped=true}});const m=h.messages.at(-1);assert.ok(prevented&&stopped);assert.equal(m.kind,'canvas-zoom');assert.equal(m.deltaY,-120);assert.equal(m.xRatio,.25);assert.equal(m.yRatio,.25)});

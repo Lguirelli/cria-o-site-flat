@@ -30,7 +30,9 @@ Mantidos os globais, conexão por elemento dos dois lados, sequência inferior, 
 
 ## Arrastar seções do menu
 
-Na aba **Blocos**, arraste qualquer cartão para o mapa. Solte no espaço vazio para criar uma prancheta na posição indicada, ou sobre uma prancheta destacada para adicionar a seção ao final. O catálogo continua disponível para reutilização. Use as camadas para reordenar as seções e **Desfazer** para reverter uma inclusão. Clicar no cartão continua adicionando a seção à página ativa.
+Na área de edição, use a **rodinha/scroll do mouse para zoom in e zoom out**. O zoom mantém o ponto sob o cursor como referência. Para navegar pelo mapa sem alterar o zoom, pressione o **botão do meio** e arraste. A rolagem dos painéis laterais continua independente.
+
+Na aba **Blocos**, arraste qualquer cartão para o mapa. Solte no espaço vazio para criar uma prancheta na posição indicada, ou sobre uma prancheta destacada para adicionar a seção ao final. O catálogo continua disponível para reutilização. Use as camadas para reordenar as seções e **Desfazer** para reverter uma inclusão. Clicar no cartão adiciona a seção à página ativa somente quando nenhuma seção estiver selecionada. Com uma seção selecionada, use arrastar e soltar; isso evita inclusão duplicada acidental.
 
 Os rascunhos antigos recebem a tradução e as imagens novas somente quando o conteúdo corresponde exatamente ao original. Textos alterados e imagens substituídas pelo usuário permanecem. Os arquivos JSON exportados anteriormente podem ser reabertos para receber a mesma atualização.
 
@@ -40,5 +42,7 @@ Prompts e origem: `docs/imagens-geradas.json`. As imagens foram criadas com a fe
 
 Abra **Protótipo**, selecione um título, parágrafo, legenda ou outro texto e arraste o ponto lateral até a página de destino. Também é possível escolher o destino no painel **Interações**. A navegação é ativada em **Testar** e na exportação por clique, Enter ou Espaço. No modo Design, o texto continua editável e os controles de conexão ficam ocultos. Para remover uma ligação, puxe sua ponta e solte no espaço vazio do mapa.
 
-### Protótipo 1.8.1
+### Protótipo 1.8.2
 Selecione textos, botões, links, imagens ou campos. Os conectores aparecem junto às bordas esquerda e direita do próprio elemento e acompanham zoom e posição da prancheta. Arraste até a prancheta de destino. Duplo clique apenas seleciona; digitação, colagem e alteração dos campos são bloqueadas. Para editar conteúdo, volte a Design.
+
+A biblioteca de blocos é agrupada por tipo de seção. O botão do meio do mouse + arrastar navega pelo mapa inclusive sobre as pranchetas. Ao soltar um bloco, apenas a prancheta afetada é reconstruída; as demais não recarregam.

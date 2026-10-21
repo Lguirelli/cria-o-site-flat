@@ -4,4 +4,10 @@ Verificação de código concluída: 32 testes aprovados, incluindo arraste no m
 
 Validação visual do editor e gestos reais de arraste pendente: control-browser indisponível no ambiente gerenciado. Não foi executado navegador alternativo. Conferir o fluxo completo em desktop, zoom e rolagem; resoluções 347/529/713/887/1113/1371 px e texto a 200%.
 
-1.8.1: testes adicionais da seleção de botões sem edição e da posição dos conectores junto aos elementos em dois níveis de zoom. Validação visual em navegador continua pendente.
+1.8.1: testes adicionais da seleção de botões sem edição e da posição dos conectores junto aos elementos em dois níveis de zoom.
+
+1.8.2: biblioteca agrupada por tipo, pan com botão do meio atravessando iframes, drop com atualização incremental de uma única prancheta, bloqueio de clique-adicionar quando há seção selecionada e remoção em uma única ação. Validação de código concluída. A tentativa de smoke test headless foi bloqueada pela política do ambiente para acesso do navegador ao servidor local; a validação funcional automatizada permanece em 32/32 testes.
+
+1.8.3: scroll/rodinha no canvas convertido em zoom in/out ancorado no cursor, inclusive sobre conteúdo das pranchetas em iframe; botão do meio continua dedicado ao pan e painéis laterais preservam rolagem normal.
+
+1.8.4: pranchetas tratadas como nodes. Inspector lateral direito removido da interface; ações de página migradas para ícones no cabeçalho do node; ações de seção aparecem contextualmente no node selecionado. Adicionados Mute, Collapse, menu Add pesquisável (Shift+A), criação automática de destino ao soltar conexões no vazio, socket compacto para sequência de seções e node especial Prototype Output/Viewer. Mute preserva o node no mapa e omite seu conteúdo da composição de saída. Zoom baixo aplica compactação visual automática aos nodes não selecionados.
