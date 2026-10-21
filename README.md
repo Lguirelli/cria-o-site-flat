@@ -17,8 +17,8 @@ Mantidos os globais, conexão por elemento dos dois lados, sequência inferior, 
 - `blocks/r20-*.html`: 56 seções independentes.
 - `wireframes/r20-*.svg`: diagramas vetoriais editáveis.
 - `previews/`: 14 páginas e índice de consulta.
-- Fotografias e arte usam recortes visuais por CSS das referências; podem ser substituídas pelo inspetor. Palavras integradas às imagens originais não são texto HTML e permanecem na língua original.
-- O catálogo antigo foi preservado, incluindo seus textos originais. A tradução desta entrega cobre as 14 novas referências.
+- 28 imagens independentes geradas para as novas seções, em `assets/generated/`. As interfaces CORA e o fluxo logístico usam componentes editáveis. Nenhum bloco depende de recortes das capturas originais. Imagens inspiradas nos temas; não são fotos reais das marcas ou pessoas citadas.
+- Os 84 blocos estão em português, incluindo os 28 anteriores e os diálogos de reserva. Marcas e nomes próprios foram preservados.
 - Menus com destinos não mostrados nas imagens precisam ser ligados às páginas desejadas no editor. Produtos, formulário e números são demonstrativos; nenhum pedido é enviado.
 - QA visual pendente por indisponibilidade de control-browser; detalhes em design-qa.md.
 
@@ -27,3 +27,18 @@ Mantidos os globais, conexão por elemento dos dois lados, sequência inferior, 
 `npm run check`
 `node scripts/generate-reference-previews.mjs`
 `node scripts/package-site.mjs`
+
+## Arrastar seções do menu
+
+Na aba **Blocos**, arraste qualquer cartão para o mapa. Solte no espaço vazio para criar uma prancheta na posição indicada, ou sobre uma prancheta destacada para adicionar a seção ao final. O catálogo continua disponível para reutilização. Use as camadas para reordenar as seções e **Desfazer** para reverter uma inclusão. Clicar no cartão continua adicionando a seção à página ativa.
+
+Os rascunhos antigos recebem a tradução e as imagens novas somente quando o conteúdo corresponde exatamente ao original. Textos alterados e imagens substituídas pelo usuário permanecem. Os arquivos JSON exportados anteriormente podem ser reabertos para receber a mesma atualização.
+
+Prompts e origem: `docs/imagens-geradas.json`. As imagens foram criadas com a ferramenta integrada de geração de imagens e convertidas para WebP, sem redimensionamento. Alguns arquivos são reutilizados intencionalmente em seções relacionadas.
+
+## Textos clicáveis no Protótipo
+
+Abra **Protótipo**, selecione um título, parágrafo, legenda ou outro texto e arraste o ponto lateral até a página de destino. Também é possível escolher o destino no painel **Interações**. A navegação é ativada em **Testar** e na exportação por clique, Enter ou Espaço. No modo Design, o texto continua editável e os controles de conexão ficam ocultos. Para remover uma ligação, puxe sua ponta e solte no espaço vazio do mapa.
+
+### Protótipo 1.8.1
+Selecione textos, botões, links, imagens ou campos. Os conectores aparecem junto às bordas esquerda e direita do próprio elemento e acompanham zoom e posição da prancheta. Arraste até a prancheta de destino. Duplo clique apenas seleciona; digitação, colagem e alteração dos campos são bloqueadas. Para editar conteúdo, volte a Design.
