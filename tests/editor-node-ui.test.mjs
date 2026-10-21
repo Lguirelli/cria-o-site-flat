@@ -44,12 +44,12 @@ test('canvas treats each visual item as one section and migrates legacy multi-se
  assert.doesNotMatch(source,/data-node-action="delete-block"/);
 });
 
-test('block library uses static structural skeletons instead of thumbnail images',()=>{
+test('block library uses section-specific vector skeletons with reduced-motion support',()=>{
  const source=read('editor.js'),css=read('editor.css'),html=read('index.html');
  assert.match(source,/function skeletonPreview\(def\)/);
  assert.match(source,/block-cover skeleton-cover/);
  assert.doesNotMatch(source,/const image=b\.thumbnail/);
  assert.match(css,/\.section-skeleton\{/);
- assert.match(css,/Skeletons estáticos/);
+ assert.match(source,/esc\(def.skeleton\|\|def.thumbnail\)/);assert.match(css,/prefers-reduced-motion/);
  assert.match(html,/miniaturas são skeletons estruturais/);
 });

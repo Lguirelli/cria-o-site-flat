@@ -61,3 +61,13 @@ Abra **Protótipo**, selecione um título, parágrafo, legenda ou outro elemento
 Selecione textos, botões, links, imagens ou campos. Os conectores aparecem junto às bordas esquerda e direita do próprio elemento e acompanham zoom e posição da seção. Arraste até a seção de destino. Duplo clique apenas seleciona no Protótipo; para editar conteúdo, volte a Design.
 
 A biblioteca é agrupada por tipo de seção. O botão do meio do mouse + arrastar navega pelo mapa inclusive sobre o conteúdo renderizado. Ao criar ou conectar uma seção, apenas as unidades afetadas são atualizadas; as demais não recarregam.
+
+## 1.10 — Área livre e prévia fixa
+
+A área usa uma câmera livre, sem bordas artificiais: arraste o fundo, use Espaço + arraste ou o botão central para navegar. A roda aplica zoom no ponto do cursor. As seções podem ocupar coordenadas positivas ou negativas; o botão Centralizar recupera a seção ativa. A posição das seções é preservada no JSON.
+
+A prévia no canto superior direito mostra o site montado com as conexões, cabeçalho e rodapé globais. Atualiza após alterações, permite trocar de página, navegar pelos links, recolher e ampliar.
+
+Cada miniatura usa o wireframe vetorial específico da seção como skeleton, com brilho suave e respeito à preferência por movimento reduzido.
+
+Foram recompostos index.html, package.json e server.mjs, ausentes no ZIP recebido. Para executar, use npm run dev. Para preparar GitHub Pages: node scripts/package-site.mjs.
