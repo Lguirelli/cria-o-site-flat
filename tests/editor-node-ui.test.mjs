@@ -44,12 +44,79 @@ test('canvas treats each visual item as one section and migrates legacy multi-se
  assert.doesNotMatch(source,/data-node-action="delete-block"/);
 });
 
-test('block library uses section-specific vector skeletons with reduced-motion support',()=>{
+test('block library uses static structural skeletons instead of thumbnail images',()=>{
  const source=read('editor.js'),css=read('editor.css'),html=read('index.html');
  assert.match(source,/function skeletonPreview\(def\)/);
  assert.match(source,/block-cover skeleton-cover/);
  assert.doesNotMatch(source,/const image=b\.thumbnail/);
  assert.match(css,/\.section-skeleton\{/);
- assert.match(source,/esc\(def.skeleton\|\|def.thumbnail\)/);assert.match(css,/prefers-reduced-motion/);
+ assert.match(css,/Skeletons estáticos/);
  assert.match(html,/miniaturas são skeletons estruturais/);
+});
+
+test('section wires snap before the pointer reaches the destination board',()=>{
+ const source=read('editor.js'),css=read('editor.css');
+ assert.match(source,/const SEQUENCE_SNAP_PX=150/);
+ assert.match(source,/function wireTargetAt\(clientX,clientY,type,sourcePage\)/);
+ assert.match(source,/distanceToRect\(clientX,clientY,r\)/);
+ assert.match(source,/snap=type==='sequence'&&target\?sectionInputScenePoint\(target\):null/);
+ assert.match(source,/classList\.toggle\('target',b===target\)/);
+ assert.match(css,/\.artboard\.target \.section-socket-in/);
+});
+
+test('prototype exposes a proximity connector on the left edge of hovered elements',()=>{
+ const source=read('editor.js'),bridge=read('lib/bridge.js'),css=read('editor.css'),html=read('index.html');
+ assert.match(bridge,/function updatePrototypeHover\(e\)/);
+ assert.match(bridge,/horizontal>72/);
+ assert.match(bridge,/send\('prototype-hover'/);
+ assert.match(source,/d\.kind==='prototype-hover'/);
+ assert.match(source,/side==='left'&&prototypeHover\?\.node/);
+ assert.match(source,/side==='left'&&prototypeHover\?\.node\?\{\.\.\.prototypeHover,side:'left'\}/);
+ assert.match(css,/#connector-left\.proximity/);
+ assert.match(html,/id="connector-left" class="element-connector" hidden aria-label="Conectar elemento pela esquerda"><\/button>/);
+});
+
+
+test('Prototype Preview is an explicit Add-menu system node, never auto-created from a section',()=>{
+ const source=read('editor.js');
+ assert.match(source,/data-add-special="prototype-viewer"/);
+ assert.match(source,/function addPrototypeViewer\(\)/);
+ assert.match(source,/project\.prototypeViewer=\{x:/);
+ assert.match(source,/function outputPosition\(\)\{const viewer=project\.prototypeViewer;if\(!viewer\)return null/);
+ assert.match(source,/function renderPrototypeOutputNode\(\)\{const layer=\$\('#prototype-output-layer'\);layer\.innerHTML='';const pos=outputPosition\(\);if\(!pos\)return/);
+ assert.match(source,/prototype-viewer-explicit-v1/);
+ assert.match(source,/project\.prototypeViewer=null;delete project\.prototypeOutputX;delete project\.prototypeOutputY/);
+ assert.match(source,/Adicione Prototype Preview pelo menu Add antes de definir a saída/);
+ assert.doesNotMatch(source,/project\.prototypeOutputX=Math/);
+ assert.doesNotMatch(source,/project\.prototypeOutputY=Math/);
+});
+
+
+test('quick Add search includes Prototype Preview and the Google Fonts + Huemint style system',()=>{
+ const source=read('editor.js'),html=read('index.html');
+ assert.match(source,/SYSTEM_ADD_ITEMS/);
+ assert.match(source,/name:'Prototype Preview'/);
+ assert.match(source,/keywords:'prototype preview prototype output viewer/);
+ assert.match(source,/name:'CSS · Estilos'/);
+ assert.match(source,/google fonts tipografia fonte huemint paleta cores design tokens/);
+ assert.match(source,/data-add-special="css-node"/);
+ assert.match(source,/matchesQuickSearch\(term,`\$\{item\.name\}/);
+ assert.match(html,/Adicionar seção ou sistema/);
+});
+
+test('style system node uses Google Fonts and Huemint APIs and exports generated design tokens',()=>{
+ const source=read('editor.js'),doc=read('lib/document.js'),html=read('index.html');
+ assert.match(html,/id="css-node-layer"/);
+ assert.match(source,/function addCSSNode\(\)/);
+ assert.match(source,/project\.cssNode=\{x:/);
+ assert.match(source,/www\.googleapis\.com\/webfonts\/v1\/webfonts/);
+ assert.match(source,/api\.huemint\.com\/color/);
+ assert.match(source,/function huemintPayload\(tokens\)/);
+ assert.match(source,/function renderCSSNode\(\)/);
+ assert.doesNotMatch(source,/textarea spellcheck="false" aria-label="CSS personalizado"/);
+ assert.match(doc,/fonts\.googleapis\.com\/css2/);
+ assert.match(doc,/data-forma-google-fonts/);
+ assert.match(doc,/data-forma-design-tokens/);
+ assert.match(doc,/--forma-color-primary/);
+ assert.match(doc,/--forma-font-heading/);
 });

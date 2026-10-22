@@ -1,7 +1,7 @@
 {
   "version": 1,
   "name": "Hotel · Experiência completa",
-  "home": "f28daae4-4826-4fba-a494-a200f31e4d36",
+  "home": "home",
   "pages": [
     {
       "id": "home",
@@ -14,7 +14,7 @@
         {
           "id": "home-block-0",
           "blockId": "form-01",
-          "html": "<section class=\"hero\" data-node=\"n1\"><div class=\"hero-copy\"><h1 data-node=\"n9\">Espaço para<br>desacelerar.</h1><p data-node=\"n10\">Um hotel boutique para viver<br>com mais calma e propósito.</p><a class=\"text-link\" href=\"#rooms\" data-node=\"n11\">Conheça o refúgio <span class=\"icon\" aria-hidden=\"true\">arrow_forward</span></a></div></section>"
+          "html": "<section class=\"hero\" data-node=\"n1\"><header class=\"topnav\" data-node=\"n2\"><a class=\"brand\" href=\"#\" data-node=\"n3\">FORM / RETREAT</a><nav><a href=\"#rooms\" data-node=\"n4\">Hospedagem</a><a href=\"#rooms\" data-node=\"n5\">Gastronomia</a><a href=\"#rooms\" data-node=\"n6\">Experiências</a><a href=\"#rooms\" data-node=\"n7\">Sobre</a><button class=\"btn \" data-book=\"\" data-node=\"n8\">Reserve agora</button></nav></header><div class=\"hero-copy\"><h1 data-node=\"n9\">Espaço para<br>desacelerar.</h1><p data-node=\"n10\">Um hotel boutique para viver<br>com mais calma e propósito.</p><a class=\"text-link\" href=\"#rooms\" data-node=\"n11\">Conheça o refúgio <span class=\"icon\" aria-hidden=\"true\">arrow_forward</span></a></div></section>"
         },
         {
           "id": "home-block-1",
@@ -34,7 +34,7 @@
         {
           "id": "suite-block-0",
           "blockId": "deluxe-01",
-          "html": "<section class=\"hero\" data-node=\"n1\"><div class=\"hero-copy\"><h1 data-node=\"n9\">Quarto duplo deluxe</h1><p data-node=\"n10\">Um encontro entre elegância e natureza</p><button class=\"btn \" data-book=\"Quarto duplo deluxe\" data-node=\"n11\">Reservar quarto</button></div></section>"
+          "html": "<section class=\"hero\" data-node=\"n1\"><header class=\"topnav\" data-node=\"n2\"><a class=\"brand\" href=\"#\" data-node=\"n3\">HOTEL E SPA</a><nav><a href=\"#\" data-node=\"n4\">Início</a><a href=\"#facilities\" data-node=\"n5\">Restaurantes</a><a href=\"#details\" data-node=\"n6\">Quarto</a><a href=\"#facilities\" data-node=\"n7\">Spa</a><button class=\"btn \" data-book=\"\" data-node=\"n8\">Reserve agora</button></nav></header><div class=\"hero-copy\"><h1 data-node=\"n9\">Quarto duplo deluxe</h1><p data-node=\"n10\">Um encontro entre elegância e natureza</p><button class=\"btn \" data-book=\"Quarto duplo deluxe\" data-node=\"n11\">Reservar quarto</button></div></section>"
         },
         {
           "id": "suite-block-1",
@@ -77,44 +77,12 @@
           "html": "<main><section class=\"booking-section\" id=\"booking\" data-node=\"n1\"><form id=\"calendar-form\"><p class=\"eyebrow\" data-node=\"n2\">Garanta suas datas em poucos cliques</p><h2 data-node=\"n3\">Pronto para reservar sua estadia?</h2><p data-node=\"n4\">Consulte a disponibilidade, escolha suas datas e reserve a estadia ideal. É rápido, fácil e sem compromisso até a confirmação.</p><label data-node=\"n5\">E-mail*<input type=\"email\" name=\"email\" placeholder=\"jane@email.com\" required></label><div class=\"form-row\"><label data-node=\"n6\">Nome*<input name=\"firstName\" placeholder=\"Jane\" required></label><label data-node=\"n7\">Sobrenome*<input name=\"lastName\" placeholder=\"Smith\" required></label></div><label data-node=\"n8\">Selecione as datas de chegada e saída*</label><div class=\"calendar-head\"><button type=\"button\" id=\"prev-month\" aria-label=\"Mês anterior\" data-node=\"n9\"><span class=\"icon\" aria-hidden=\"true\">chevron_left</span></button><span id=\"month-label\" class=\"serif\" data-node=\"n10\"></span><button type=\"button\" id=\"next-month\" aria-label=\"Próximo mês\" data-node=\"n11\"><span class=\"icon\" aria-hidden=\"true\">chevron_right</span></button></div><div class=\"calendar\" id=\"calendar\"></div><p class=\"date-summary\" id=\"date-summary\" role=\"status\" data-node=\"n12\">Escolha suas datas de chegada e saída.</p><button class=\"btn light\" type=\"submit\" data-node=\"n13\">Enviar</button></form><div class=\"portrait\"><img src=\"assets/amenities-1.webp\" alt=\"Refúgio tranquilo de madeira cercado por árvores\" class=\"\" loading=\"lazy\" data-node=\"n14\"></div></section></main>"
         }
       ]
-    },
-    {
-      "id": "f28daae4-4826-4fba-a494-a200f31e4d36",
-      "name": "Header · Início",
-      "slug": "inicio-header",
-      "x": 100,
-      "y": -110,
-      "width": 1200,
-      "blocks": [
-        {
-          "id": "0238a248-371f-4c34-9bc7-8cb3919c53b1",
-          "blockId": "form-01-header",
-          "html": "<header class=\"topnav split-header\" data-node=\"n2\"><a class=\"brand\" href=\"#\" data-node=\"n3\">FORM / RETREAT</a><nav><a href=\"#rooms\" data-node=\"n4\">Hospedagem</a><a href=\"#rooms\" data-node=\"n5\">Gastronomia</a><a href=\"#rooms\" data-node=\"n6\">Experiências</a><a href=\"#rooms\" data-node=\"n7\">Sobre</a><button class=\"btn \" data-book=\"\" data-node=\"n8\">Reserve agora</button></nav></header>"
-        }
-      ],
-      "hidden": false
-    },
-    {
-      "id": "ae2ad005-6e50-4383-89ce-f96e20c638a8",
-      "name": "Header · Suíte Deluxe",
-      "slug": "suite-deluxe-header",
-      "x": 1520,
-      "y": -110,
-      "width": 1200,
-      "blocks": [
-        {
-          "id": "6ed4e593-153e-475c-9d5e-51abf5d62565",
-          "blockId": "deluxe-01-header",
-          "html": "<header class=\"topnav split-header\" data-node=\"n2\"><a class=\"brand\" href=\"#\" data-node=\"n3\">HOTEL E SPA</a><nav><a href=\"#\" data-node=\"n4\">Início</a><a href=\"#facilities\" data-node=\"n5\">Restaurantes</a><a href=\"#details\" data-node=\"n6\">Quarto</a><a href=\"#facilities\" data-node=\"n7\">Spa</a><button class=\"btn \" data-book=\"\" data-node=\"n8\">Reserve agora</button></nav></header>"
-        }
-      ],
-      "hidden": false
     }
   ],
   "links": [
     {
-      "fromPage": "f28daae4-4826-4fba-a494-a200f31e4d36",
-      "block": "0238a248-371f-4c34-9bc7-8cb3919c53b1",
+      "fromPage": "home",
+      "block": "home-block-0",
       "node": "n8",
       "toPage": "booking"
     },
@@ -137,8 +105,8 @@
       "toPage": "suite"
     },
     {
-      "fromPage": "ae2ad005-6e50-4383-89ce-f96e20c638a8",
-      "block": "6ed4e593-153e-475c-9d5e-51abf5d62565",
+      "fromPage": "suite",
+      "block": "suite-block-0",
       "node": "n8",
       "toPage": "booking"
     },
@@ -149,8 +117,8 @@
       "toPage": "booking"
     },
     {
-      "fromPage": "ae2ad005-6e50-4383-89ce-f96e20c638a8",
-      "block": "6ed4e593-153e-475c-9d5e-51abf5d62565",
+      "fromPage": "suite",
+      "block": "suite-block-0",
       "node": "n3",
       "toPage": "home"
     },
@@ -159,16 +127,6 @@
       "block": "suite-block-1",
       "node": "n11",
       "toPage": "booking"
-    }
-  ],
-  "sequences": [
-    {
-      "from": "f28daae4-4826-4fba-a494-a200f31e4d36",
-      "to": "home"
-    },
-    {
-      "from": "ae2ad005-6e50-4383-89ce-f96e20c638a8",
-      "to": "suite"
     }
   ]
 }

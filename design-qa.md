@@ -15,11 +15,3 @@ Validação visual do editor e gestos reais de arraste pendente: control-browser
 1.8.5: menu lateral esquerdo minimizável no desktop; a aba Prancheta deixou de listar páginas/modelos e agora mostra apenas controles do node selecionado, seções e configurações globais. A biblioteca de modelos permanece exclusivamente na aba Blocos. O gesto antigo de arrastar um node para o menu para ocultá-lo foi removido, e nodes ocultos por versões anteriores voltam ao canvas na migração inicial.
 
 1.8.7: Delete/Backspace exclui o node de página quando o node (e não uma seção/elemento interno) está selecionado; modo escuro persistente adicionado ao chrome do editor; conexões de sequência ganharam endpoint próprio arrastável/teclável para reconectar ou desconectar sem iniciar drag da seção.
-
-1.10: 44 testes automatizados aprovados; build estático gerado. Câmera sem limites de posição, prévia fixa e 84 skeletons vetoriais específicos. Validação de gestos e apresentação em navegador permanece pendente.
-
-1.10.1: diagnóstico pela captura do usuário — botão de expandir sem classe ocupava uma célula da grade. Classes recuperadas; menu e canvas agora têm linha/coluna explícitas e auxiliares ficam fora do fluxo. Validação visual no navegador ainda pendente.
-
-1.12.1: centralizar usa limites das seções visíveis; switch desktop/mobile altera só as prévias; botão de recolher contido no menu. 57 testes aprovados; validação visual no navegador pendente.
-
-1.14.0: nodes compactos, exemplos originais, sockets individuais por imagem e grupos recolhíveis. 60 testes aprovados; validação visual no navegador pendente.

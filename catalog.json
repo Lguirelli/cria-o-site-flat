@@ -8,9 +8,7 @@
       "theme": "form-page",
       "category": "hero",
       "file": "blocks/form-01.html",
-      "thumbnail": "thumbnails/form-01.svg",
-      "skeleton": "thumbnails/skeletons/form-01.svg",
-      "separateHeader": "form-01-header"
+      "thumbnail": "thumbnails/form-01.svg"
     },
     {
       "id": "form-02",
@@ -19,8 +17,7 @@
       "theme": "form-page",
       "category": "rooms",
       "file": "blocks/form-02.html",
-      "thumbnail": "thumbnails/form-02.svg",
-      "skeleton": "thumbnails/skeletons/form-02.svg"
+      "thumbnail": "thumbnails/form-02.svg"
     },
     {
       "id": "emily-01",
@@ -29,9 +26,7 @@
       "theme": "emily-page",
       "category": "hero",
       "file": "blocks/emily-01.html",
-      "thumbnail": "thumbnails/emily-01.svg",
-      "skeleton": "thumbnails/skeletons/emily-01.svg",
-      "separateHeader": "emily-01-header"
+      "thumbnail": "thumbnails/emily-01.svg"
     },
     {
       "id": "emily-02",
@@ -40,8 +35,7 @@
       "theme": "emily-page",
       "category": "content",
       "file": "blocks/emily-02.html",
-      "thumbnail": "thumbnails/emily-02.svg",
-      "skeleton": "thumbnails/skeletons/emily-02.svg"
+      "thumbnail": "thumbnails/emily-02.svg"
     },
     {
       "id": "emily-03",
@@ -50,8 +44,7 @@
       "theme": "emily-page",
       "category": "rooms",
       "file": "blocks/emily-03.html",
-      "thumbnail": "thumbnails/emily-03.svg",
-      "skeleton": "thumbnails/skeletons/emily-03.svg"
+      "thumbnail": "thumbnails/emily-03.svg"
     },
     {
       "id": "qelli-01",
@@ -60,8 +53,7 @@
       "theme": "qelli-page",
       "category": "header",
       "file": "blocks/qelli-01.html",
-      "thumbnail": "thumbnails/qelli-01.svg",
-      "skeleton": "thumbnails/skeletons/qelli-01.svg"
+      "thumbnail": "thumbnails/qelli-01.svg"
     },
     {
       "id": "qelli-02",
@@ -70,8 +62,7 @@
       "theme": "qelli-page",
       "category": "content",
       "file": "blocks/qelli-02.html",
-      "thumbnail": "thumbnails/qelli-02.svg",
-      "skeleton": "thumbnails/skeletons/qelli-02.svg"
+      "thumbnail": "thumbnails/qelli-02.svg"
     },
     {
       "id": "qelli-03",
@@ -80,8 +71,7 @@
       "theme": "qelli-page",
       "category": "content",
       "file": "blocks/qelli-03.html",
-      "thumbnail": "thumbnails/qelli-03.svg",
-      "skeleton": "thumbnails/skeletons/qelli-03.svg"
+      "thumbnail": "thumbnails/qelli-03.svg"
     },
     {
       "id": "qelli-04",
@@ -90,8 +80,7 @@
       "theme": "qelli-page",
       "category": "rooms",
       "file": "blocks/qelli-04.html",
-      "thumbnail": "thumbnails/qelli-04.svg",
-      "skeleton": "thumbnails/skeletons/qelli-04.svg"
+      "thumbnail": "thumbnails/qelli-04.svg"
     },
     {
       "id": "verina-01",
@@ -100,8 +89,7 @@
       "theme": "verina-page",
       "category": "header",
       "file": "blocks/verina-01.html",
-      "thumbnail": "thumbnails/verina-01.svg",
-      "skeleton": "thumbnails/skeletons/verina-01.svg"
+      "thumbnail": "thumbnails/verina-01.svg"
     },
     {
       "id": "verina-02",
@@ -110,8 +98,7 @@
       "theme": "verina-page",
       "category": "booking",
       "file": "blocks/verina-02.html",
-      "thumbnail": "thumbnails/verina-02.svg",
-      "skeleton": "thumbnails/skeletons/verina-02.svg"
+      "thumbnail": "thumbnails/verina-02.svg"
     },
     {
       "id": "amenities-01",
@@ -120,8 +107,7 @@
       "theme": "amenities-page",
       "category": "features",
       "file": "blocks/amenities-01.html",
-      "thumbnail": "thumbnails/amenities-01.svg",
-      "skeleton": "thumbnails/skeletons/amenities-01.svg"
+      "thumbnail": "thumbnails/amenities-01.svg"
     },
     {
       "id": "amenities-02",
@@ -130,8 +116,7 @@
       "theme": "amenities-page",
       "category": "booking",
       "file": "blocks/amenities-02.html",
-      "thumbnail": "thumbnails/amenities-02.svg",
-      "skeleton": "thumbnails/skeletons/amenities-02.svg"
+      "thumbnail": "thumbnails/amenities-02.svg"
     },
     {
       "id": "deluxe-01",
@@ -140,9 +125,7 @@
       "theme": "deluxe-page",
       "category": "hero",
       "file": "blocks/deluxe-01.html",
-      "thumbnail": "thumbnails/deluxe-01.svg",
-      "skeleton": "thumbnails/skeletons/deluxe-01.svg",
-      "separateHeader": "deluxe-01-header"
+      "thumbnail": "thumbnails/deluxe-01.svg"
     },
     {
       "id": "deluxe-02",
@@ -151,8 +134,7 @@
       "theme": "deluxe-page",
       "category": "rooms",
       "file": "blocks/deluxe-02.html",
-      "thumbnail": "thumbnails/deluxe-02.svg",
-      "skeleton": "thumbnails/skeletons/deluxe-02.svg"
+      "thumbnail": "thumbnails/deluxe-02.svg"
     },
     {
       "id": "deluxe-03",
@@ -161,8 +143,7 @@
       "theme": "deluxe-page",
       "category": "features",
       "file": "blocks/deluxe-03.html",
-      "thumbnail": "thumbnails/deluxe-03.svg",
-      "skeleton": "thumbnails/skeletons/deluxe-03.svg"
+      "thumbnail": "thumbnails/deluxe-03.svg"
     },
     {
       "id": "deluxe-04",
@@ -171,8 +152,7 @@
       "theme": "deluxe-page",
       "category": "features",
       "file": "blocks/deluxe-04.html",
-      "thumbnail": "thumbnails/deluxe-04.svg",
-      "skeleton": "thumbnails/skeletons/deluxe-04.svg"
+      "thumbnail": "thumbnails/deluxe-04.svg"
     },
     {
       "id": "deluxe-05",
@@ -181,8 +161,7 @@
       "theme": "deluxe-page",
       "category": "content",
       "file": "blocks/deluxe-05.html",
-      "thumbnail": "thumbnails/deluxe-05.svg",
-      "skeleton": "thumbnails/skeletons/deluxe-05.svg"
+      "thumbnail": "thumbnails/deluxe-05.svg"
     },
     {
       "id": "realtoro-01",
@@ -191,9 +170,7 @@
       "theme": "realtoro-page",
       "category": "hero",
       "file": "blocks/realtoro-01.html",
-      "thumbnail": "thumbnails/realtoro-01.svg",
-      "skeleton": "thumbnails/skeletons/realtoro-01.svg",
-      "separateHeader": "realtoro-01-header"
+      "thumbnail": "thumbnails/realtoro-01.svg"
     },
     {
       "id": "realtoro-02",
@@ -202,8 +179,7 @@
       "theme": "realtoro-page",
       "category": "features",
       "file": "blocks/realtoro-02.html",
-      "thumbnail": "thumbnails/realtoro-02.svg",
-      "skeleton": "thumbnails/skeletons/realtoro-02.svg"
+      "thumbnail": "thumbnails/realtoro-02.svg"
     },
     {
       "id": "realtoro-03",
@@ -212,8 +188,7 @@
       "theme": "realtoro-page",
       "category": "content",
       "file": "blocks/realtoro-03.html",
-      "thumbnail": "thumbnails/realtoro-03.svg",
-      "skeleton": "thumbnails/skeletons/realtoro-03.svg"
+      "thumbnail": "thumbnails/realtoro-03.svg"
     },
     {
       "id": "retreats-01",
@@ -222,9 +197,7 @@
       "theme": "retreats-page",
       "category": "hero",
       "file": "blocks/retreats-01.html",
-      "thumbnail": "thumbnails/retreats-01.svg",
-      "skeleton": "thumbnails/skeletons/retreats-01.svg",
-      "separateHeader": "retreats-01-header"
+      "thumbnail": "thumbnails/retreats-01.svg"
     },
     {
       "id": "retreats-02",
@@ -233,8 +206,7 @@
       "theme": "retreats-page",
       "category": "content",
       "file": "blocks/retreats-02.html",
-      "thumbnail": "thumbnails/retreats-02.svg",
-      "skeleton": "thumbnails/skeletons/retreats-02.svg"
+      "thumbnail": "thumbnails/retreats-02.svg"
     },
     {
       "id": "retreats-03",
@@ -243,8 +215,7 @@
       "theme": "retreats-page",
       "category": "content",
       "file": "blocks/retreats-03.html",
-      "thumbnail": "thumbnails/retreats-03.svg",
-      "skeleton": "thumbnails/skeletons/retreats-03.svg"
+      "thumbnail": "thumbnails/retreats-03.svg"
     },
     {
       "id": "footer-solitude",
@@ -253,8 +224,7 @@
       "theme": "footer-solitude-theme",
       "category": "footer",
       "file": "blocks/footer-solitude.html",
-      "thumbnail": "thumbnails/footer-solitude.svg",
-      "skeleton": "thumbnails/skeletons/footer-solitude.svg"
+      "thumbnail": "thumbnails/footer-solitude.svg"
     },
     {
       "id": "footer-techflow",
@@ -263,8 +233,7 @@
       "theme": "footer-techflow-theme",
       "category": "footer",
       "file": "blocks/footer-techflow.html",
-      "thumbnail": "thumbnails/footer-techflow.svg",
-      "skeleton": "thumbnails/skeletons/footer-techflow.svg"
+      "thumbnail": "thumbnails/footer-techflow.svg"
     },
     {
       "id": "footer-travelco",
@@ -273,8 +242,7 @@
       "theme": "footer-travelco-theme",
       "category": "footer",
       "file": "blocks/footer-travelco.html",
-      "thumbnail": "thumbnails/footer-travelco.svg",
-      "skeleton": "thumbnails/skeletons/footer-travelco.svg"
+      "thumbnail": "thumbnails/footer-travelco.svg"
     },
     {
       "id": "footer-ai-platform",
@@ -283,8 +251,7 @@
       "theme": "footer-ai-theme",
       "category": "footer",
       "file": "blocks/footer-ai-platform.html",
-      "thumbnail": "thumbnails/footer-ai-platform.svg",
-      "skeleton": "thumbnails/skeletons/footer-ai-platform.svg"
+      "thumbnail": "thumbnails/footer-ai-platform.svg"
     },
     {
       "id": "r20-fulfillix-hero",
@@ -295,8 +262,7 @@
       "file": "blocks/r20-fulfillix-hero.html",
       "thumbnail": "thumbnails/r20-fulfillix-hero.svg",
       "referenceImage": "assets/references-20261020/fulfillix.png",
-      "layout": "map",
-      "skeleton": "thumbnails/skeletons/r20-fulfillix-hero.svg"
+      "layout": "map"
     },
     {
       "id": "r20-fulfillix-problems",
@@ -307,8 +273,7 @@
       "file": "blocks/r20-fulfillix-problems.html",
       "thumbnail": "thumbnails/r20-fulfillix-problems.svg",
       "referenceImage": "assets/references-20261020/fulfillix.png",
-      "layout": "cards4",
-      "skeleton": "thumbnails/skeletons/r20-fulfillix-problems.svg"
+      "layout": "cards4"
     },
     {
       "id": "r20-fulfillix-solutions",
@@ -319,8 +284,7 @@
       "file": "blocks/r20-fulfillix-solutions.html",
       "thumbnail": "thumbnails/r20-fulfillix-solutions.svg",
       "referenceImage": "assets/references-20261020/fulfillix.png",
-      "layout": "splitlist",
-      "skeleton": "thumbnails/skeletons/r20-fulfillix-solutions.svg"
+      "layout": "splitlist"
     },
     {
       "id": "r20-fulfillix-why",
@@ -331,8 +295,7 @@
       "file": "blocks/r20-fulfillix-why.html",
       "thumbnail": "thumbnails/r20-fulfillix-why.svg",
       "referenceImage": "assets/references-20261020/fulfillix.png",
-      "layout": "splitlist",
-      "skeleton": "thumbnails/skeletons/r20-fulfillix-why.svg"
+      "layout": "splitlist"
     },
     {
       "id": "r20-fulfillix-reviews",
@@ -343,8 +306,7 @@
       "file": "blocks/r20-fulfillix-reviews.html",
       "thumbnail": "thumbnails/r20-fulfillix-reviews.svg",
       "referenceImage": "assets/references-20261020/fulfillix.png",
-      "layout": "cards3",
-      "skeleton": "thumbnails/skeletons/r20-fulfillix-reviews.svg"
+      "layout": "cards3"
     },
     {
       "id": "r20-fulfillix-steps",
@@ -355,8 +317,7 @@
       "file": "blocks/r20-fulfillix-steps.html",
       "thumbnail": "thumbnails/r20-fulfillix-steps.svg",
       "referenceImage": "assets/references-20261020/fulfillix.png",
-      "layout": "steps",
-      "skeleton": "thumbnails/skeletons/r20-fulfillix-steps.svg"
+      "layout": "steps"
     },
     {
       "id": "r20-fulfillix-faq",
@@ -367,8 +328,7 @@
       "file": "blocks/r20-fulfillix-faq.html",
       "thumbnail": "thumbnails/r20-fulfillix-faq.svg",
       "referenceImage": "assets/references-20261020/fulfillix.png",
-      "layout": "faq",
-      "skeleton": "thumbnails/skeletons/r20-fulfillix-faq.svg"
+      "layout": "faq"
     },
     {
       "id": "r20-fulfillix-journey",
@@ -379,8 +339,7 @@
       "file": "blocks/r20-fulfillix-journey.html",
       "thumbnail": "thumbnails/r20-fulfillix-journey.svg",
       "referenceImage": "assets/references-20261020/fulfillix.png",
-      "layout": "cards2",
-      "skeleton": "thumbnails/skeletons/r20-fulfillix-journey.svg"
+      "layout": "cards2"
     },
     {
       "id": "r20-fulfillix-cta",
@@ -391,8 +350,7 @@
       "file": "blocks/r20-fulfillix-cta.html",
       "thumbnail": "thumbnails/r20-fulfillix-cta.svg",
       "referenceImage": "assets/references-20261020/fulfillix.png",
-      "layout": "cta",
-      "skeleton": "thumbnails/skeletons/r20-fulfillix-cta.svg"
+      "layout": "cta"
     },
     {
       "id": "r20-fulfillix-footer",
@@ -403,8 +361,7 @@
       "file": "blocks/r20-fulfillix-footer.html",
       "thumbnail": "thumbnails/r20-fulfillix-footer.svg",
       "referenceImage": "assets/references-20261020/fulfillix.png",
-      "layout": "footer",
-      "skeleton": "thumbnails/skeletons/r20-fulfillix-footer.svg"
+      "layout": "footer"
     },
     {
       "id": "r20-statue-header",
@@ -415,8 +372,7 @@
       "file": "blocks/r20-statue-header.html",
       "thumbnail": "thumbnails/r20-statue-header.svg",
       "referenceImage": "assets/references-20261020/statue.png",
-      "layout": "nav",
-      "skeleton": "thumbnails/skeletons/r20-statue-header.svg"
+      "layout": "nav"
     },
     {
       "id": "r20-statue-hero",
@@ -427,8 +383,7 @@
       "file": "blocks/r20-statue-hero.html",
       "thumbnail": "thumbnails/r20-statue-hero.svg",
       "referenceImage": "assets/references-20261020/statue.png",
-      "layout": "split",
-      "skeleton": "thumbnails/skeletons/r20-statue-hero.svg"
+      "layout": "split"
     },
     {
       "id": "r20-apex-header",
@@ -439,8 +394,7 @@
       "file": "blocks/r20-apex-header.html",
       "thumbnail": "thumbnails/r20-apex-header.svg",
       "referenceImage": "assets/references-20261020/apex.png",
-      "layout": "nav",
-      "skeleton": "thumbnails/skeletons/r20-apex-header.svg"
+      "layout": "nav"
     },
     {
       "id": "r20-apex-hero",
@@ -451,8 +405,7 @@
       "file": "blocks/r20-apex-hero.html",
       "thumbnail": "thumbnails/r20-apex-hero.svg",
       "referenceImage": "assets/references-20261020/apex.png",
-      "layout": "triple",
-      "skeleton": "thumbnails/skeletons/r20-apex-hero.svg"
+      "layout": "triple"
     },
     {
       "id": "r20-folio-header",
@@ -463,8 +416,7 @@
       "file": "blocks/r20-folio-header.html",
       "thumbnail": "thumbnails/r20-folio-header.svg",
       "referenceImage": "assets/references-20261020/folio.png",
-      "layout": "nav",
-      "skeleton": "thumbnails/skeletons/r20-folio-header.svg"
+      "layout": "nav"
     },
     {
       "id": "r20-folio-hero",
@@ -475,8 +427,7 @@
       "file": "blocks/r20-folio-hero.html",
       "thumbnail": "thumbnails/r20-folio-hero.svg",
       "referenceImage": "assets/references-20261020/folio.png",
-      "layout": "portrait",
-      "skeleton": "thumbnails/skeletons/r20-folio-hero.svg"
+      "layout": "portrait"
     },
     {
       "id": "r20-folio-brands",
@@ -487,8 +438,7 @@
       "file": "blocks/r20-folio-brands.html",
       "thumbnail": "thumbnails/r20-folio-brands.svg",
       "referenceImage": "assets/references-20261020/folio.png",
-      "layout": "strip",
-      "skeleton": "thumbnails/skeletons/r20-folio-brands.svg"
+      "layout": "strip"
     },
     {
       "id": "r20-folio-about",
@@ -499,8 +449,7 @@
       "file": "blocks/r20-folio-about.html",
       "thumbnail": "thumbnails/r20-folio-about.svg",
       "referenceImage": "assets/references-20261020/folio.png",
-      "layout": "gallery3",
-      "skeleton": "thumbnails/skeletons/r20-folio-about.svg"
+      "layout": "gallery3"
     },
     {
       "id": "r20-kianro-header",
@@ -511,8 +460,7 @@
       "file": "blocks/r20-kianro-header.html",
       "thumbnail": "thumbnails/r20-kianro-header.svg",
       "referenceImage": "assets/references-20261020/kianro.png",
-      "layout": "nav",
-      "skeleton": "thumbnails/skeletons/r20-kianro-header.svg"
+      "layout": "nav"
     },
     {
       "id": "r20-kianro-hero",
@@ -523,8 +471,7 @@
       "file": "blocks/r20-kianro-hero.html",
       "thumbnail": "thumbnails/r20-kianro-hero.svg",
       "referenceImage": "assets/references-20261020/kianro.png",
-      "layout": "gallery6",
-      "skeleton": "thumbnails/skeletons/r20-kianro-hero.svg"
+      "layout": "gallery6"
     },
     {
       "id": "r20-kianro-about",
@@ -535,8 +482,7 @@
       "file": "blocks/r20-kianro-about.html",
       "thumbnail": "thumbnails/r20-kianro-about.svg",
       "referenceImage": "assets/references-20261020/kianro.png",
-      "layout": "stats",
-      "skeleton": "thumbnails/skeletons/r20-kianro-about.svg"
+      "layout": "stats"
     },
     {
       "id": "r20-onepoint-gallery",
@@ -547,8 +493,7 @@
       "file": "blocks/r20-onepoint-gallery.html",
       "thumbnail": "thumbnails/r20-onepoint-gallery.svg",
       "referenceImage": "assets/references-20261020/onepoint.png",
-      "layout": "editorial",
-      "skeleton": "thumbnails/skeletons/r20-onepoint-gallery.svg"
+      "layout": "editorial"
     },
     {
       "id": "r20-onepoint-numbers",
@@ -559,8 +504,7 @@
       "file": "blocks/r20-onepoint-numbers.html",
       "thumbnail": "thumbnails/r20-onepoint-numbers.svg",
       "referenceImage": "assets/references-20261020/onepoint.png",
-      "layout": "triple",
-      "skeleton": "thumbnails/skeletons/r20-onepoint-numbers.svg"
+      "layout": "triple"
     },
     {
       "id": "r20-gioia-header",
@@ -571,8 +515,7 @@
       "file": "blocks/r20-gioia-header.html",
       "thumbnail": "thumbnails/r20-gioia-header.svg",
       "referenceImage": "assets/references-20261020/gioia.png",
-      "layout": "nav",
-      "skeleton": "thumbnails/skeletons/r20-gioia-header.svg"
+      "layout": "nav"
     },
     {
       "id": "r20-gioia-hero",
@@ -583,8 +526,7 @@
       "file": "blocks/r20-gioia-hero.html",
       "thumbnail": "thumbnails/r20-gioia-hero.svg",
       "referenceImage": "assets/references-20261020/gioia.png",
-      "layout": "overlay",
-      "skeleton": "thumbnails/skeletons/r20-gioia-hero.svg"
+      "layout": "overlay"
     },
     {
       "id": "r20-gioia-gallery",
@@ -595,8 +537,7 @@
       "file": "blocks/r20-gioia-gallery.html",
       "thumbnail": "thumbnails/r20-gioia-gallery.svg",
       "referenceImage": "assets/references-20261020/gioia.png",
-      "layout": "carousel",
-      "skeleton": "thumbnails/skeletons/r20-gioia-gallery.svg"
+      "layout": "carousel"
     },
     {
       "id": "r20-bruno-about",
@@ -607,8 +548,7 @@
       "file": "blocks/r20-bruno-about.html",
       "thumbnail": "thumbnails/r20-bruno-about.svg",
       "referenceImage": "assets/references-20261020/bruno.png",
-      "layout": "split",
-      "skeleton": "thumbnails/skeletons/r20-bruno-about.svg"
+      "layout": "split"
     },
     {
       "id": "r20-bruno-contact",
@@ -619,8 +559,7 @@
       "file": "blocks/r20-bruno-contact.html",
       "thumbnail": "thumbnails/r20-bruno-contact.svg",
       "referenceImage": "assets/references-20261020/bruno.png",
-      "layout": "footer",
-      "skeleton": "thumbnails/skeletons/r20-bruno-contact.svg"
+      "layout": "footer"
     },
     {
       "id": "r20-orbit-hero",
@@ -631,8 +570,7 @@
       "file": "blocks/r20-orbit-hero.html",
       "thumbnail": "thumbnails/r20-orbit-hero.svg",
       "referenceImage": "assets/references-20261020/orbit.png",
-      "layout": "split",
-      "skeleton": "thumbnails/skeletons/r20-orbit-hero.svg"
+      "layout": "split"
     },
     {
       "id": "r20-orbit-features",
@@ -643,8 +581,7 @@
       "file": "blocks/r20-orbit-features.html",
       "thumbnail": "thumbnails/r20-orbit-features.svg",
       "referenceImage": "assets/references-20261020/orbit.png",
-      "layout": "cards6",
-      "skeleton": "thumbnails/skeletons/r20-orbit-features.svg"
+      "layout": "cards6"
     },
     {
       "id": "r20-orbit-comparison",
@@ -655,8 +592,7 @@
       "file": "blocks/r20-orbit-comparison.html",
       "thumbnail": "thumbnails/r20-orbit-comparison.svg",
       "referenceImage": "assets/references-20261020/orbit.png",
-      "layout": "table",
-      "skeleton": "thumbnails/skeletons/r20-orbit-comparison.svg"
+      "layout": "table"
     },
     {
       "id": "r20-onion-hero",
@@ -667,8 +603,7 @@
       "file": "blocks/r20-onion-hero.html",
       "thumbnail": "thumbnails/r20-onion-hero.svg",
       "referenceImage": "assets/references-20261020/onion.png",
-      "layout": "center",
-      "skeleton": "thumbnails/skeletons/r20-onion-hero.svg"
+      "layout": "center"
     },
     {
       "id": "r20-onion-intro",
@@ -679,8 +614,7 @@
       "file": "blocks/r20-onion-intro.html",
       "thumbnail": "thumbnails/r20-onion-intro.svg",
       "referenceImage": "assets/references-20261020/onion.png",
-      "layout": "cards3",
-      "skeleton": "thumbnails/skeletons/r20-onion-intro.svg"
+      "layout": "cards3"
     },
     {
       "id": "r20-onion-process",
@@ -691,8 +625,7 @@
       "file": "blocks/r20-onion-process.html",
       "thumbnail": "thumbnails/r20-onion-process.svg",
       "referenceImage": "assets/references-20261020/onion.png",
-      "layout": "cards4",
-      "skeleton": "thumbnails/skeletons/r20-onion-process.svg"
+      "layout": "cards4"
     },
     {
       "id": "r20-onion-features",
@@ -703,8 +636,7 @@
       "file": "blocks/r20-onion-features.html",
       "thumbnail": "thumbnails/r20-onion-features.svg",
       "referenceImage": "assets/references-20261020/onion.png",
-      "layout": "cards3",
-      "skeleton": "thumbnails/skeletons/r20-onion-features.svg"
+      "layout": "cards3"
     },
     {
       "id": "r20-vellum-hero",
@@ -715,8 +647,7 @@
       "file": "blocks/r20-vellum-hero.html",
       "thumbnail": "thumbnails/r20-vellum-hero.svg",
       "referenceImage": "assets/references-20261020/vellum.png",
-      "layout": "split",
-      "skeleton": "thumbnails/skeletons/r20-vellum-hero.svg"
+      "layout": "split"
     },
     {
       "id": "r20-vellum-services-strip",
@@ -727,8 +658,7 @@
       "file": "blocks/r20-vellum-services-strip.html",
       "thumbnail": "thumbnails/r20-vellum-services-strip.svg",
       "referenceImage": "assets/references-20261020/vellum.png",
-      "layout": "strip",
-      "skeleton": "thumbnails/skeletons/r20-vellum-services-strip.svg"
+      "layout": "strip"
     },
     {
       "id": "r20-vellum-work",
@@ -739,8 +669,7 @@
       "file": "blocks/r20-vellum-work.html",
       "thumbnail": "thumbnails/r20-vellum-work.svg",
       "referenceImage": "assets/references-20261020/vellum.png",
-      "layout": "gallery4",
-      "skeleton": "thumbnails/skeletons/r20-vellum-work.svg"
+      "layout": "gallery4"
     },
     {
       "id": "r20-vellum-services",
@@ -751,8 +680,7 @@
       "file": "blocks/r20-vellum-services.html",
       "thumbnail": "thumbnails/r20-vellum-services.svg",
       "referenceImage": "assets/references-20261020/vellum.png",
-      "layout": "rows",
-      "skeleton": "thumbnails/skeletons/r20-vellum-services.svg"
+      "layout": "rows"
     },
     {
       "id": "r20-vellum-metrics",
@@ -763,8 +691,7 @@
       "file": "blocks/r20-vellum-metrics.html",
       "thumbnail": "thumbnails/r20-vellum-metrics.svg",
       "referenceImage": "assets/references-20261020/vellum.png",
-      "layout": "stats",
-      "skeleton": "thumbnails/skeletons/r20-vellum-metrics.svg"
+      "layout": "stats"
     },
     {
       "id": "r20-august-header",
@@ -775,8 +702,7 @@
       "file": "blocks/r20-august-header.html",
       "thumbnail": "thumbnails/r20-august-header.svg",
       "referenceImage": "assets/references-20261020/august.png",
-      "layout": "nav",
-      "skeleton": "thumbnails/skeletons/r20-august-header.svg"
+      "layout": "nav"
     },
     {
       "id": "r20-august-about",
@@ -787,8 +713,7 @@
       "file": "blocks/r20-august-about.html",
       "thumbnail": "thumbnails/r20-august-about.svg",
       "referenceImage": "assets/references-20261020/august.png",
-      "layout": "collage",
-      "skeleton": "thumbnails/skeletons/r20-august-about.svg"
+      "layout": "collage"
     },
     {
       "id": "r20-august-manifesto",
@@ -799,8 +724,7 @@
       "file": "blocks/r20-august-manifesto.html",
       "thumbnail": "thumbnails/r20-august-manifesto.svg",
       "referenceImage": "assets/references-20261020/august.png",
-      "layout": "statement",
-      "skeleton": "thumbnails/skeletons/r20-august-manifesto.svg"
+      "layout": "statement"
     },
     {
       "id": "r20-august-process",
@@ -811,8 +735,7 @@
       "file": "blocks/r20-august-process.html",
       "thumbnail": "thumbnails/r20-august-process.svg",
       "referenceImage": "assets/references-20261020/august.png",
-      "layout": "timeline",
-      "skeleton": "thumbnails/skeletons/r20-august-process.svg"
+      "layout": "timeline"
     },
     {
       "id": "r20-peptide-header",
@@ -823,8 +746,7 @@
       "file": "blocks/r20-peptide-header.html",
       "thumbnail": "thumbnails/r20-peptide-header.svg",
       "referenceImage": "assets/references-20261020/peptide.png",
-      "layout": "nav",
-      "skeleton": "thumbnails/skeletons/r20-peptide-header.svg"
+      "layout": "nav"
     },
     {
       "id": "r20-peptide-hero",
@@ -835,8 +757,7 @@
       "file": "blocks/r20-peptide-hero.html",
       "thumbnail": "thumbnails/r20-peptide-hero.svg",
       "referenceImage": "assets/references-20261020/peptide.png",
-      "layout": "split",
-      "skeleton": "thumbnails/skeletons/r20-peptide-hero.svg"
+      "layout": "split"
     },
     {
       "id": "r20-peptide-products",
@@ -847,8 +768,7 @@
       "file": "blocks/r20-peptide-products.html",
       "thumbnail": "thumbnails/r20-peptide-products.svg",
       "referenceImage": "assets/references-20261020/peptide.png",
-      "layout": "products",
-      "skeleton": "thumbnails/skeletons/r20-peptide-products.svg"
+      "layout": "products"
     },
     {
       "id": "r20-peptide-quality",
@@ -859,8 +779,7 @@
       "file": "blocks/r20-peptide-quality.html",
       "thumbnail": "thumbnails/r20-peptide-quality.svg",
       "referenceImage": "assets/references-20261020/peptide.png",
-      "layout": "quality",
-      "skeleton": "thumbnails/skeletons/r20-peptide-quality.svg"
+      "layout": "quality"
     },
     {
       "id": "r20-genex-header",
@@ -871,8 +790,7 @@
       "file": "blocks/r20-genex-header.html",
       "thumbnail": "thumbnails/r20-genex-header.svg",
       "referenceImage": "assets/references-20261020/genex.png",
-      "layout": "nav",
-      "skeleton": "thumbnails/skeletons/r20-genex-header.svg"
+      "layout": "nav"
     },
     {
       "id": "r20-genex-hero",
@@ -883,8 +801,7 @@
       "file": "blocks/r20-genex-hero.html",
       "thumbnail": "thumbnails/r20-genex-hero.svg",
       "referenceImage": "assets/references-20261020/genex.png",
-      "layout": "split",
-      "skeleton": "thumbnails/skeletons/r20-genex-hero.svg"
+      "layout": "split"
     },
     {
       "id": "r20-genex-research",
@@ -895,8 +812,7 @@
       "file": "blocks/r20-genex-research.html",
       "thumbnail": "thumbnails/r20-genex-research.svg",
       "referenceImage": "assets/references-20261020/genex.png",
-      "layout": "cards4",
-      "skeleton": "thumbnails/skeletons/r20-genex-research.svg"
+      "layout": "cards4"
     },
     {
       "id": "r20-genex-science",
@@ -907,8 +823,7 @@
       "file": "blocks/r20-genex-science.html",
       "thumbnail": "thumbnails/r20-genex-science.svg",
       "referenceImage": "assets/references-20261020/genex.png",
-      "layout": "video",
-      "skeleton": "thumbnails/skeletons/r20-genex-science.svg"
+      "layout": "video"
     },
     {
       "id": "r20-genex-technologies",
@@ -919,8 +834,7 @@
       "file": "blocks/r20-genex-technologies.html",
       "thumbnail": "thumbnails/r20-genex-technologies.svg",
       "referenceImage": "assets/references-20261020/genex.png",
-      "layout": "gallery3",
-      "skeleton": "thumbnails/skeletons/r20-genex-technologies.svg"
+      "layout": "gallery3"
     },
     {
       "id": "r20-genex-visit",
@@ -931,8 +845,7 @@
       "file": "blocks/r20-genex-visit.html",
       "thumbnail": "thumbnails/r20-genex-visit.svg",
       "referenceImage": "assets/references-20261020/genex.png",
-      "layout": "video",
-      "skeleton": "thumbnails/skeletons/r20-genex-visit.svg"
+      "layout": "video"
     },
     {
       "id": "r20-genex-trials",
@@ -943,8 +856,7 @@
       "file": "blocks/r20-genex-trials.html",
       "thumbnail": "thumbnails/r20-genex-trials.svg",
       "referenceImage": "assets/references-20261020/genex.png",
-      "layout": "cards2",
-      "skeleton": "thumbnails/skeletons/r20-genex-trials.svg"
+      "layout": "cards2"
     },
     {
       "id": "r20-genex-cta",
@@ -955,58 +867,7 @@
       "file": "blocks/r20-genex-cta.html",
       "thumbnail": "thumbnails/r20-genex-cta.svg",
       "referenceImage": "assets/references-20261020/genex.png",
-      "layout": "cta",
-      "skeleton": "thumbnails/skeletons/r20-genex-cta.svg"
-    },
-    {
-      "id": "form-01-header",
-      "name": "Header · Form / Retreat",
-      "source": "Form / Retreat",
-      "theme": "form-page",
-      "category": "header",
-      "file": "blocks/form-01-header.html",
-      "thumbnail": "thumbnails/form-01-header.svg",
-      "skeleton": "thumbnails/skeletons/form-01-header.svg"
-    },
-    {
-      "id": "emily-01-header",
-      "name": "Header · Grand Emily",
-      "source": "Grand Emily",
-      "theme": "emily-page",
-      "category": "header",
-      "file": "blocks/emily-01-header.html",
-      "thumbnail": "thumbnails/emily-01-header.svg",
-      "skeleton": "thumbnails/skeletons/emily-01-header.svg"
-    },
-    {
-      "id": "deluxe-01-header",
-      "name": "Header · Double Deluxe",
-      "source": "Double Deluxe",
-      "theme": "deluxe-page",
-      "category": "header",
-      "file": "blocks/deluxe-01-header.html",
-      "thumbnail": "thumbnails/deluxe-01-header.svg",
-      "skeleton": "thumbnails/skeletons/deluxe-01-header.svg"
-    },
-    {
-      "id": "realtoro-01-header",
-      "name": "Header · RealToro",
-      "source": "RealToro",
-      "theme": "realtoro-page",
-      "category": "header",
-      "file": "blocks/realtoro-01-header.html",
-      "thumbnail": "thumbnails/realtoro-01-header.svg",
-      "skeleton": "thumbnails/skeletons/realtoro-01-header.svg"
-    },
-    {
-      "id": "retreats-01-header",
-      "name": "Header · W Retreats",
-      "source": "W Retreats",
-      "theme": "retreats-page",
-      "category": "header",
-      "file": "blocks/retreats-01-header.html",
-      "thumbnail": "thumbnails/retreats-01-header.svg",
-      "skeleton": "thumbnails/skeletons/retreats-01-header.svg"
+      "layout": "cta"
     }
   ],
   "presets": [
@@ -1014,7 +875,6 @@
       "id": "form",
       "name": "Form / Retreat",
       "blocks": [
-        "form-01-header",
         "form-01",
         "form-02"
       ]
@@ -1023,7 +883,6 @@
       "id": "emily",
       "name": "Grand Emily",
       "blocks": [
-        "emily-01-header",
         "emily-01",
         "emily-02",
         "emily-03"
@@ -1059,7 +918,6 @@
       "id": "deluxe",
       "name": "Duplo deluxe",
       "blocks": [
-        "deluxe-01-header",
         "deluxe-01",
         "deluxe-02",
         "deluxe-03",
@@ -1071,7 +929,6 @@
       "id": "realtoro",
       "name": "RealToro",
       "blocks": [
-        "realtoro-01-header",
         "realtoro-01",
         "realtoro-02",
         "realtoro-03"
@@ -1081,7 +938,6 @@
       "id": "retreats",
       "name": "W Retreats",
       "blocks": [
-        "retreats-01-header",
         "retreats-01",
         "retreats-02",
         "retreats-03"

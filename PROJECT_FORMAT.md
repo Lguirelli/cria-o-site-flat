@@ -51,3 +51,26 @@ O campo opcional `sequences` diferencia montagem de página e navegação. Proje
 Os IDs são de pranchetas (`pages[].id`). A exportação percorre cada cadeia e concatena seus blocos em um único HTML. Não são permitidos ciclos, saídas múltiplas ou entradas múltiplas. `links` continua descrevendo navegação por clique; os destinos são convertidos em arquivo + âncora quando apontam para uma prancheta dentro de uma cadeia. Excluir uma prancheta remove suas conexões de sequência e navegação.
 
 A edição mantém cada prancheta flutuante. A montagem só é aplicada à prévia navegável e à exportação; o JSON preserva a organização do mapa.
+
+## Estilos globais (1.9.3)
+
+Quando o node `CSS · Estilos` é adicionado, o projeto pode conter `styleTokens`. Ele armazena somente as escolhas de tipografia e os valores de cor; chaves de API não fazem parte do arquivo.
+
+```json
+"styleTokens": {
+  "headingFont": "Playfair Display",
+  "bodyFont": "DM Sans",
+  "palette": {
+    "background": "#fafafa",
+    "surface": "#f0f0f0",
+    "text": "#202020",
+    "primary": "#6547d8",
+    "accent": "#249b7e"
+  },
+  "locks": {"primary": true},
+  "huemintMode": "transformer",
+  "temperature": 1.2
+}
+```
+
+Na prévia/exportação, as fontes são carregadas pela Google Fonts CSS2 API e os valores viram variáveis CSS `--forma-color-*` e `--forma-font-*`. O Huemint é consultado apenas durante a edição; a paleta retornada é salva no JSON e não gera dependência de runtime no site publicado.

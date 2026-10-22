@@ -6,7 +6,7 @@ const project=()=>({version:1,name:'Arraste',home:'inicio',pages:[page('inicio')
 const item=(id='instance-a')=>({id,blockId:'hero',html:'<section>Conteúdo editável</section>'});
 test('drop at a zoomed and scrolled canvas preserves scene coordinates',()=>{
  assert.deepEqual(dropPosition(460,390,{left:-140,top:-210},.3),{x:2000,y:2000});
- assert.deepEqual(dropPosition(-100,-100,{left:0,top:0},1),{x:-100,y:-100});
+ assert.deepEqual(dropPosition(-100,-100,{left:0,top:0},1),{x:20,y:70});
  assert.throws(()=>dropPosition(0,0,{left:0,top:0},0));
 });
 test('drop appends only to the target, keeps connections and exports in sequence',()=>{

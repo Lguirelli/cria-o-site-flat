@@ -1,7 +1,7 @@
 import test from 'node:test';import assert from 'node:assert/strict';import vm from 'node:vm';import fs from 'node:fs';import {bridgeSource} from '../lib/bridge.js';
 function harness(){
  const events={},messages=[],block={dataset:{blockInstance:'b'}};
- const button={tagName:'BUTTON',dataset:{node:'button'},classList:{add(){},remove(){}},getBoundingClientRect:()=>({x:30,y:40,width:100,height:44}),closest:s=>s==='[data-block-instance]'?block:null,removeAttribute(k){if(k==='contenteditable')this.contentEditable='inherit'}};
+ const button={tagName:'BUTTON',dataset:{node:'button'},classList:{add(){},remove(){}},getBoundingClientRect:()=>({x:30,y:40,left:30,top:40,right:130,bottom:84,width:100,height:44}),closest:s=>s==='[data-block-instance]'?block:null,removeAttribute(k){if(k==='contenteditable')this.contentEditable='inherit'}};
  const child={closest:s=>s.startsWith('button[')?button:s==='[data-node]'?button:null};
  const doc={querySelectorAll:s=>s==='[data-node]'?[button]:[],addEventListener:(k,f)=>events[k]=f,body:{getBoundingClientRect:()=>({height:200})},fonts:{ready:{then(){}}}};
  vm.runInNewContext(bridgeSource('p','prototype'),{document:doc,parent:{postMessage:m=>messages.push(m)},window:{innerWidth:1000,innerHeight:800,addEventListener(){}},ResizeObserver:class{observe(){}}});
@@ -20,3 +20,6 @@ test('connectors follow element edges at different zoom levels, including canvas
 });
 
 test('wheel inside an artboard is forwarded as canvas zoom instead of scrolling the iframe',()=>{const h=harness();let prevented=false,stopped=false;h.events.wheel({deltaY:-120,deltaMode:0,clientX:250,clientY:200,preventDefault(){prevented=true},stopImmediatePropagation(){stopped=true}});const m=h.messages.at(-1);assert.ok(prevented&&stopped);assert.equal(m.kind,'canvas-zoom');assert.equal(m.deltaY,-120);assert.equal(m.xRatio,.25);assert.equal(m.yRatio,.25)});
+
+
+test('prototype bridge reports the nearest left-edge item before it is selected',()=>{const h=harness();h.events.pointermove({clientX:34,clientY:50,target:{},preventDefault(){},stopImmediatePropagation(){}});let m=h.messages.at(-1);assert.equal(m.kind,'prototype-hover');assert.equal(m.block,'b');assert.equal(m.node,'button');h.events.pointermove({clientX:600,clientY:500,target:{},preventDefault(){},stopImmediatePropagation(){}});m=h.messages.at(-1);assert.equal(m.kind,'prototype-hover');assert.equal(m.block,'');assert.equal(m.node,'')});
