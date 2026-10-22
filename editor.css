@@ -284,6 +284,15 @@ body>.toolbar{height:auto!important;min-height:56px;flex-wrap:wrap;gap:8px;paddi
 #mini-preview{width:clamp(180px,22vw,320px)}
 @media(max-width:760px){body>.left-panel{top:var(--toolbar-height,120px)!important}#expand-left{top:calc(var(--toolbar-height,120px) + 8px)!important}.toolbar-actions button{font-size:11px;padding:7px}.toolbar .logo{font-size:18px}#mini-preview{right:8px;top:8px;width:180px}#mini-viewport{height:126px}.toolbar #project-name{flex:1}.toolbar-actions{width:100%}.preview-device-switch{gap:4px}#preview-dialog>header select{min-width:0;max-width:100%}}
 @media(max-width:420px){#mini-preview{width:160px}#mini-viewport{height:112px}.toolbar button{min-height:34px}.toolbar-actions{gap:4px}.canvas-hint{max-width:calc(100% - 170px);font-size:9px}.canvas-hint span{display:none}}
-:root[data-theme="dark"] .node-actions button.group-collapse{background:#2c2938;color:#c7c0ff;border-color:#4a4562}
-:root[data-theme="dark"] .node-actions button.group-collapse:hover{background:#3a3550;color:#ddd8ff;border-color:#655e89}
-:root[data-theme="dark"] .node-actions button.group-collapse.active{background:#433c68;color:#ece9ff;border-color:#746aa7}
+.node-actions button.image-group-collapse{background:#fff8e8;color:#8a5a00;border-color:#dfc27a}
+.node-actions button.image-group-collapse:hover{background:#ffefc7;color:#704700;border-color:#cda94f}
+.node-actions button.image-group-collapse.active{background:#f4d98f;color:#5d3a00;border-color:#b58b2c}
+.node-actions button.section-collapse{background:#f2f1f7;color:#57546a;border-color:#c8c5d5}
+.node-actions button.section-collapse:hover{background:#e8e6f0;color:#403d54;border-color:#aaa5bd}
+.node-actions button.section-collapse.active{background:#dcd8ea;color:#342f4d;border-color:#9189aa}
+:root[data-theme="dark"] .node-actions button.image-group-collapse{background:#3b3323;color:#f0ca75;border-color:#665330}
+:root[data-theme="dark"] .node-actions button.image-group-collapse:hover{background:#4b4029;color:#ffe19b;border-color:#81693a}
+:root[data-theme="dark"] .node-actions button.image-group-collapse.active{background:#5b4825;color:#ffe7ac;border-color:#9b7938}
+:root[data-theme="dark"] .node-actions button.section-collapse{background:#2d2c34;color:#cbc8d8;border-color:#4a4857}
+:root[data-theme="dark"] .node-actions button.section-collapse:hover{background:#3a3845;color:#e3e0eb;border-color:#625f73}
+:root[data-theme="dark"] .node-actions button.section-collapse.active{background:#494556;color:#f1eef8;border-color:#77718a}
