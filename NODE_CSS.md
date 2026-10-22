@@ -21,3 +21,7 @@ Botão do meio + arraste usa movimento da tela, sem multiplicar o deslocamento p
 
 ## 1.13.0 — Imagens conectadas automaticamente
 Cada espaço de imagem descoberto nas seções recebe um node já conectado e inicialmente vazio, preservando o wireframe. Basta selecionar um arquivo ou URL. Nodes existentes e desconexões manuais são preservados. Novos espaços recebem nodes novos. Os nodes são posicionados fora das áreas estimadas das seções.
+
+## 1.14.0 — Imagens compactas e grupos
+As imagens de exemplo originais passam a ser o padrão, substituindo o wireframe das versões anteriores. Imagens personalizadas são preservadas. O node mostra apenas nome e miniatura: clique na miniatura para trocar o arquivo. Clique direito no node ou duplo clique no nome abre as opções de URL, nome e exclusão em um diálogo separado.
+Cada espaço tem seu próprio conector numerado na seção. Arraste diretamente até o espaço desejado. Recolher a seção também oculta seus nodes de imagem e as linhas internas; expandir restaura tudo. Ao mover um grupo recolhido, seus nodes exclusivos acompanham o deslocamento. Uma imagem compartilhada continua visível quando outra seção conectada permanece expandida.

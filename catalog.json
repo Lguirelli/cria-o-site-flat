@@ -9,7 +9,8 @@
       "category": "hero",
       "file": "blocks/form-01.html",
       "thumbnail": "thumbnails/form-01.svg",
-      "skeleton": "thumbnails/skeletons/form-01.svg"
+      "skeleton": "thumbnails/skeletons/form-01.svg",
+      "separateHeader": "form-01-header"
     },
     {
       "id": "form-02",
@@ -29,7 +30,8 @@
       "category": "hero",
       "file": "blocks/emily-01.html",
       "thumbnail": "thumbnails/emily-01.svg",
-      "skeleton": "thumbnails/skeletons/emily-01.svg"
+      "skeleton": "thumbnails/skeletons/emily-01.svg",
+      "separateHeader": "emily-01-header"
     },
     {
       "id": "emily-02",
@@ -139,7 +141,8 @@
       "category": "hero",
       "file": "blocks/deluxe-01.html",
       "thumbnail": "thumbnails/deluxe-01.svg",
-      "skeleton": "thumbnails/skeletons/deluxe-01.svg"
+      "skeleton": "thumbnails/skeletons/deluxe-01.svg",
+      "separateHeader": "deluxe-01-header"
     },
     {
       "id": "deluxe-02",
@@ -189,7 +192,8 @@
       "category": "hero",
       "file": "blocks/realtoro-01.html",
       "thumbnail": "thumbnails/realtoro-01.svg",
-      "skeleton": "thumbnails/skeletons/realtoro-01.svg"
+      "skeleton": "thumbnails/skeletons/realtoro-01.svg",
+      "separateHeader": "realtoro-01-header"
     },
     {
       "id": "realtoro-02",
@@ -219,7 +223,8 @@
       "category": "hero",
       "file": "blocks/retreats-01.html",
       "thumbnail": "thumbnails/retreats-01.svg",
-      "skeleton": "thumbnails/skeletons/retreats-01.svg"
+      "skeleton": "thumbnails/skeletons/retreats-01.svg",
+      "separateHeader": "retreats-01-header"
     },
     {
       "id": "retreats-02",
@@ -952,6 +957,56 @@
       "referenceImage": "assets/references-20261020/genex.png",
       "layout": "cta",
       "skeleton": "thumbnails/skeletons/r20-genex-cta.svg"
+    },
+    {
+      "id": "form-01-header",
+      "name": "Header · Form / Retreat",
+      "source": "Form / Retreat",
+      "theme": "form-page",
+      "category": "header",
+      "file": "blocks/form-01-header.html",
+      "thumbnail": "thumbnails/form-01-header.svg",
+      "skeleton": "thumbnails/skeletons/form-01-header.svg"
+    },
+    {
+      "id": "emily-01-header",
+      "name": "Header · Grand Emily",
+      "source": "Grand Emily",
+      "theme": "emily-page",
+      "category": "header",
+      "file": "blocks/emily-01-header.html",
+      "thumbnail": "thumbnails/emily-01-header.svg",
+      "skeleton": "thumbnails/skeletons/emily-01-header.svg"
+    },
+    {
+      "id": "deluxe-01-header",
+      "name": "Header · Double Deluxe",
+      "source": "Double Deluxe",
+      "theme": "deluxe-page",
+      "category": "header",
+      "file": "blocks/deluxe-01-header.html",
+      "thumbnail": "thumbnails/deluxe-01-header.svg",
+      "skeleton": "thumbnails/skeletons/deluxe-01-header.svg"
+    },
+    {
+      "id": "realtoro-01-header",
+      "name": "Header · RealToro",
+      "source": "RealToro",
+      "theme": "realtoro-page",
+      "category": "header",
+      "file": "blocks/realtoro-01-header.html",
+      "thumbnail": "thumbnails/realtoro-01-header.svg",
+      "skeleton": "thumbnails/skeletons/realtoro-01-header.svg"
+    },
+    {
+      "id": "retreats-01-header",
+      "name": "Header · W Retreats",
+      "source": "W Retreats",
+      "theme": "retreats-page",
+      "category": "header",
+      "file": "blocks/retreats-01-header.html",
+      "thumbnail": "thumbnails/retreats-01-header.svg",
+      "skeleton": "thumbnails/skeletons/retreats-01-header.svg"
     }
   ],
   "presets": [
@@ -959,6 +1014,7 @@
       "id": "form",
       "name": "Form / Retreat",
       "blocks": [
+        "form-01-header",
         "form-01",
         "form-02"
       ]
@@ -967,6 +1023,7 @@
       "id": "emily",
       "name": "Grand Emily",
       "blocks": [
+        "emily-01-header",
         "emily-01",
         "emily-02",
         "emily-03"
@@ -1002,6 +1059,7 @@
       "id": "deluxe",
       "name": "Duplo deluxe",
       "blocks": [
+        "deluxe-01-header",
         "deluxe-01",
         "deluxe-02",
         "deluxe-03",
@@ -1013,6 +1071,7 @@
       "id": "realtoro",
       "name": "RealToro",
       "blocks": [
+        "realtoro-01-header",
         "realtoro-01",
         "realtoro-02",
         "realtoro-03"
@@ -1022,6 +1081,7 @@
       "id": "retreats",
       "name": "W Retreats",
       "blocks": [
+        "retreats-01-header",
         "retreats-01",
         "retreats-02",
         "retreats-03"
