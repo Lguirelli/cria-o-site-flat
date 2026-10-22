@@ -1,0 +1,19 @@
+{
+  "name": "forma-studio-page-builder",
+  "version": "1.16.5",
+  "private": true,
+  "type": "module",
+  "description": "Construtor visual de páginas e subpáginas com blocos, pranchetas e conexões de protótipo.",
+  "scripts": {
+    "dev": "node server.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "check": "node --check editor.js && node --check runtime.js && node --test tests/*.test.mjs",
+    "review:responsive": "node scripts/review-responsive.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "playwright": "1.62.1"
+  }
+}

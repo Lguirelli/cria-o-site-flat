@@ -1,0 +1,14 @@
+import fs from 'node:fs/promises';import path from 'node:path';import {createRequire} from 'node:module';import {fileURLToPath} from 'node:url';
+import {buildDocument} from '../lib/document.js';
+const require=createRequire(import.meta.url),{chromium}=require('playwright');
+const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..'),out=path.join(root,'qa-responsive');await fs.mkdir(out,{recursive:true});
+const base=process.env.FORMA_REVIEW_URL||'http://127.0.0.1:4184/',catalog=JSON.parse(await fs.readFile(path.join(root,'catalog.json'),'utf8'));
+const browser=await chromium.launch({headless:true});const context=await browser.newContext();const page=await context.newPage();const results=[];
+const widths=[320,390,480,600,768,1024,1280,1440,1920];
+try{
+ const blocks=Object.fromEntries(await Promise.all(catalog.blocks.map(async b=>[b.id,{id:b.id,blockId:b.id,html:await fs.readFile(path.join(root,b.file),'utf8')}])));
+ const cases=[...catalog.blocks.map(b=>({name:b.id,blocks:[blocks[b.id]]})),...catalog.presets.map(p=>({name:'modelo-'+p.id,blocks:p.blocks.map(id=>blocks[id])}))];
+ for(const item of cases){for(const width of widths){await page.setViewportSize({width,height:900});const p={id:'review',slug:'index',name:item.name,blocks:item.blocks};await page.setContent(buildDocument({name:'Revisão',home:'review',pages:[p],links:[]},p,catalog,{base}),{waitUntil:'load'});await page.evaluate(()=>document.fonts.ready);const size=await page.evaluate(()=>({viewport:innerWidth,scroll:document.documentElement.scrollWidth,height:document.body.scrollHeight}));results.push({name:item.name,width,...size,pass:size.scroll<=width+1});if(size.scroll>width+1)await page.screenshot({path:path.join(out,item.name+'-'+width+'.png'),fullPage:true})}}
+ for(const width of [360,600,768,1024,1440,1920]){const editor=await context.newPage();await editor.setViewportSize({width,height:900});const errors=[];editor.on('pageerror',e=>errors.push(e.message));await editor.goto(base);await editor.waitForSelector('.artboard');await editor.waitForFunction(()=>document.querySelectorAll('.artboard iframe').length>=89);const layout=await editor.evaluate(()=>{const w=document.querySelector('#workspace').getBoundingClientRect(),t=document.querySelector('.toolbar').getBoundingClientRect();return {workspaceWidth:w.width,toolbarRight:t.right,desktopWidth:document.querySelector('.artboard iframe').offsetWidth}});results.push({name:'editor',width,...layout,errors,pass:layout.workspaceWidth>0&&layout.toolbarRight<=width+1&&layout.desktopWidth>=1438&&errors.length===0});await editor.screenshot({path:path.join(out,'editor-'+width+'.png')});await editor.close()}
+ await fs.writeFile(path.join(out,'results.json'),JSON.stringify(results,null,2));const failures=results.filter(r=>!r.pass);console.log(JSON.stringify({checks:results.length,failures},null,2));if(failures.length)process.exitCode=1;
+}finally{await browser.close()}
