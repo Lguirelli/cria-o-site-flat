@@ -48,6 +48,7 @@ body{grid-template-columns:260px minmax(0,1fr)!important}
 .node-actions button{min-width:34px;min-height:34px;width:34px;height:34px;padding:0;border:0;background:transparent;border-radius:7px;color:#6b6875}
 .node-actions button:hover{background:#ebe8ff;color:#554cc6}
 .node-actions button.active{background:#e9e5ff;color:#554cc6}
+.node-actions button.group-collapse{position:relative;border:1px solid #d9d5ef;background:#faf9ff;color:#655cc8}.node-actions button.group-collapse:hover{background:#eeeaff;color:#4f46b8;border-color:#bbb3f0}.node-actions button.group-collapse.active{background:#e6e1ff;color:#4f46b8;border-color:#aaa0eb}.node-actions button.group-collapse .icon{font-size:18px}
 .node-actions button.danger:hover{background:#fff0f2;color:#b0445a}
 .node-actions .icon{font-size:19px}
 .node-properties{position:absolute;right:10px;top:52px;z-index:12;width:280px;padding:12px;border:1px solid #d9d8e2;border-radius:10px;background:#fff;box-shadow:0 12px 34px #1d18352a;cursor:default}
@@ -283,3 +284,6 @@ body>.toolbar{height:auto!important;min-height:56px;flex-wrap:wrap;gap:8px;paddi
 #mini-preview{width:clamp(180px,22vw,320px)}
 @media(max-width:760px){body>.left-panel{top:var(--toolbar-height,120px)!important}#expand-left{top:calc(var(--toolbar-height,120px) + 8px)!important}.toolbar-actions button{font-size:11px;padding:7px}.toolbar .logo{font-size:18px}#mini-preview{right:8px;top:8px;width:180px}#mini-viewport{height:126px}.toolbar #project-name{flex:1}.toolbar-actions{width:100%}.preview-device-switch{gap:4px}#preview-dialog>header select{min-width:0;max-width:100%}}
 @media(max-width:420px){#mini-preview{width:160px}#mini-viewport{height:112px}.toolbar button{min-height:34px}.toolbar-actions{gap:4px}.canvas-hint{max-width:calc(100% - 170px);font-size:9px}.canvas-hint span{display:none}}
+:root[data-theme="dark"] .node-actions button.group-collapse{background:#2c2938;color:#c7c0ff;border-color:#4a4562}
+:root[data-theme="dark"] .node-actions button.group-collapse:hover{background:#3a3550;color:#ddd8ff;border-color:#655e89}
+:root[data-theme="dark"] .node-actions button.group-collapse.active{background:#433c68;color:#ece9ff;border-color:#746aa7}
