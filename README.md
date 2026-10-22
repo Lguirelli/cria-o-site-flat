@@ -1,6 +1,17 @@
-# Forma Studio 1.9.0
+# Forma Studio 1.16.6
 
 Nesta versão, **seção é a unidade nodal do editor**. Cada item visual no canvas representa uma única seção; páginas contínuas são montadas conectando seções em sequência. A biblioteca usa skeleton previews estáticos por tipo de seção.
+
+
+## 1.16.6 — Nodes tipados, Protótipo e estilos
+
+- O box de cada slot de imagem funciona como máscara: imagem conectada usa preenchimento `cover`; ao desconectar, o mesmo box volta ao wireframe com X.
+- Nodes de imagem ficam separados à esquerda no Design e recolhem automaticamente no modo Protótipo.
+- No Protótipo, todos os elementos visuais normalizados podem enviar e receber conexões. O conector esquerdo aparece por proximidade e permite remover rapidamente conexões de entrada; o direito cria a saída.
+- O snap de sequência foi ampliado e prioriza o socket real da seção.
+- `Shift+A` pesquisa também `Prototype Preview` e `CSS · Estilos`. O Viewer é opcional e só aparece quando adicionado.
+- O node CSS usa Google Fonts para tipografia e Huemint para paleta, mantendo a conexão teal tipada às seções.
+- Conectores permanecem separados por função: sequência (verde), imagem (laranja), CSS (teal) e protótipo/output (roxo).
 
 ## Navegação e nodes de seção
 
