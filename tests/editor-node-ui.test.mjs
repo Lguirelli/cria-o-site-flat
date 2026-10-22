@@ -23,15 +23,16 @@ test('editor has a persistent dark-mode toggle without changing section iframe c
  assert.match(css,/:root\[data-theme="dark"\] \.artboard iframe\{border-color:#444650;background:#fff\}/);
 });
 
-test('section sequence connections have an isolated reconnect endpoint and explicit disconnect control',()=>{
+test('section sequence connections terminate in real node sockets and can reconnect or disconnect there',()=>{
  const source=read('editor.js'),css=read('editor.css');
- assert.match(source,/classList\.add\('sequence-endpoint'\)/);
- assert.match(source,/bindWire\(endpoint,\(\)=>\(\{page:from\.id\}\),'sequence',true\)/);
+ assert.doesNotMatch(source,/classList\.add\('sequence-endpoint'\)/);
+ assert.match(source,/class="section-socket section-socket-in"/);
+ assert.match(source,/bindWire\(input,\(\)=>\(\{page:incoming\}\),'sequence',true\)/);
  assert.match(source,/sequence-disconnect/);
  assert.match(source,/connectSequence\(p\.id,''\)/);
- assert.match(source,/if\(inside&&!overMenu\(ev\)&&reconnect\).*connectSequence\(source\.page,''\)/s);
- assert.match(css,/#connections \.sequence-endpoint\{[^}]*pointer-events:all;cursor:grab;touch-action:none/);
- assert.match(css,/\.board-sequence \.sequence-port\{[^}]*touch-action:none;user-select:none;-webkit-user-drag:none/);
+ assert.match(source,/if\(inside&&!overMenu\(ev\)&&canReconnect\).*connectSequence\(source\.page,''\)/s);
+ assert.match(css,/\.section-socket-in\{[^}]*background:#279f86/);
+ assert.match(css,/\.board-sequence \.sequence-port\{[^}]*position:relative/);
 });
 
 test('canvas treats each visual item as one section and migrates legacy multi-section artboards',()=>{
@@ -59,20 +60,21 @@ test('section wires snap before the pointer reaches the destination board',()=>{
  assert.match(source,/const SEQUENCE_SNAP_PX=150/);
  assert.match(source,/function wireTargetAt\(clientX,clientY,type,sourcePage\)/);
  assert.match(source,/distanceToRect\(clientX,clientY,r\)/);
- assert.match(source,/snap=type==='sequence'&&target\?sectionInputScenePoint\(target\):null/);
- assert.match(source,/classList\.toggle\('target',b===target\)/);
+ assert.match(source,/snap=target\?\(type==='sequence'\?sectionInputScenePoint\(target\):prototypeInputScenePoint\(target\)\):null/);
+ assert.match(source,/type==='sequence'\?b===target:b\.dataset\.page===target\?\.page/);
  assert.match(css,/\.artboard\.target \.section-socket-in/);
 });
 
-test('prototype exposes a proximity connector on the left edge of hovered elements',()=>{
+test('prototype exposes input and output sockets around every hovered element',()=>{
  const source=read('editor.js'),bridge=read('lib/bridge.js'),css=read('editor.css'),html=read('index.html');
  assert.match(bridge,/function updatePrototypeHover\(e\)/);
- assert.match(bridge,/horizontal>72/);
+ assert.match(bridge,/horizontal=Math\.min\(left,right\)/);
  assert.match(bridge,/send\('prototype-hover'/);
  assert.match(source,/d\.kind==='prototype-hover'/);
- assert.match(source,/side==='left'&&prototypeHover\?\.node/);
- assert.match(source,/side==='left'&&prototypeHover\?\.node\?\{\.\.\.prototypeHover,side:'left'\}/);
- assert.match(css,/#connector-left\.proximity/);
+ assert.match(source,/const hovered=prototypeHover\?\.node\?prototypeHover/);
+ assert.match(source,/\['left',input\],\['right',output\]/);
+ assert.match(source,/bindWire\(\$\('#connector'\)/);
+ assert.match(css,/#connector-left\{pointer-events:none!important\}/);
  assert.match(html,/id="connector-left" class="element-connector" hidden aria-label="Conectar elemento pela esquerda"><\/button>/);
 });
 
@@ -86,7 +88,7 @@ test('Prototype Preview is an explicit Add-menu system node, never auto-created 
  assert.match(source,/function renderPrototypeOutputNode\(\)\{const layer=\$\('#prototype-output-layer'\);layer\.innerHTML='';const pos=outputPosition\(\);if\(!pos\)return/);
  assert.match(source,/prototype-viewer-explicit-v1/);
  assert.match(source,/project\.prototypeViewer=null;delete project\.prototypeOutputX;delete project\.prototypeOutputY/);
- assert.match(source,/Adicione Prototype Preview pelo menu Add antes de definir a saída/);
+ assert.match(source,/Conecte uma seção ao socket do Viewer/);
  assert.doesNotMatch(source,/project\.prototypeOutputX=Math/);
  assert.doesNotMatch(source,/project\.prototypeOutputY=Math/);
 });
@@ -119,4 +121,57 @@ test('style system node uses Google Fonts and Huemint APIs and exports generated
  assert.match(doc,/data-forma-design-tokens/);
  assert.match(doc,/--forma-color-primary/);
  assert.match(doc,/--forma-font-heading/);
+});
+
+
+test('image assets are restored as separate compact nodes connected to section image slots',()=>{
+ const source=read('editor.js'),css=read('editor.css'),html=read('index.html'),catalog=JSON.parse(read('catalog.json'));
+ assert.match(html,/id="image-node-layer"/);
+ assert.match(source,/function ensureImageGraph\(\)/);
+ assert.match(source,/function renderImageNodes\(\)/);
+ assert.match(source,/className='image-node'/);
+ assert.match(source,/className='image-slot-socket'/);
+ assert.match(source,/function bindImageWire\(handle,nodeId\)/);
+ assert.match(source,/setImageSlotSource\(slot,IMAGE_PLACEHOLDER\)/);
+ assert.match(css,/\.image-node\{[^}]*width:178px[^}]*height:118px/);
+ assert.match(css,/\.image-node img\{[^}]*height:76px/);
+ assert.ok(catalog.assets.includes('assets/wireframe-placeholder.png'));
+});
+
+test('navigation and viewer connections use real element/node sockets instead of floating SVG endpoints',()=>{
+ const source=read('editor.js'),css=read('editor.css');
+ assert.doesNotMatch(source,/navigation-endpoint/);
+ assert.doesNotMatch(source,/sequence-endpoint/);
+ assert.match(source,/function prototypeTargetAt\(clientX,clientY,source=/);
+ assert.match(source,/target=l\.toNode\?\{page:l\.toPage,block:l\.toBlock,node:l\.toNode,side:'left'\}:board/);
+ assert.match(source,/prototypeInputScenePoint\(target\)/);
+ assert.match(source,/viewerPortScenePoint\(outputPage\.id\)/);
+ assert.match(source,/viewerInputScenePoint\(\)/);
+ assert.match(css,/#connector-left\.target:before/);
+ assert.match(css,/\.viewer-port:before\{/);
+});
+
+
+
+test('prototype mode collapses auxiliary image nodes back into their rendered sections',()=>{
+ const source=read('editor.js'),css=read('editor.css');
+ assert.match(source,/layer\.hidden=mode==='prototype'/);
+ assert.match(source,/if\(mode==='prototype'\)return/);
+ assert.match(source,/if\(mode==='design'\)for\(const \[slot,nodeId\]/);
+ assert.match(css,/body\.prototype-mode #image-node-layer\{display:none!important\}/);
+ assert.match(css,/body\.prototype-mode \.image-slot-socket\{display:none!important\}/);
+});
+
+test('normalization gives prototype-node identity to containers as well as text, media and controls',()=>{
+ const source=read('editor.js');
+ assert.match(source,/const nonVisual=new Set/);
+ assert.match(source,/if\(!nonVisual\.has\(node\.tagName\)&&!node\.classList\.contains\('icon'\)\)/);
+ assert.doesNotMatch(source,/node\.matches\('h1,h2,h3/);
+});
+test('visible connector dots stay compact while retaining larger hit areas',()=>{
+ const css=read('editor.css');
+ assert.match(css,/\.section-socket-in,.prototype-target-socket\{[^}]*width:11px;height:11px/);
+ assert.match(css,/#connector,#connector-left\{[^}]*width:24px!important;height:24px!important/);
+ assert.match(css,/#connector:before,#connector-left:before\{[^}]*width:9px;height:9px/);
+ assert.match(css,/\.image-node-socket:before\{[^}]*width:9px;height:9px/);
 });

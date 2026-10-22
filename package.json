@@ -1,6 +1,6 @@
 {
   "name": "forma-studio-page-builder",
-  "version": "1.9.3",
+  "version": "1.9.5",
   "private": true,
   "type": "module",
   "description": "Construtor visual por seções com lógica de nodes, conexões de protótipo e exportação de páginas.",

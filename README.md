@@ -1,4 +1,4 @@
-# Forma Studio 1.9.3
+# Forma Studio 1.9.5
 
 Nesta versão, **seção é a unidade nodal do editor**. Cada item visual no canvas representa uma única seção; páginas contínuas são montadas conectando seções em sequência. A biblioteca usa skeleton previews estáticos por tipo de seção.
 
@@ -12,7 +12,7 @@ Nesta versão, **seção é a unidade nodal do editor**. Cada item visual no can
 - Shift+A abre o menu pesquisável de seções.
 - Soltar uma conexão no vazio abre o Add e cria a nova seção já conectada.
 - O snap de sequência usa uma área magnética ampliada ao redor da entrada da seção.
-- No modo Protótipo, um conector aparece no lado esquerdo do item quando o cursor se aproxima, sem exigir seleção prévia.
+- No modo Protótipo, qualquer elemento renderizado pode enviar ou receber conexões: entrada à esquerda e saída à direita aparecem por proximidade/hover, sem exigir seleção prévia.
 - **Prototype Preview** é um node especial opcional: ele só aparece depois de ser adicionado pelo menu `Add > Sistema`.
 - Menu lateral é minimizável e as miniaturas em **Blocos** são skeletons estruturais.
 - Modo escuro afeta o editor, sem alterar o conteúdo real das seções.
@@ -56,13 +56,33 @@ Os rascunhos antigos recebem a tradução e as imagens novas somente quando o co
 
 Prompts e origem: `docs/imagens-geradas.json`. As imagens foram criadas com a ferramenta integrada de geração de imagens e convertidas para WebP, sem redimensionamento. Alguns arquivos são reutilizados intencionalmente em seções relacionadas.
 
-## Textos clicáveis no Protótipo
+## Elementos conectáveis no Protótipo
 
-Abra **Protótipo**, selecione um título, parágrafo, legenda ou outro elemento e arraste o ponto lateral até a seção de destino. A navegação é ativada em **Testar** e na exportação por clique, Enter ou Espaço. No modo Design, o texto continua editável e os controles de navegação ficam ocultos. Para remover uma ligação, puxe sua ponta e solte no espaço vazio do mapa.
+Abra **Protótipo** e aproxime o cursor de qualquer elemento renderizado — texto, imagem, botão, campo, card, container ou seção interna. O socket roxo da **esquerda recebe** conexões e o da **direita envia**. Arraste a saída até a entrada de outro elemento, inclusive dentro da mesma seção. A navegação é ativada em **Testar** e na exportação por clique, Enter ou Espaço; quando o destino é um elemento específico, a prévia/exportação restaura esse alvo.
 
-Selecione textos, botões, links, imagens ou campos. Os conectores aparecem junto às bordas esquerda e direita do próprio elemento e acompanham zoom e posição da seção. Arraste até a seção de destino. Duplo clique apenas seleciona no Protótipo; para editar conteúdo, volte a Design.
+No modo Protótipo, os nodes auxiliares de imagem recolhem automaticamente para dentro da seção: a imagem continua visível no layout e continua podendo receber conexões de protótipo, mas o node auxiliar de asset e seu fio verde ficam ocultos até voltar ao modo Design. Para remover uma ligação, puxe a saída e solte no espaço vazio do mapa.
 
 A biblioteca é agrupada por tipo de seção. O botão do meio do mouse + arrastar navega pelo mapa inclusive sobre o conteúdo renderizado. Ao criar ou conectar uma seção, apenas as unidades afetadas são atualizadas; as demais não recarregam.
+
+
+## 1.9.5
+
+- Todo elemento visual normalizado recebe identidade de node no Protótipo, incluindo containers, cards, textos, imagens e controles.
+- Conexões de navegação podem terminar em um elemento exato, não apenas no socket da seção.
+- Socket esquerdo = entrada; socket direito = saída. Ambos aparecem por proximidade/hover.
+- O destino exato é persistido em `toBlock` + `toNode` e é respeitado em Testar e na exportação.
+- Ao entrar em Protótipo, nodes auxiliares de imagem e seus fios de asset recolhem automaticamente para dentro das seções; ao voltar a Design, reaparecem nas posições anteriores.
+
+
+## 1.9.4
+
+- Todos os fios do canvas terminam em sockets reais dos nodes; os antigos endpoints SVG flutuantes foram removidos.
+- Conectores visuais ficaram menores, mantendo uma área de clique maior e confortável.
+- Nodes auxiliares de imagem voltaram a aparecer separados da seção, alinhados ao lado dela, com miniatura, nome e socket.
+- Cada imagem da seção possui um slot de node próprio. Arrastar o node de imagem conecta/reconecta o slot; soltar uma ligação existente no vazio desconecta.
+- Ao desconectar uma imagem, a seção volta a exibir um placeholder wireframe, sem perder o asset guardado no node de imagem.
+- Navegação do Protótipo usa socket roxo de destino na seção; a sequência da página usa socket verde; o Prototype Preview usa seu socket dedicado.
+- A ligação com o Prototype Preview não é criada automaticamente ao adicionar o Viewer: ela precisa ser feita pelo socket da seção.
 
 ## 1.9.3
 

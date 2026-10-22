@@ -4,7 +4,7 @@
 
 .block-cover.wireframe-cover{height:auto;aspect-ratio:300/180;background:#f7f7fb;position:relative;padding:0;overflow:hidden}.wireframe-cover img{display:block;width:100%;height:100%;object-fit:contain}.wireframe-cover>span{position:absolute;bottom:6px;left:8px;font-size:9px;background:#fff;border:1px solid #e7e3f0;color:#706980;padding:3px 5px}
 
-#connections .navigation-endpoint{fill:#635bdf;stroke:white;stroke-width:6;pointer-events:all;cursor:grab;touch-action:none}#connections .navigation-endpoint:focus{outline:none;stroke:#29234e}.left-panel.drop-board{background:#efedff;box-shadow:inset 0 0 0 3px #635bdf}.left-panel.drop-board:after{content:'Solte para guardar no menu';position:sticky;bottom:60px;display:block;padding:20px;background:#635bdf;color:white;text-align:center;pointer-events:none}.page-item[draggable=true]{cursor:grab}#connector,.artboard-title{touch-action:none}
+.left-panel.drop-board{background:#efedff;box-shadow:inset 0 0 0 3px #635bdf}.left-panel.drop-board:after{content:'Solte para guardar no menu';position:sticky;bottom:60px;display:block;padding:20px;background:#635bdf;color:white;text-align:center;pointer-events:none}.page-item[draggable=true]{cursor:grab}#connector,.artboard-title{touch-action:none}
 
 #source{margin:0 12px 14px;width:calc(100% - 24px);font-size:12px}
 /* Shared editor layout: controls reflow; only the spatial canvas scrolls. */
@@ -112,8 +112,6 @@ body.left-collapsed .canvas-controls{right:12px!important}
 @media(max-width:1050px){.sidebar-collapse{display:none}.sidebar-expand{display:none!important}body.left-collapsed{grid-template-columns:minmax(0,1fr)!important}body.left-collapsed #workspace{grid-column:1!important}}
 
 /* 1.8.7 · Endpoints de sequência, Delete de nodes e modo escuro do editor. */
-#connections .sequence-endpoint{fill:#279f86;stroke:var(--socket-ring,#fff);stroke-width:5;pointer-events:all;cursor:grab;touch-action:none}
-#connections .sequence-endpoint:hover,#connections .sequence-endpoint:focus{fill:#177765;stroke-width:7;outline:none}
 .board-sequence .sequence-port{touch-action:none;user-select:none;-webkit-user-drag:none;cursor:crosshair!important}
 
 :root[data-theme="dark"]{
@@ -196,7 +194,6 @@ body.left-collapsed .canvas-controls{right:12px!important}
 :root[data-theme="dark"] dialog header{border-color:#41434d}
 
 :root[data-theme="dark"] .artboard-title:before{background:#24262d}
-:root[data-theme="dark"] #connections .navigation-endpoint{stroke:#24262d}
 
 
 /* 1.9.0 · Seções são os únicos nodes visuais; prancheta é apenas o frame renderizado. */
@@ -268,3 +265,63 @@ body.left-collapsed .canvas-controls{right:12px!important}
 :root[data-theme="dark"] .css-system-node{background:#232a2e;border-color:#43545d;box-shadow:0 8px 28px #0007}
 :root[data-theme="dark"] .css-node-head{color:#a9d5e7;border-color:#39484f}:root[data-theme="dark"] .css-node-head small{color:#8ba2ad}:root[data-theme="dark"] .css-node-head button:hover{background:#344249}
 :root[data-theme="dark"] .css-node-badge{background:#34484f;color:#b5dce9}:root[data-theme="dark"] .css-node-body{background:#202529}:root[data-theme="dark"] .style-api-section{background:#242a2e;border-color:#39464c}:root[data-theme="dark"] .style-api-section label,:root[data-theme="dark"] .style-section-title small,:root[data-theme="dark"] .style-api-note,:root[data-theme="dark"] .style-api-advanced small{color:#9daab1}:root[data-theme="dark"] .style-api-advanced{border-color:#39464c}:root[data-theme="dark"] .style-swatch>button{background:#24272de0;color:#dfe2e5}:root[data-theme="dark"] .style-swatch>button.active{background:#c9d7df;color:#202529}
+
+/* 1.9.4 · Todas as ligações terminam em sockets reais de nodes; conectores menores. */
+.artboard-title{position:relative;padding-left:18px}
+.artboard-title:before{display:none!important}
+.section-socket,.prototype-target-socket,.viewer-port,.image-slot-socket,.image-node-socket,.prototype-output-socket{box-sizing:border-box}
+.section-socket-in,.prototype-target-socket{position:absolute;left:-6px;margin:0!important;width:11px;height:11px;border-radius:50%;padding:0;z-index:8;transition:transform .08s ease,box-shadow .08s ease}
+.section-socket-in{top:15px;background:#279f86;border:2px solid var(--socket-ring,#fff);box-shadow:0 0 0 1px #279f86}
+.prototype-target-socket{top:38px;background:#635bdf;border:2px solid var(--socket-ring,#fff);box-shadow:0 0 0 1px #635bdf}
+body:not(.prototype-mode) .prototype-target-socket{display:none}
+.artboard.target .section-socket-in,.artboard.target .prototype-target-socket{transform:scale(1.25)!important;box-shadow:0 0 0 5px color-mix(in srgb,currentColor 12%,transparent),0 0 0 1px currentColor!important}
+.viewer-port{position:relative;width:26px!important;height:26px!important;min-width:26px!important;min-height:26px!important;padding:0!important;border:0!important;background:transparent!important;box-shadow:none!important;flex:0 0 auto}
+.viewer-port:before{content:'';position:absolute;left:50%;top:50%;width:9px;height:9px;border-radius:50%;transform:translate(-50%,-50%);background:#635bdf;border:2px solid var(--socket-ring,#fff);box-shadow:0 0 0 1px #635bdf}
+.viewer-port:hover:before,.viewer-port.active:before{box-shadow:0 0 0 1px #635bdf,0 0 0 5px color-mix(in srgb,#635bdf 15%,transparent)}
+
+/* Socket inferior de sequência: área de clique confortável, ponto visual pequeno. */
+.board-sequence .sequence-port{position:relative!important;width:26px!important;height:26px!important;min-width:26px!important;min-height:26px!important;border:0!important;background:transparent!important;box-shadow:none!important;padding:0!important}
+.board-sequence .sequence-port .icon{display:none!important}
+.board-sequence .sequence-port:before{content:'';position:absolute;left:50%;top:50%;width:9px;height:9px;border-radius:50%;transform:translate(-50%,-50%);background:#279f86;border:2px solid var(--socket-ring,#fff);box-shadow:0 0 0 1px #279f86}
+.board-sequence .sequence-port:hover:before{box-shadow:0 0 0 1px #279f86,0 0 0 5px color-mix(in srgb,#279f86 14%,transparent)}
+#connections path{stroke-width:3.5}
+#connections path.sequence-line{stroke-width:4}
+#connections path.navigation-line{stroke:#7569e8;stroke-width:3.5}
+#connections path.connector-stub{stroke:#7569e8;stroke-width:2.5;stroke-dasharray:5 5}
+
+/* Conector contextual de elementos: hit area continua confortável, ponto visual menor. */
+#connector,#connector-left{width:24px!important;height:24px!important;padding:0!important;border:0!important;background:transparent!important;box-shadow:none!important}
+#connector:before,#connector-left:before{content:'';position:absolute;left:50%;top:50%;width:9px;height:9px;border-radius:50%;transform:translate(-50%,-50%);background:var(--accent);border:2px solid var(--socket-ring,#fff);box-shadow:0 0 0 1px var(--accent)}
+#connector-left.proximity,#connector-left.proximity:hover{background:transparent!important;box-shadow:none!important;opacity:1}
+#connector-left.proximity:before{box-shadow:0 0 0 1px var(--accent),0 0 0 6px color-mix(in srgb,var(--accent) 15%,transparent)}
+
+/* Viewer: socket pequeno; a linha chega nele diretamente. */
+.prototype-output-socket{left:-6px!important;top:22px!important;width:12px!important;height:12px!important;border:2px solid var(--socket-ring,#fff)!important;box-shadow:0 0 0 1px #635bdf!important}
+.prototype-output-node.target .prototype-output-socket{box-shadow:0 0 0 1px #635bdf,0 0 0 7px color-mix(in srgb,#635bdf 16%,transparent)!important}
+#connections path.prototype-output-line{stroke-width:3.5}
+
+/* Nodes auxiliares de imagem. */
+#image-node-layer{position:absolute;inset:0;pointer-events:none;z-index:3}
+.image-node{position:absolute;width:178px;height:118px;pointer-events:auto;border:1px solid #d6d9df;border-radius:11px;background:#fff;box-shadow:0 7px 22px #23263417;padding:9px;display:grid;grid-template-rows:76px auto;gap:7px;cursor:grab;user-select:none}
+.image-node:active{cursor:grabbing}
+.image-node img{display:block;width:100%;height:76px;object-fit:cover;border-radius:7px;background:#eceef2;border:1px solid #e1e3e8;pointer-events:none}
+.image-node strong{display:block;font-size:10px;line-height:1.25;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#555865;pointer-events:none}
+.image-node.disconnected{opacity:.7;border-style:dashed}
+.image-node-socket{position:absolute;left:-13px;top:46px;width:26px!important;height:26px!important;min-width:26px!important;min-height:26px!important;padding:0!important;border:0!important;background:transparent!important;box-shadow:none!important}
+.image-node-socket:before{content:'';position:absolute;left:50%;top:50%;width:9px;height:9px;border-radius:50%;transform:translate(-50%,-50%);background:#2c9e8a;border:2px solid var(--socket-ring,#fff);box-shadow:0 0 0 1px #2c9e8a}
+.image-node-socket:hover:before{box-shadow:0 0 0 1px #2c9e8a,0 0 0 5px color-mix(in srgb,#2c9e8a 15%,transparent)}
+.image-slot-socket{position:absolute;right:-13px;width:26px!important;height:26px!important;min-width:26px!important;min-height:26px!important;padding:0!important;border:0!important;background:transparent!important;box-shadow:none!important;z-index:9}
+.image-slot-socket:before{content:'';position:absolute;left:50%;top:50%;width:9px;height:9px;border-radius:50%;transform:translate(-50%,-50%);background:#2c9e8a;border:2px solid var(--socket-ring,#fff);box-shadow:0 0 0 1px #2c9e8a}
+.image-slot-socket:hover:before,.image-slot-socket.target:before{box-shadow:0 0 0 1px #2c9e8a,0 0 0 6px color-mix(in srgb,#2c9e8a 18%,transparent)}
+#connections path.image-link-line{stroke:#2c9e8a;stroke-width:3;opacity:.82}
+
+:root[data-theme="dark"] .image-node{background:#24262d;border-color:#41434d;box-shadow:0 8px 24px #0006}
+:root[data-theme="dark"] .image-node img{background:#1b1d22;border-color:#3d4049}
+:root[data-theme="dark"] .image-node strong{color:#d6d7dd}
+
+/* 1.9.5 · Protótipo elemento → elemento. A imagem auxiliar recolhe para a seção. */
+body.prototype-mode #image-node-layer{display:none!important}
+body.prototype-mode .image-slot-socket{display:none!important}
+#connector-left{pointer-events:none!important}
+#connector-left.target:before{box-shadow:0 0 0 1px var(--accent),0 0 0 8px color-mix(in srgb,var(--accent) 22%,transparent)!important;transform:translate(-50%,-50%) scale(1.15)}
+#connector.proximity:before{box-shadow:0 0 0 1px var(--accent),0 0 0 5px color-mix(in srgb,var(--accent) 13%,transparent)}

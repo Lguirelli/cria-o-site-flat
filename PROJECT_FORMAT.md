@@ -74,3 +74,31 @@ Quando o node `CSS · Estilos` é adicionado, o projeto pode conter `styleTokens
 ```
 
 Na prévia/exportação, as fontes são carregadas pela Google Fonts CSS2 API e os valores viram variáveis CSS `--forma-color-*` e `--forma-font-*`. O Huemint é consultado apenas durante a edição; a paleta retornada é salva no JSON e não gera dependência de runtime no site publicado.
+
+
+## Nodes de imagem e ligações visuais (1.9.4)
+
+O editor pode persistir `imageNodes` e `imageLinks` como metadados do grafo. Cada `imageNode` mantém o asset de uma imagem separado da seção; `imageLinks` associa o node a um slot identificado por `pageId|blockId|data-node`. A desconexão não apaga o asset: o HTML do slot recebe `assets/wireframe-placeholder.png` até o node ser reconectado.
+
+Esses metadados pertencem ao editor. O HTML exportado continua sendo derivado das seções compostas. Sequência de página, navegação de protótipo, imagem e Prototype Preview são representados por fios entre sockets reais no canvas.
+
+
+## Conexões elemento → elemento (1.9.5)
+
+As ligações de protótipo continuam em `links`, mas agora podem registrar um destino exato:
+
+```json
+{
+  "fromPage": "secao-a",
+  "block": "bloco-a",
+  "node": "n12",
+  "toPage": "secao-b",
+  "toBlock": "bloco-b",
+  "toNode": "n7",
+  "side": "right"
+}
+```
+
+`toBlock` e `toNode` são opcionais para compatibilidade com projetos antigos. Quando presentes, Testar e Exportar navegam para o arquivo/seção correta e restauram o elemento alvo. No canvas do Protótipo, o socket esquerdo é entrada e o direito é saída.
+
+Os `imageNodes` continuam persistidos separadamente, mas são apenas dependências de Design. Ao alternar para Protótipo, a camada desses nodes é recolhida visualmente; os assets e posições não são alterados e reaparecem ao retornar a Design.
