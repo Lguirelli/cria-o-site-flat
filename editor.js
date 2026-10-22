@@ -12,7 +12,7 @@ const STORAGE='forma-studio-original-blocks-v3';
 let imageUpgrades=[],textUpgrades={};
 let catalog,project,active,selection=null,mode='design',zoom=.3,metrics=new Map(),history=[],future=[],dragLink=null,noticeTimer,previewPage;
 const imageSlots=new Map();
-let camera={x:40,y:40},miniTimer,miniPage=null,miniSignature="";
+let camera={x:40,y:40},miniTimer,miniPage=null,miniSignature="",miniOutputSource=null;
 const cache=new Map();
 const THEME_STORAGE='forma-studio-theme';
 function applyTheme(theme){const dark=theme==='dark';document.documentElement.dataset.theme=dark?'dark':'light';const button=$('#theme-toggle'),icon=$('#theme-icon');if(button){button.classList.toggle('active',dark);button.setAttribute('aria-pressed',String(dark));button.title=dark?'Usar modo claro':'Usar modo escuro'}if(icon)icon.textContent=dark?'light_mode':'dark_mode'}
@@ -238,7 +238,7 @@ function drawConnections(){
 function setMode(value){mode=value;$('#design-mode').classList.toggle('active',mode==='design');$('#prototype-mode').classList.toggle('active',mode==='prototype');$('#canvas-hint').innerHTML=mode==='design'?'DESIGN <span>Clique para selecionar · botão do meio + arrastar para navegar</span>':'PROTÓTIPO <span>Selecione texto ou botão · botão do meio + arrastar para navegar</span>';renderInspector();renderBoards()}
 async function addPage(usePreset=false){const page=await makePage(null,project.pages.length);page.slug=uniqueSlug(page.slug);commit(()=>{project.pages.push(page);active=page.id;selection=null});focusPage();return page}
 function download(blob,name){const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),30000)}
-function showPreview(id,anchor=''){const assembled=composeProject(project,catalog);const root=rootOf(project,id);previewPage=root;$('#preview-page').innerHTML=assembled.pages.map(p=>`<option value="${esc(p.id)}">${esc(p.name)}</option>`).join('');$('#preview-page').value=root;$('#preview-frame').srcdoc=buildDocument(assembled,assembled.pages.find(p=>p.id===root),catalog,{base:new URL('.',location.href).href,preview:true,anchor:anchor||(id!==root?'artboard-'+id:'')});if(!$('#preview-dialog').open)$('#preview-dialog').showModal();resizeFullPreview()}
+function showPreview(id,anchor=''){if(!id||!project.pages.some(p=>p.id===id)){notify('Conecte uma seção ao Prototype Output para visualizar o protótipo.');return}const assembled=composeProject(project,catalog);const root=rootOf(project,id);const previewTarget=assembled.pages.find(p=>p.id===root);if(!previewTarget){notify('A seção conectada não está disponível na saída do protótipo.');return}previewPage=root;$('#preview-page').innerHTML=assembled.pages.map(p=>`<option value="${esc(p.id)}">${esc(p.name)}</option>`).join('');$('#preview-page').value=root;$('#preview-frame').srcdoc=buildDocument(assembled,previewTarget,catalog,{base:new URL('.',location.href).href,preview:true,anchor:anchor||(id!==root?'artboard-'+id:'')});if(!$('#preview-dialog').open)$('#preview-dialog').showModal();resizeFullPreview()}
 
 async function exportSite(){
  const button=$('#export');button.disabled=true;notify('Preparando páginas, imagens, fontes e ligações…');
@@ -288,7 +288,7 @@ $('#add-menu-search').oninput=renderAddMenu;$('#workspace').addEventListener('po
 $('#save').onclick=()=>{download(new Blob([JSON.stringify(project,null,2)],{type:'application/json'}),slugify(project.name)+'.forma.json');notify('Projeto JSON salvo. Guarde esse arquivo para continuar a edição.')};
 $('#load').onclick=()=>$('#project-file').click();$('#project-file').onchange=async e=>{const file=e.target.files[0];if(!file)return;try{if(file.size>80000000)throw Error('Arquivo muito grande (máximo 80 MB).');const next=validateProject(JSON.parse(await file.text()),new Set(catalog.blocks.map(b=>b.id)));next.pages.forEach(p=>p.blocks.forEach(b=>b.html=normalize(b.html)));commit(()=>{project=next;separateEmbeddedHeaders(project,catalog,uid);migrateToSectionNodes();active=project.home;selection=null});notify('Projeto aberto.')}catch(error){notify(error.message)}e.target.value=''};
 $('#image-file').onchange=async e=>{const file=e.target.files[0];if(!file)return;if(file.size>5000000){notify('Escolha uma imagem de até 5 MB.');return}if(!/^image\/(png|jpeg|webp|gif|avif)$/.test(file.type)){notify('Use PNG, JPEG, WebP, GIF ou AVIF.');return}const reader=new FileReader();reader.onload=()=>updateNode(el=>{if(el.tagName==='IMG')el.setAttribute('src',reader.result);else el.style.backgroundImage='url('+JSON.stringify(reader.result)+')'});reader.readAsDataURL(file);e.target.value=''};
-$('#preview').onclick=()=>showPreview(project.prototypeOutput||active);$('#preview-close').onclick=()=>$('#preview-dialog').close();$('#preview-page').onchange=e=>showPreview(e.target.value);$('#export').onclick=exportSite;
+$('#preview').onclick=()=>project.prototypeOutput?showPreview(project.prototypeOutput):notify('Conecte uma seção ao Prototype Output para testar o protótipo.');$('#preview-close').onclick=()=>$('#preview-dialog').close();$('#preview-page').onchange=e=>showPreview(e.target.value);$('#export').onclick=exportSite;
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('#add-menu').hidden){e.preventDefault();closeAddMenu();return}if(e.target.matches('input,textarea,select,[contenteditable]'))return;if((e.key==='Delete'||e.key==='Backspace')&&!e.ctrlKey&&!e.metaKey&&!e.altKey&&!e.shiftKey){if(e.target.closest?.('.navigation-endpoint,.sequence-endpoint,.css-endpoint,.image-endpoint,.css-node,.image-node'))return;const page=current();if(page){e.preventDefault();deleteSectionNode(page)}return}if(e.shiftKey&&e.key.toLowerCase()==='a'){e.preventDefault();const board=boardAt(lastPointer.x,lastPointer.y),scene=$('#scene').getBoundingClientRect();openAddMenu({clientX:lastPointer.x,clientY:lastPointer.y,pageId:board?.dataset.page||null,position:board?null:{x:(lastPointer.x-scene.left)/zoom,y:(lastPointer.y-scene.top)/zoom}});return}if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='z'){e.preventDefault();e.shiftKey?redo():undo()}if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='s'){e.preventDefault();$('#save').click()}if(e.key==='Escape'){selection=null;renderPanels();drawConnections()}});
 // Space/middle-drag pans the workspace; wheel/trackpad zooms around the pointer.
 function setZoomAt(nextZoom,clientX,clientY){
@@ -368,10 +368,13 @@ document.addEventListener('dragend',clearLibraryDrag);window.addEventListener('b
 function scheduleMiniPreview(){clearTimeout(miniTimer);miniTimer=setTimeout(()=>updateMiniPreview(),180)}
 function updateMiniPreview(anchor=''){
  if(!project||!catalog)return;
- try{const assembled=composeProject(project,catalog),id=rootOf(project,miniPage||project.prototypeOutput||project.home),page=assembled.pages.find(p=>p.id===id)||assembled.pages[0];
- if(!page)return;$('#mini-page').innerHTML=assembled.pages.map(p=>`<option value="${esc(p.id)}">${esc(p.name)}</option>`).join('');$('#mini-page').value=page.id;
+ const outputId=project.pages.some(p=>p.id===project.prototypeOutput)?project.prototypeOutput:null,select=$('#mini-page'),frame=$('#mini-frame');
+ if(!outputId){miniOutputSource=null;miniPage=null;select.innerHTML='<option value="">Sem conexão</option>';select.value='';select.disabled=true;const empty='<!doctype html><html><head><meta charset="utf-8"><style>html,body{height:100%;margin:0}body{display:grid;place-items:center;background:#f4f4f6;color:#8b8b94;font:500 24px system-ui,sans-serif;text-align:center}small{display:block;font-size:14px;font-weight:400;margin-top:8px}</style></head><body><div>Prototype Output sem conexão<small>Conecte uma seção para gerar a prévia.</small></div></body></html>';if(miniSignature!==empty){miniSignature=empty;frame.srcdoc=empty}resizeMiniPreview();return}
+ if(miniOutputSource!==outputId){miniOutputSource=outputId;miniPage=null}
+ try{const assembled=composeProject(project,catalog),id=rootOf(project,miniPage||outputId),page=assembled.pages.find(p=>p.id===id);
+ if(!page){miniPage=null;return}select.disabled=false;select.innerHTML=assembled.pages.map(p=>`<option value="${esc(p.id)}">${esc(p.name)}</option>`).join('');select.value=page.id;
  const doc=buildDocument(assembled,page,catalog,{base:new URL('.',location.href).href,preview:true,anchor});
- if(doc!==miniSignature){miniSignature=doc;$('#mini-frame').srcdoc=doc}resizeMiniPreview();
+ if(doc!==miniSignature){miniSignature=doc;frame.srcdoc=doc}resizeMiniPreview();
  }catch{miniPage=null}
 }
 function resizeMiniPreview(){const viewport=$('#mini-viewport'),frame=$('#mini-frame'),width=previewMobile?390:1440,scale=viewport.clientWidth/width;frame.style.width=width+'px';frame.style.height=Math.max(1,viewport.clientHeight/scale)+'px';frame.style.transform=`scale(${scale})`}
@@ -379,7 +382,7 @@ function resizeFullPreview(){const viewport=$('#full-preview-viewport');if(!view
 new ResizeObserver(resizeFullPreview).observe($('#full-preview-viewport'));
 
 $('#mini-page').onchange=e=>{miniPage=e.target.value;updateMiniPreview()};
-$('#mini-expand').onclick=()=>showPreview(miniPage||project.prototypeOutput||project.home);
+$('#mini-expand').onclick=()=>project.prototypeOutput?showPreview(miniPage||project.prototypeOutput):notify('Conecte uma seção ao Prototype Output para ampliar a prévia.');
 $('#mini-toggle').onclick=()=>{const panel=$('#mini-preview'),collapsed=panel.classList.toggle('is-collapsed');$('#mini-toggle').setAttribute('aria-expanded',String(!collapsed));$('#mini-toggle').textContent=collapsed?'+':'−'};
 new ResizeObserver(resizeMiniPreview).observe($('#mini-viewport'));
 
