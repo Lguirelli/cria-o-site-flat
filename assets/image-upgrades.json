@@ -1,0 +1,257 @@
+[
+  {
+    "src": "assets/references-20261020/genex.png",
+    "style": "position:absolute;width:782.97872%;height:1721.05263%;max-width:none;left:-178.72340%;top:-875.00000%",
+    "replacement": "<img src=\"assets/generated/microscope.webp\" alt=\"Microscópio e amostras de laboratório\" loading=\"lazy\" data-node=\"n7\" data-generated-asset=\"microscope\">"
+  },
+  {
+    "src": "assets/references-20261020/genex.png",
+    "style": "position:absolute;width:782.97872%;height:1721.05263%;max-width:none;left:-286.17021%;top:-875.00000%",
+    "replacement": "<img src=\"assets/generated/vial.webp\" alt=\"Frasco de pesquisa em paisagem costeira\" loading=\"lazy\" data-node=\"n11\" data-generated-asset=\"vial\">"
+  },
+  {
+    "src": "assets/references-20261020/genex.png",
+    "style": "position:absolute;width:782.97872%;height:1721.05263%;max-width:none;left:-394.68085%;top:-875.00000%",
+    "replacement": "<img src=\"assets/generated/lab.webp\" alt=\"Equipe em laboratório de pesquisa\" loading=\"lazy\" data-node=\"n15\" data-generated-asset=\"lab\">"
+  },
+  {
+    "src": "assets/references-20261020/genex.png",
+    "style": "position:absolute;width:1051.42857%;height:1557.14286%;max-width:none;left:-238.57143%;top:-1221.42857%",
+    "replacement": "<img src=\"assets/generated/lab.webp\" alt=\"Equipe em laboratório de pesquisa\" loading=\"lazy\" data-node=\"n7\" data-generated-asset=\"lab\">"
+  },
+  {
+    "src": "assets/references-20261020/genex.png",
+    "style": "position:absolute;width:1051.42857%;height:1557.14286%;max-width:none;left:-458.57143%;top:-1221.42857%",
+    "replacement": "<img src=\"assets/generated/microscope.webp\" alt=\"Microscópio e amostras de laboratório\" loading=\"lazy\" data-node=\"n14\" data-generated-asset=\"microscope\">"
+  },
+  {
+    "src": "assets/references-20261020/genex.png",
+    "style": "position:absolute;width:246.97987%;height:914.68531%;max-width:none;left:-56.37584%;top:-302.79720%",
+    "replacement": "<img src=\"assets/generated/lab.webp\" alt=\"Equipe em laboratório de pesquisa\" loading=\"lazy\" data-node=\"n6\" data-generated-asset=\"lab\">"
+  },
+  {
+    "src": "assets/references-20261020/peptide.png",
+    "style": "position:absolute;width:258.24561%;height:486.74242%;max-width:none;left:-136.14035%;top:-85.60606%",
+    "replacement": "<img src=\"assets/generated/vial.webp\" alt=\"Frasco de pesquisa em paisagem costeira\" loading=\"lazy\" data-node=\"n9\" data-generated-asset=\"vial\">"
+  },
+  {
+    "src": "assets/references-20261020/peptide.png",
+    "style": "position:absolute;width:1268.96552%;height:1367.02128%;max-width:none;left:-186.20690%;top:-698.93617%",
+    "replacement": "<img src=\"assets/generated/vial.webp\" alt=\"Frasco de pesquisa em paisagem costeira\" loading=\"lazy\" data-node=\"n7\" data-generated-asset=\"vial\">"
+  },
+  {
+    "src": "assets/references-20261020/peptide.png",
+    "style": "position:absolute;width:1268.96552%;height:1367.02128%;max-width:none;left:-186.20690%;top:-698.93617%",
+    "replacement": "<img src=\"assets/generated/vial.webp\" alt=\"Frasco de pesquisa em paisagem costeira\" loading=\"lazy\" data-node=\"n14\" data-generated-asset=\"vial\">"
+  },
+  {
+    "src": "assets/references-20261020/peptide.png",
+    "style": "position:absolute;width:1268.96552%;height:1367.02128%;max-width:none;left:-186.20690%;top:-698.93617%",
+    "replacement": "<img src=\"assets/generated/vial.webp\" alt=\"Frasco de pesquisa em paisagem costeira\" loading=\"lazy\" data-node=\"n21\" data-generated-asset=\"vial\">"
+  },
+  {
+    "src": "assets/references-20261020/peptide.png",
+    "style": "position:absolute;width:1268.96552%;height:1367.02128%;max-width:none;left:-186.20690%;top:-698.93617%",
+    "replacement": "<img src=\"assets/generated/vial.webp\" alt=\"Frasco de pesquisa em paisagem costeira\" loading=\"lazy\" data-node=\"n28\" data-generated-asset=\"vial\">"
+  },
+  {
+    "src": "assets/references-20261020/statue.png",
+    "style": "position:absolute;width:216.47059%;height:199.45799%;max-width:none;left:-106.76471%;top:-49.59350%",
+    "replacement": "<img src=\"assets/generated/statue.webp\" alt=\"Escultura clássica vermelha\" loading=\"lazy\" data-node=\"n11\" data-generated-asset=\"statue\">"
+  },
+  {
+    "src": "assets/references-20261020/folio.png",
+    "style": "position:absolute;width:338.55799%;height:395.87629%;max-width:none;left:-121.63009%;top:-86.80412%",
+    "replacement": "<img src=\"assets/generated/portrait.webp\" alt=\"Retrato de diretor criativo com óculos laranja\" loading=\"lazy\" data-node=\"n5\" data-generated-asset=\"portrait\">"
+  },
+  {
+    "src": "assets/references-20261020/genex.png",
+    "style": "position:absolute;width:511.11111%;height:895.89041%;max-width:none;left:-245.13889%;top:-39.72603%",
+    "replacement": "<img src=\"assets/generated/lab.webp\" alt=\"Equipe em laboratório de pesquisa\" loading=\"lazy\" data-node=\"n10\" data-generated-asset=\"lab\">"
+  },
+  {
+    "src": "assets/references-20261020/fulfillix.png",
+    "style": "position:absolute;width:252.92096%;height:1177.60000%;max-width:none;left:-76.28866%;top:-109.60000%",
+    "replacement": "<div class=\"nr-logistics-visual\" data-node=\"n4\"><div><span class=\"icon\">inventory_2</span><strong>Estoque</strong><small>Origem</small></div><span class=\"icon\">arrow_forward</span><div><span class=\"icon\">local_shipping</span><strong>Distribuição</strong><small>Em trânsito</small></div><span class=\"icon\">arrow_forward</span><div><span class=\"icon\">storefront</span><strong>Entrega</strong><small>Destino</small></div></div>"
+  },
+  {
+    "src": "assets/references-20261020/orbit.png",
+    "style": "position:absolute;width:223.03030%;height:484.21053%;max-width:none;left:-111.21212%;top:-2.63158%",
+    "replacement": "<img src=\"assets/generated/abstract.webp\" alt=\"Escultura abstrata de fibras prateadas\" loading=\"lazy\" data-node=\"n11\" data-generated-asset=\"abstract\">"
+  },
+  {
+    "src": "assets/references-20261020/onion.png",
+    "style": "position:absolute;width:598.37398%;height:937.57962%;max-width:none;left:-68.29268%;top:-546.49682%",
+    "replacement": "<div class=\"nr-node-visual\" data-node=\"n11\"><span class=\"icon\">dns</span><strong>Nós disponíveis</strong><p>4 núcleos · 16 GB</p><span class=\"nr-node-status\">Pronto para conectar</span></div>"
+  },
+  {
+    "src": "assets/references-20261020/onion.png",
+    "style": "position:absolute;width:593.54839%;height:1159.05512%;max-width:none;left:-187.90323%;top:-699.21260%",
+    "replacement": "<div class=\"nr-node-visual\" data-node=\"n16\"><span class=\"icon\">hub</span><strong>Integrações</strong><p>CORA · ambiente de testes</p><span class=\"nr-node-status\">Conexão configurada</span></div>"
+  },
+  {
+    "src": "assets/references-20261020/onion.png",
+    "style": "position:absolute;width:570.54264%;height:1015.17241%;max-width:none;left:-290.69767%;top:-600.00000%",
+    "replacement": "<div class=\"nr-node-visual\" data-node=\"n21\"><span class=\"icon\">deployed_code</span><strong>Publicação</strong><p>Projeto demonstrativo</p><span class=\"nr-node-status\">Configuração salva</span></div>"
+  },
+  {
+    "src": "assets/references-20261020/onion.png",
+    "style": "position:absolute;width:618.48739%;height:1168.25397%;max-width:none;left:-450.42017%;top:-707.14286%",
+    "replacement": "<div class=\"nr-node-visual\" data-node=\"n26\"><span class=\"icon\">terminal</span><strong>Área de testes</strong><p>Entrada → processamento → saída</p><span class=\"nr-node-status\">Simulação local</span></div>"
+  },
+  {
+    "src": "assets/references-20261020/peptide.png",
+    "style": "position:absolute;width:474.83871%;height:725.98870%;max-width:none;left:-280.64516%;top:-539.54802%",
+    "replacement": "<img src=\"assets/generated/vial.webp\" alt=\"Frasco de pesquisa em paisagem costeira\" loading=\"lazy\" data-node=\"n24\" data-generated-asset=\"vial\">"
+  },
+  {
+    "src": "assets/references-20261020/genex.png",
+    "style": "position:absolute;width:336.07306%;height:1099.15966%;max-width:none;left:-95.43379%;top:-700.84034%",
+    "replacement": "<img src=\"assets/generated/building.webp\" alt=\"Edifício contemporâneo de pesquisa\" loading=\"lazy\" data-node=\"n6\" data-generated-asset=\"building\">"
+  },
+  {
+    "src": "assets/references-20261020/onepoint.png",
+    "style": "position:absolute;width:518.30986%;height:1167.85714%;max-width:none;left:-45.07042%;top:-303.57143%",
+    "replacement": "<img src=\"assets/generated/eye.webp\" alt=\"Detalhe fotográfico de um olho\" loading=\"lazy\" data-node=\"n7\" data-generated-asset=\"eye\">"
+  },
+  {
+    "src": "assets/references-20261020/onepoint.png",
+    "style": "position:absolute;width:511.11111%;height:583.92857%;max-width:none;left:-161.80556%;top:-151.78571%",
+    "replacement": "<img src=\"assets/generated/redforms.webp\" alt=\"Escultura abstrata vermelha\" loading=\"lazy\" data-node=\"n11\" data-generated-asset=\"redforms\">"
+  },
+  {
+    "src": "assets/references-20261020/onepoint.png",
+    "style": "position:absolute;width:514.68531%;height:583.92857%;max-width:none;left:-281.11888%;top:-151.78571%",
+    "replacement": "<img src=\"assets/generated/woman.webp\" alt=\"Retrato urbano de uma mulher\" loading=\"lazy\" data-node=\"n15\" data-generated-asset=\"woman\">"
+  },
+  {
+    "src": "assets/references-20261020/fulfillix.png",
+    "style": "position:absolute;width:886.74699%;height:1159.05512%;max-width:none;left:-277.10843%;top:-497.63780%",
+    "replacement": "<img src=\"assets/generated/warehouse.webp\" alt=\"Centro de distribuição com esteiras\" loading=\"lazy\" data-node=\"n6\" data-generated-asset=\"warehouse\">"
+  },
+  {
+    "src": "assets/references-20261020/folio.png",
+    "style": "position:absolute;width:420.23346%;height:531.85596%;max-width:none;left:-53.69650%;top:-417.17452%",
+    "replacement": "<img src=\"assets/generated/headphones.webp\" alt=\"Retrato com fones de ouvido\" loading=\"lazy\" data-node=\"n11\" data-generated-asset=\"headphones\">"
+  },
+  {
+    "src": "assets/references-20261020/folio.png",
+    "style": "position:absolute;width:415.38462%;height:531.85596%;max-width:none;left:-157.69231%;top:-417.17452%",
+    "replacement": "<img src=\"assets/generated/jacket.webp\" alt=\"Jaqueta preta em estúdio\" loading=\"lazy\" data-node=\"n15\" data-generated-asset=\"jacket\">"
+  },
+  {
+    "src": "assets/references-20261020/folio.png",
+    "style": "position:absolute;width:416.98842%;height:531.85596%;max-width:none;left:-264.47876%;top:-417.17452%",
+    "replacement": "<img src=\"assets/generated/bottle.webp\" alt=\"Frasco escuro sobre pedra\" loading=\"lazy\" data-node=\"n19\" data-generated-asset=\"bottle\">"
+  },
+  {
+    "src": "assets/references-20261020/bruno.png",
+    "style": "position:absolute;width:227.94677%;height:170.28112%;max-width:none;left:-13.11787%;top:-20.88353%",
+    "replacement": "<img src=\"assets/generated/designer.webp\" alt=\"Retrato de designer em preto e branco\" loading=\"lazy\" data-node=\"n5\" data-generated-asset=\"designer\">"
+  },
+  {
+    "src": "assets/references-20261020/vellum.png",
+    "style": "position:absolute;width:252.05479%;height:669.54545%;max-width:none;left:-23.28767%;top:-140.45455%",
+    "replacement": "<img src=\"assets/generated/warehouse.webp\" alt=\"Centro de distribuição com esteiras\" loading=\"lazy\" data-node=\"n7\" data-generated-asset=\"warehouse\">"
+  },
+  {
+    "src": "assets/references-20261020/vellum.png",
+    "style": "position:absolute;width:252.05479%;height:669.54545%;max-width:none;left:-129.45205%;top:-140.45455%",
+    "replacement": "<img src=\"assets/generated/train.webp\" alt=\"Paisagem pela janela de um trem\" loading=\"lazy\" data-node=\"n11\" data-generated-asset=\"train\">"
+  },
+  {
+    "src": "assets/references-20261020/vellum.png",
+    "style": "position:absolute;width:252.05479%;height:672.60274%;max-width:none;left:-23.28767%;top:-263.47032%",
+    "replacement": "<img src=\"assets/generated/blue.webp\" alt=\"Arquitetura urbana azul\" loading=\"lazy\" data-node=\"n15\" data-generated-asset=\"blue\">"
+  },
+  {
+    "src": "assets/references-20261020/vellum.png",
+    "style": "position:absolute;width:252.05479%;height:672.60274%;max-width:none;left:-129.45205%;top:-263.47032%",
+    "replacement": "<img src=\"assets/generated/forest.webp\" alt=\"Floresta em preto e branco com neblina\" loading=\"lazy\" data-node=\"n19\" data-generated-asset=\"forest\">"
+  },
+  {
+    "src": "assets/references-20261020/apex.png",
+    "style": "position:absolute;width:240.00000%;height:147.54098%;max-width:none;left:-67.00000%;top:-28.68852%",
+    "replacement": "<img src=\"assets/generated/bloodhound.webp\" alt=\"Personagem rastreador futurista com corvo\" loading=\"lazy\" data-node=\"n9\" data-generated-asset=\"bloodhound\">"
+  },
+  {
+    "src": "assets/references-20261020/august.png",
+    "style": "position:absolute;width:1212.12121%;height:1674.78992%;max-width:none;left:-340.40404%;top:-198.31933%",
+    "replacement": "<img src=\"assets/generated/designer.webp\" alt=\"Retrato de designer em preto e branco\" loading=\"lazy\" data-node=\"n5\" data-generated-asset=\"designer\">"
+  },
+  {
+    "src": "assets/references-20261020/august.png",
+    "style": "position:absolute;width:474.30830%;height:638.78205%;max-width:none;left:-188.14229%;top:-92.62821%",
+    "replacement": "<img src=\"assets/generated/eventgreen.webp\" alt=\"Espaço de eventos com vegetação e coberturas claras\" loading=\"lazy\" data-node=\"n7\" data-generated-asset=\"eventgreen\">"
+  },
+  {
+    "src": "assets/references-20261020/august.png",
+    "style": "position:absolute;width:1224.48980%;height:1674.78992%;max-width:none;left:-882.65306%;top:-431.93277%",
+    "replacement": "<img src=\"assets/generated/eventpink.webp\" alt=\"Palco com cortinas e iluminação rosa\" loading=\"lazy\" data-node=\"n9\" data-generated-asset=\"eventpink\">"
+  },
+  {
+    "src": "assets/references-20261020/onion.png",
+    "style": "position:absolute;width:101.37741%;height:743.43434%;max-width:none;left:-0.68871%;top:-62.62626%",
+    "replacement": "<img src=\"assets/generated/waves.webp\" alt=\"Paisagem abstrata de fios prateados\" loading=\"lazy\" data-node=\"n9\" data-generated-asset=\"waves\">"
+  },
+  {
+    "src": "assets/references-20261020/gioia.png",
+    "style": "position:absolute;width:603.01508%;height:682.50951%;max-width:none;left:-69.34673%;top:-420.15209%",
+    "replacement": "<img src=\"assets/generated/woman.webp\" alt=\"Retrato urbano de uma mulher\" loading=\"lazy\" data-node=\"n5\" data-generated-asset=\"woman\">"
+  },
+  {
+    "src": "assets/references-20261020/gioia.png",
+    "style": "position:absolute;width:603.01508%;height:682.50951%;max-width:none;left:-179.39698%;top:-420.15209%",
+    "replacement": "<img src=\"assets/generated/street.webp\" alt=\"Rua mediterrânea com sombras marcantes\" loading=\"lazy\" data-node=\"n9\" data-generated-asset=\"street\">"
+  },
+  {
+    "src": "assets/references-20261020/gioia.png",
+    "style": "position:absolute;width:606.06061%;height:682.50951%;max-width:none;left:-291.41414%;top:-420.15209%",
+    "replacement": "<img src=\"assets/generated/hoodie.webp\" alt=\"Fotografia editorial com moletom laranja\" loading=\"lazy\" data-node=\"n13\" data-generated-asset=\"hoodie\">"
+  },
+  {
+    "src": "assets/references-20261020/gioia.png",
+    "style": "position:absolute;width:603.01508%;height:682.50951%;max-width:none;left:-399.49749%;top:-420.15209%",
+    "replacement": "<img src=\"assets/generated/blue.webp\" alt=\"Arquitetura urbana azul\" loading=\"lazy\" data-node=\"n17\" data-generated-asset=\"blue\">"
+  },
+  {
+    "src": "assets/references-20261020/kianro.png",
+    "style": "position:absolute;width:981.33333%;height:1210.52632%;max-width:none;left:-166.66667%;top:-461.84211%",
+    "replacement": "<img src=\"assets/generated/shoe.webp\" alt=\"Tênis azul e creme\" loading=\"lazy\" data-node=\"n8\" data-generated-asset=\"shoe\">"
+  },
+  {
+    "src": "assets/references-20261020/kianro.png",
+    "style": "position:absolute;width:994.59459%;height:1210.52632%;max-width:none;left:-279.72973%;top:-461.84211%",
+    "replacement": "<img src=\"assets/generated/watch.webp\" alt=\"Relógio com pulseira verde\" loading=\"lazy\" data-node=\"n12\" data-generated-asset=\"watch\">"
+  },
+  {
+    "src": "assets/references-20261020/kianro.png",
+    "style": "position:absolute;width:968.42105%;height:1210.52632%;max-width:none;left:-380.26316%;top:-461.84211%",
+    "replacement": "<img src=\"assets/generated/car.webp\" alt=\"Carro esportivo em estrada costeira\" loading=\"lazy\" data-node=\"n16\" data-generated-asset=\"car\">"
+  },
+  {
+    "src": "assets/references-20261020/kianro.png",
+    "style": "position:absolute;width:994.59459%;height:1210.52632%;max-width:none;left:-502.70270%;top:-461.84211%",
+    "replacement": "<img src=\"assets/generated/headphones.webp\" alt=\"Retrato com fones de ouvido\" loading=\"lazy\" data-node=\"n20\" data-generated-asset=\"headphones\">"
+  },
+  {
+    "src": "assets/references-20261020/kianro.png",
+    "style": "position:absolute;width:968.42105%;height:1210.52632%;max-width:none;left:-597.36842%;top:-461.84211%",
+    "replacement": "<img src=\"assets/generated/hoodie.webp\" alt=\"Fotografia editorial com moletom laranja\" loading=\"lazy\" data-node=\"n24\" data-generated-asset=\"hoodie\">"
+  },
+  {
+    "src": "assets/references-20261020/kianro.png",
+    "style": "position:absolute;width:981.33333%;height:1210.52632%;max-width:none;left:-716.00000%;top:-461.84211%",
+    "replacement": "<img src=\"assets/generated/building.webp\" alt=\"Edifício contemporâneo de pesquisa\" loading=\"lazy\" data-node=\"n28\" data-generated-asset=\"building\">"
+  },
+  {
+    "src": "assets/references-20261020/onepoint.png",
+    "style": "position:absolute;width:321.39738%;height:395.56452%;max-width:none;left:-94.75983%;top:-262.09677%",
+    "replacement": "<img src=\"assets/generated/green.webp\" alt=\"Escultura verde estriada\" loading=\"lazy\" data-node=\"n8\" data-generated-asset=\"green\">"
+  },
+  {
+    "src": "assets/references-20261020/gioia.png",
+    "style": "position:absolute;width:603.01508%;height:682.50951%;max-width:none;left:-179.39698%;top:-420.15209%",
+    "replacement": "<img src=\"assets/generated/street.webp\" alt=\"Rua mediterrânea com sombras marcantes\" loading=\"lazy\" data-node=\"n5\" data-generated-asset=\"street\">"
+  }
+]
