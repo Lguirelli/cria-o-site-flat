@@ -51,3 +51,32 @@ O campo opcional `sequences` diferencia montagem de página e navegação. Proje
 Os IDs são de pranchetas (`pages[].id`). A exportação percorre cada cadeia e concatena seus blocos em um único HTML. Não são permitidos ciclos, saídas múltiplas ou entradas múltiplas. `links` continua descrevendo navegação por clique; os destinos são convertidos em arquivo + âncora quando apontam para uma prancheta dentro de uma cadeia. Excluir uma prancheta remove suas conexões de sequência e navegação.
 
 A edição mantém cada prancheta flutuante. A montagem só é aplicada à prévia navegável e à exportação; o JSON preserva a organização do mapa.
+
+## Nodes de imagem e enquadramento da máscara
+
+`imageNodes` guarda os assets de imagem e suas conexões com os slots descobertos nas seções. O enquadramento é salvo na conexão (`targets[]`), porque um mesmo asset pode ser usado em máscaras diferentes.
+
+```json
+"imageNodes": [
+  {
+    "id": "image-01",
+    "name": "Hero",
+    "x": -180,
+    "y": 220,
+    "src": "assets/hero.webp",
+    "targets": [
+      {
+        "page": "hero-section",
+        "slot": "hero-block:0",
+        "crop": {
+          "x": 0.5,
+          "y": 0.35,
+          "scale": 1.4
+        }
+      }
+    ]
+  }
+]
+```
+
+`crop.x` e `crop.y` variam de `0` a `1` e representam o enquadramento horizontal e vertical dentro da máscara. `crop.scale` varia de `1` a `4`. A ausência de `crop` equivale a `{ "x": 0.5, "y": 0.5, "scale": 1 }`.
