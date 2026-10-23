@@ -1,6 +1,6 @@
 # Análise das 14 referências e reconstrução
 
-Foram analisadas as imagens originais, retirando da reconstrução molduras de navegador, dispositivos e fundos de apresentação. Resultado: 56 seções novas, preservando os 28 blocos anteriores.
+Foram analisadas as imagens originais, retirando da reconstrução molduras de navegador, dispositivos e fundos de apresentação. Resultado: 57 seções novas, preservando os 28 blocos anteriores.
 
 ## Critérios comuns
 

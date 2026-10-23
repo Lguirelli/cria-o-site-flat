@@ -7,7 +7,7 @@ Colunas usam auto-fit/minmax; fontes e espaçamentos usam clamp; navegação e c
 ## Verificação
 63 testes automatizados aprovados. A revisão Playwright foi tentada, mas o Chromium não está instalado. Os downloads retornaram arquivos inválidos e a inicialização do navegador falhou. Portanto, não há aprovação visual nem garantia de ausência de problemas em todas as larguras.
 
-O script scripts/review-responsive.mjs cobre 89 seções e 22 modelos em 320, 390, 480, 600, 768, 1024, 1280, 1440 e 1920 px, além do editor em seis larguras. Detecta overflow horizontal, verifica as dimensões do editor e registra capturas e resultados em qa-responsive.
+O script scripts/review-responsive.mjs cobre 90 seções e 22 modelos em 320, 390, 480, 600, 768, 1024, 1280, 1440 e 1920 px, além do editor em seis larguras. Detecta overflow horizontal, verifica as dimensões do editor e registra capturas e resultados em qa-responsive.
 
 ## Executar em ambiente com Chromium disponível
 1. npm install

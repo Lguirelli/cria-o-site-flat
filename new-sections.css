@@ -9,3 +9,12 @@
 .nr-section .nr-ui-sample{background:#f8f8fb;color:#26262d;border-radius:8px;padding:20px;min-height:220px}.nr-section .nr-ui-sample p{color:#5e5e66}.nr-section .nr-ui-sample strong{font-size:48px}
 
 .nr-logistics-visual{display:flex;align-items:center;justify-content:space-evenly;gap:12px;min-height:100%;padding:24px;background:radial-gradient(circle at center,#d9edcb,#f4f7f1);color:#273126}.nr-logistics-visual>div{display:grid;text-align:center;gap:8px}.nr-logistics-visual .icon{font-size:clamp(20px,5vw,56px)}.nr-logistics-visual strong{font-size:clamp(12px,2vw,22px)}.nr-logistics-visual small{font-size:12px}.nr-node-visual{display:flex;flex-direction:column;justify-content:space-between;gap:16px;padding:20px;min-height:100%;background:linear-gradient(145deg,#262626,#080808);border:1px solid #555;border-radius:8px}.nr-node-visual>.icon{font-size:40px}.nr-node-visual strong{font-size:18px}.nr-node-visual p{font-size:12px}.nr-node-status{font-size:11px;padding:8px;border:1px solid #686868;border-radius:5px}.nr-onion.nr-layout-cards4 .nr-media{aspect-ratio:auto!important;min-height:230px}.nr-fulfillix.nr-layout-map .nr-media{min-height:220px}
+
+/* Folioblox: the original combined manifesto/projects composition is intentionally split into two node-ready sections. */
+.nr-folio.nr-layout-manifesto{padding-block:clamp(64px,8vw,120px)}
+.nr-folio.nr-layout-manifesto .nr-split{align-items:start;min-height:clamp(300px,36vw,500px)}
+.nr-folio.nr-layout-manifesto .nr-split>div{align-self:end}
+.nr-folio.nr-layout-projects{padding-top:clamp(20px,3vw,44px);padding-bottom:clamp(64px,7vw,100px)}
+.nr-folio.nr-layout-projects .nr-gallery{margin-top:0}
+.nr-folio.nr-layout-projects .nr-media{border-radius:2px}
+@container(max-width:520px){.nr-folio.nr-layout-manifesto .nr-split{min-height:0}.nr-folio.nr-layout-manifesto .nr-split>div{align-self:auto}.nr-folio.nr-layout-projects{padding-top:24px}}

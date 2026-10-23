@@ -492,15 +492,27 @@
     },
     {
       "id": "r20-folio-about",
-      "name": "Manifesto e três projetos",
+      "name": "Manifesto / posicionamento",
       "source": "Folioblox · Novas referências",
       "theme": "nr-theme",
       "category": "content",
       "file": "blocks/r20-folio-about.html",
       "thumbnail": "thumbnails/r20-folio-about.svg",
       "referenceImage": "assets/references-20261020/folio.png",
-      "layout": "gallery3",
+      "layout": "manifesto",
       "skeleton": "thumbnails/skeletons/r20-folio-about.svg"
+    },
+    {
+      "id": "r20-folio-projects",
+      "name": "Projetos selecionados",
+      "source": "Folioblox · Novas referências",
+      "theme": "nr-theme",
+      "category": "content",
+      "file": "blocks/r20-folio-projects.html",
+      "thumbnail": "thumbnails/r20-folio-projects.svg",
+      "referenceImage": "assets/references-20261020/folio.png",
+      "layout": "projects",
+      "skeleton": "thumbnails/skeletons/r20-folio-projects.svg"
     },
     {
       "id": "r20-kianro-header",
@@ -1126,7 +1138,8 @@
         "r20-folio-header",
         "r20-folio-hero",
         "r20-folio-brands",
-        "r20-folio-about"
+        "r20-folio-about",
+        "r20-folio-projects"
       ]
     },
     {
