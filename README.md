@@ -1,4 +1,15 @@
-# Forma Studio 1.16.6
+# Atualização 1.16.9 — Exclusão de imagens e salvamento
+
+- Os nodes de imagem agora têm botões de **Propriedades** e **Excluir** visíveis no cabeçalho, no mesmo padrão dos nodes de seção. O botão Excluir remove o node e suas ligações sem excluir a seção e permite desfazer com **Ctrl+Z**.
+- Quando a imagem excluída estava conectada a um espaço da seção, a máscara permanece e volta ao wireframe com X. A exclusão não recria automaticamente o node removido.
+- **Salvar projeto** (**Ctrl+S**) grava o projeto editável `.forma.json` inteiro, incluindo imagens, conexões, layout, CSS e textos. Em navegadores compatíveis e contexto seguro, usa o diálogo de arquivo do sistema; nos demais, inicia o download do JSON. **Ctrl+Shift+S** permite salvar como novo arquivo.
+- **Abrir projeto** importa o arquivo `.forma.json` para continuar editando. Rascunhos locais permanecem disponíveis quando o navegador permite; salvar o arquivo protege contra limites de armazenamento local.
+
+Para uso offline com as fontes originais, restaure os arquivos binários de fonte do ZIP original enviado. Nesta distribuição, `assets/fonts.css` referencia as mesmas famílias por URL pública e utiliza fontes de sistema caso a rede esteja indisponível.
+
+---
+
+# Forma Studio 1.16.9
 
 Nesta versão, **seção é a unidade nodal do editor**. Cada item visual no canvas representa uma única seção; páginas contínuas são montadas conectando seções em sequência. A biblioteca usa skeleton previews estáticos por tipo de seção.
 
