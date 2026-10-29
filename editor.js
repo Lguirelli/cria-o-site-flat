@@ -3,6 +3,7 @@ import {validImageURL,ensureImageNodes,imageNodeGrouped,groupImageNodes,alignIma
 import {STYLE_FIELDS,styleNodeForPage,connectedSectionIds} from './lib/styles.js';
 import {VERSION,uid,escapeHTML as esc,slugify,fileFor,validateProject,removePage,setLink,setSequence,composeProject,rootOf} from './lib/project.js';
 import {buildDocument} from './lib/document.js';
+import {publicationProject} from './lib/publication.js';
 import {bridgeSource} from './lib/bridge.js';
 import {dropPosition} from './lib/library-drop.js';
 import {makeZip} from './lib/zip.js';
@@ -381,17 +382,30 @@ function drawConnections(){
 function setMode(value){mode=value;prototypeHover=null;document.body.dataset.editorMode=mode;document.body.classList.toggle('prototype-mode',mode==='prototype');$('#design-mode').classList.toggle('active',mode==='design');$('#prototype-mode').classList.toggle('active',mode==='prototype');$('#canvas-hint').innerHTML=mode==='design'?'DESIGN <span>Clique para selecionar · botão do meio + arrastar para navegar</span>':'PROTÓTIPO <span>Passe perto de qualquer elemento · esquerda recebe · direita conecta</span>';renderInspector();renderBoards()}
 async function addPage(usePreset=false){const page=await makePage(null,project.pages.length);page.slug=uniqueSlug(page.slug);commit(()=>{project.pages.push(page);active=page.id;selection=null});focusPage();return page}
 function download(blob,name){const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),30000)}
-function showPreview(id,anchor=''){if(!id||!project.pages.some(p=>p.id===id)){notify('Conecte uma seção ao Prototype Output para visualizar o protótipo.');return}const assembled=composeProject(project,catalog);const root=rootOf(project,id);const previewTarget=assembled.pages.find(p=>p.id===root);if(!previewTarget){notify('A seção conectada não está disponível na saída do protótipo.');return}previewPage=root;$('#preview-page').innerHTML=assembled.pages.map(p=>`<option value="${esc(p.id)}">${esc(p.name)}</option>`).join('');$('#preview-page').value=root;$('#preview-frame').srcdoc=buildDocument(assembled,previewTarget,catalog,{base:new URL('.',location.href).href,preview:true,anchor:anchor||(id!==root?'artboard-'+id:'')});if(!$('#preview-dialog').open)$('#preview-dialog').showModal();resizeFullPreview()}
+function showPreview(id,anchor=''){
+ if(!project.prototypeViewer||!project.prototypeOutput){notify('Conecte uma seção ao Prototype Output para visualizar o protótipo.');return}
+ try{
+  const published=publicationProject(project),assembled=composeProject(published,catalog),root=rootOf(published,id);
+  const previewTarget=assembled.pages.find(p=>p.id===root);
+  if(!previewTarget){notify('Esta seção não pertence à estrutura conectada ao Prototype Preview.');return}
+  previewPage=root;$('#preview-page').innerHTML=assembled.pages.map(p=>`<option value="${esc(p.id)}">${esc(p.name)}</option>`).join('');$('#preview-page').value=root;
+  $('#preview-frame').srcdoc=buildDocument(assembled,previewTarget,catalog,{base:new URL('.',location.href).href,preview:true,anchor:anchor||(id!==root?'artboard-'+id:'')});
+  if(!$('#preview-dialog').open)$('#preview-dialog').showModal();resizeFullPreview();
+ }catch(error){notify(error.message)}
+}
 
 async function exportSite(){
  const button=$('#export');button.disabled=true;notify('Preparando páginas, imagens, fontes e ligações…');
  try{
   validateProject(project,new Set(catalog.blocks.map(b=>b.id)));
-  const assembled=composeProject(project,catalog);const files=assembled.pages.map(p=>({name:fileFor(assembled,p.id),data:buildDocument(assembled,p,catalog)}));
+  const published=publicationProject(project);
+  validateProject(published,new Set(catalog.blocks.map(b=>b.id)));
+  const assembled=composeProject(published,catalog);
+  const files=assembled.pages.map(p=>({name:fileFor(assembled,p.id),data:buildDocument(assembled,p,catalog)}));
   const paths=[...new Set(['page.css','responsive.css','runtime.js',...catalog.assets])];
   for(let i=0;i<paths.length;i+=6){const batch=await Promise.all(paths.slice(i,i+6).map(async name=>({name,data:await(await request(name)).arrayBuffer()})));files.push(...batch)}
-  files.push({name:'projeto.forma.json',data:JSON.stringify(project,null,2)},{name:'.nojekyll',data:''},{name:'LEIA-ME.txt',data:'Abra index.html ou publique esta pasta em hospedagem estática. As ligações entre páginas foram preservadas. Formulários são demonstrativos e não enviam reservas. Para continuar a edição, importe projeto.forma.json no Forma Studio. Fontes e fotos acompanham a exportação.'});
-  download(makeZip(files),slugify(project.name)+'-site.zip');notify('Site exportado com todas as páginas e arquivos locais.');
+  files.push({name:'projeto.forma.json',data:JSON.stringify(published,null,2)},{name:'.nojekyll',data:''},{name:'LEIA-ME.txt',data:'Este ZIP contém exclusivamente o site conectado ao Prototype Preview e suas subpáginas ligadas pela navegação. Seções soltas e rascunhos não foram publicados. Abra index.html ou publique os arquivos em hospedagem estática. Para continuar editando somente a versão publicada, importe projeto.forma.json no Forma Studio. O projeto completo permanece salvo na biblioteca interna do navegador.'});
+  download(makeZip(files),slugify(project.name)+'-site.zip');notify('Site exportado: somente seções e páginas conectadas ao Prototype Preview.');
  }catch(e){notify(e.message)}finally{button.disabled=false}
 }
 window.addEventListener('message',e=>{
@@ -568,7 +582,7 @@ function updateMiniPreview(anchor=''){
  const outputId=project.prototypeViewer&&project.pages.some(p=>p.id===project.prototypeOutput)?project.prototypeOutput:null,select=$('#mini-page'),frame=$('#mini-frame');
  if(!outputId){miniOutputSource=null;miniPage=null;select.innerHTML='<option value="">Sem conexão</option>';select.value='';select.disabled=true;const empty='<!doctype html><html><head><meta charset="utf-8"><style>html,body{height:100%;margin:0}body{display:grid;place-items:center;background:#f4f4f6;color:#8b8b94;font:500 24px system-ui,sans-serif;text-align:center}small{display:block;font-size:14px;font-weight:400;margin-top:8px}</style></head><body><div>Prototype Preview sem conexão<small>Adicione o Viewer pelo Shift+A e conecte uma seção.</small></div></body></html>';if(miniSignature!==empty){miniSignature=empty;frame.srcdoc=empty}resizeMiniPreview();return}
  if(miniOutputSource!==outputId){miniOutputSource=outputId;miniPage=null}
- try{const assembled=composeProject(project,catalog),id=rootOf(project,miniPage||outputId),page=assembled.pages.find(p=>p.id===id);
+ try{const published=publicationProject(project),assembled=composeProject(published,catalog),id=rootOf(published,published.pages.some(p=>p.id===miniPage)?miniPage:outputId),page=assembled.pages.find(p=>p.id===id);
  if(!page){miniPage=null;return}select.disabled=false;select.innerHTML=assembled.pages.map(p=>`<option value="${esc(p.id)}">${esc(p.name)}</option>`).join('');select.value=page.id;
  const doc=buildDocument(assembled,page,catalog,{base:new URL('.',location.href).href,preview:true,anchor});
  if(doc!==miniSignature){miniSignature=doc;frame.srcdoc=doc}resizeMiniPreview();

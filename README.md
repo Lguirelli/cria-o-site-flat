@@ -1,3 +1,14 @@
+# Forma Studio 1.17.1 — Publicação conectada ao Prototype Preview
+
+- **Exportar site** utiliza somente a sequência de seções conectada ao **Prototype Preview**. O site pode incluir outras sequências apenas quando são alcançáveis por conexões de navegação do protótipo, mantendo subpáginas e seus links funcionais.
+- Seções, grupos, imagens e CSS sem ligação com a estrutura publicada **não entram no HTML nem no `projeto.forma.json` da exportação**. Nodes de imagem compartilhados têm as conexões externas removidas somente na cópia exportada.
+- A seção conectada define a página inicial da exportação (`index.html`), mesmo quando não é a página inicial do editor. A sequência anterior até essa seção continua incluída.
+- **Sem uma conexão ativa ao Prototype Preview, a exportação é impedida** com uma mensagem orientando a conexão. A mini prévia e a prévia ampliada também são limitadas às páginas do site publicado.
+- **Salvar projeto** e o salvamento automático na aba **Projetos** continuam guardando **todo o canvas**, inclusive seções soltas e testes. **Exportar backup JSON**, separado da exportação do site, também preserva o projeto inteiro.
+- Os arquivos de CSS/JS e os assets necessários ao funcionamento do catálogo são mantidos no pacote estático. Os arquivos HTML exportados e o JSON de publicação são filtrados. Use `npm run check` para validar o comportamento.
+
+---
+
 # Atualização 1.16.9 — Exclusão de imagens e salvamento
 
 - Os nodes de imagem agora têm botões de **Propriedades** e **Excluir** visíveis no cabeçalho, no mesmo padrão dos nodes de seção. O botão Excluir remove o node e suas ligações sem excluir a seção e permite desfazer com **Ctrl+Z**.
