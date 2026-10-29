@@ -93,3 +93,12 @@ A prévia no canto superior direito mostra o site montado com as conexões, cabe
 Cada miniatura usa o wireframe vetorial específico da seção como skeleton, com brilho suave e respeito à preferência por movimento reduzido.
 
 Foram recompostos index.html, package.json e server.mjs, ausentes no ZIP recebido. Para executar, use npm run dev. Para preparar GitHub Pages: node scripts/package-site.mjs.
+
+
+## Forma Studio 1.17.0 — projetos internos e desconexões
+
+- Na lateral, abra **Projetos** para **criar, abrir, duplicar, renomear ou excluir** projetos. Cada projeto é armazenado de forma independente em **IndexedDB**, neste navegador e nesta origem/domínio. É possível salvar manualmente no botão **Salvar projeto** (`Ctrl+S`), e há salvamento automático após alterações. O editor restaura o último projeto aberto após atualizar a página. Projetos não são enviados a um servidor.
+- **Importar JSON** cria um novo projeto na biblioteca local e não substitui os já salvos. **Exportar backup** (`Ctrl+Shift+S`) baixa um `.forma.json` para transferência/recuperação. Não confunda o backup com o salvamento interno. Como qualquer dado local, projetos podem ser perdidos se o usuário apagar os dados do navegador; mantenha backups importantes.
+- Os nodes de **imagem** agora oferecem botão **Desconectar** (ícone de corrente cortada), separado de **Excluir**; a imagem continua disponível no canvas após desconectar e a seção retoma o placeholder. Também há desconexão direta nos nodes **CSS**, nas **sequências de seções** e no **Prototype Preview**. Todas as ações permanecem no histórico de desfazer.
+- A versão mantém a execução por `npm run dev` (Node >= 20) ou hospedagem estática. Não execute o editor diretamente por `file://`.
+- Os arquivos binários de fonte não são distribuídos no ZIP; o CSS utiliza fontes remotas e alternativas de sistema.

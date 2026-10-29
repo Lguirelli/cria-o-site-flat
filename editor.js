@@ -7,13 +7,15 @@ import {bridgeSource} from './lib/bridge.js';
 import {dropPosition} from './lib/library-drop.js';
 import {makeZip} from './lib/zip.js';
 import {wheelZoom,anchoredCamera,fitSections} from './lib/canvas.js';
+import {getProject,putProject,removeProject,listProjects} from './lib/project-store.js';
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
-const STORAGE='forma-studio-original-blocks-v3';
+const STORAGE='forma-studio-original-blocks-v3'; // Legacy draft, imported once on first use.
+const CURRENT_PROJECT_KEY='forma-studio-current-project-id';
 let imageUpgrades=[],textUpgrades={};
 let catalog,project,active,selection=null,prototypeHover=null,mode='design',zoom=.3,metrics=new Map(),history=[],future=[],dragLink=null,noticeTimer,previewPage;
 const imageSlots=new Map();
 let camera={x:40,y:40},miniTimer,miniPage=null,miniSignature="",miniOutputSource=null;
-let projectFileHandle=null;
+let activeProjectId=null,projectCreatedAt=0,storeReady=false,autosaveTimer=null,writeQueue=Promise.resolve(),projectListToken=0;
 const cache=new Map();
 const THEME_STORAGE='forma-studio-theme';
 function applyTheme(theme){const dark=theme==='dark';document.documentElement.dataset.theme=dark?'dark':'light';const button=$('#theme-toggle'),icon=$('#theme-icon');if(button){button.classList.toggle('active',dark);button.setAttribute('aria-pressed',String(dark));button.title=dark?'Usar modo claro':'Usar modo escuro'}if(icon)icon.textContent=dark?'light_mode':'dark_mode'}
@@ -21,7 +23,97 @@ function initTheme(){let saved='';try{saved=localStorage.getItem(THEME_STORAGE)|
 function notify(message){$('#notice').textContent=message;$('#notice').hidden=false;clearTimeout(noticeTimer);noticeTimer=setTimeout(()=>$('#notice').hidden=true,5000)}
 async function request(path){const r=await fetch(path);if(!r.ok)throw Error(`Falha ao carregar ${path}: ${r.status}`);return r}
 function serialize(){return JSON.stringify(project)}
-function persist(){scheduleMiniPreview();try{localStorage.setItem(STORAGE,serialize());$('#save-status').textContent='Rascunho salvo neste navegador'}catch{$('#save-status').textContent='Salve o JSON: armazenamento local cheio';notify('O navegador não conseguiu salvar o rascunho. Use Salvar projeto para baixar o JSON.')}}
+function persist(){
+ scheduleMiniPreview();
+ if(!storeReady||!activeProjectId)return;
+ $('#save-status').textContent='Alterações pendentes…';
+ clearTimeout(autosaveTimer);
+ autosaveTimer=setTimeout(()=>{void saveProjectInternal({quiet:true})},1100);
+}
+async function saveProjectInternal({quiet=false}={}){
+ if(!storeReady||!activeProjectId)throw Error('Biblioteca interna de projetos indisponível.');
+ clearTimeout(autosaveTimer);
+ validateProject(project,new Set(catalog.blocks.map(block=>block.id)));
+ const id=activeProjectId,record={id,name:project.name,createdAt:projectCreatedAt||Date.now(),updatedAt:Date.now(),data:serialize()};
+ // Serial writes prevent an older autosave from overwriting a newer snapshot.
+ const write=writeQueue.catch(()=>{}).then(()=>putProject(record));
+ writeQueue=write;
+ try{
+  await write;
+  if(id===activeProjectId){$('#save-status').textContent='Salvo neste navegador';void renderProjectList();}
+  if(!quiet)notify('Projeto salvo na biblioteca interna.');
+  return true;
+ }catch(error){
+  $('#save-status').textContent='Erro ao salvar';
+  notify('Não foi possível salvar internamente: '+error.message);
+  throw error;
+ }
+}
+async function flushProject(){if(!storeReady||!activeProjectId)return;clearTimeout(autosaveTimer);await saveProjectInternal({quiet:true})}
+function projectRecord(projectValue,id=uid()){
+ const now=Date.now();return{id,name:projectValue.name,createdAt:now,updatedAt:now,data:JSON.stringify(projectValue)};
+}
+function selectProjectRecord(record){
+ const next=validateProject(JSON.parse(record.data),new Set(catalog.blocks.map(block=>block.id)));
+ project=next;activeProjectId=record.id;projectCreatedAt=record.createdAt||Date.now();
+ history=[];future=[];selection=null;prototypeHover=null;active=project.home;
+ imageSlots.clear();metrics.clear();miniSignature='';miniPage=null;previewPage=null;
+ for(const node of project.styleNodes||[])ensureStyleAPI(node);
+ try{localStorage.setItem(CURRENT_PROJECT_KEY,activeProjectId)}catch{}
+ render();
+}
+async function openInternalProject(id){
+ if(id===activeProjectId)return;
+ await flushProject();
+ const record=await getProject(id);
+ if(!record)throw Error('Projeto não encontrado.');
+ selectProjectRecord(record);tab('projects');await renderProjectList();
+ notify('Projeto aberto: '+record.name);
+}
+async function createInternalProject(){
+ await flushProject();
+ const page=await makePage(null,0);
+ page.name='Página inicial';page.slug='index';page.blocks=[await instance(catalog.blocks.find(b=>b.category==='hero')?.id||catalog.blocks[0].id)];
+ const next={version:VERSION,name:'Novo projeto',home:page.id,pages:[page],links:[],sequences:[],imageNodes:[],styleNodes:[],prototypeOutput:null,prototypeViewer:null};
+ const record=projectRecord(next);await putProject(record);
+ selectProjectRecord(record);tab('projects');await renderProjectList();notify('Novo projeto criado.');
+}
+async function duplicateInternalProject(id){
+ await flushProject();const record=await getProject(id);if(!record)throw Error('Projeto não encontrado.');
+ const source=JSON.parse(record.data);source.name+=' · cópia';const duplicate=projectRecord(source);await putProject(duplicate);
+ selectProjectRecord(duplicate);await renderProjectList();notify('Projeto duplicado.');
+}
+async function renameInternalProject(id){
+ await flushProject();const record=await getProject(id);if(!record)return;
+ const name=window.prompt('Nome do projeto',record.name)?.trim();if(!name||name===record.name)return;
+ const data=JSON.parse(record.data);data.name=name;record.name=name;record.data=JSON.stringify(data);record.updatedAt=Date.now();
+ await putProject(record);if(id===activeProjectId){project.name=name;$('#project-name').value=name}
+ await renderProjectList();notify('Projeto renomeado.');
+}
+async function deleteInternalProject(id){
+ const record=await getProject(id);if(!record||!window.confirm('Excluir definitivamente o projeto "'+record.name+'" deste navegador?'))return;
+ if(id!==activeProjectId)await flushProject();else clearTimeout(autosaveTimer);
+ await writeQueue.catch(()=>{});await removeProject(id);
+ if(id===activeProjectId){activeProjectId=null;const records=await listProjects();if(records.length){const next=await getProject(records[0].id);selectProjectRecord(next)}else{storeReady=false;await createFirstLocalProject()}}
+ await renderProjectList();notify('Projeto excluído deste navegador.');
+}
+async function createFirstLocalProject(){
+ const page=await makePage(null,0);page.name='Página inicial';page.slug='index';page.blocks=[await instance(catalog.blocks.find(b=>b.category==='hero')?.id||catalog.blocks[0].id)];const next={version:VERSION,name:'Novo projeto',home:page.id,pages:[page],links:[],sequences:[],imageNodes:[],styleNodes:[],prototypeOutput:null,prototypeViewer:null};const record=projectRecord(next);await putProject(record);storeReady=true;selectProjectRecord(record);
+}
+async function renderProjectList(){
+ const list=$('#projects-list');if(!list||!storeReady)return;
+ const token=++projectListToken;
+ try{
+  const projects=await listProjects();
+  if(token!==projectListToken)return;
+  list.innerHTML=projects.length?projects.map(entry=>`<article class="project-item ${entry.id===activeProjectId?'selected':''}" data-project-id="${esc(entry.id)}"><button class="project-open" data-project-action="open" aria-current="${entry.id===activeProjectId?'page':'false'}" title="Abrir ${esc(entry.name)}"><span class="icon">${entry.id===activeProjectId?'folder_open':'folder'}</span><span><strong>${esc(entry.name)}</strong><small>${entry.id===activeProjectId?'Aberto · ':''}${new Date(entry.updatedAt).toLocaleString('pt-BR',{dateStyle:'short',timeStyle:'short'})}</small></span></button><div class="project-item-actions"><button data-project-action="duplicate" title="Duplicar projeto" aria-label="Duplicar ${esc(entry.name)}"><span class="icon">content_copy</span></button><button data-project-action="rename" title="Renomear projeto" aria-label="Renomear ${esc(entry.name)}"><span class="icon">edit</span></button><button data-project-action="delete" class="danger" title="Excluir projeto" aria-label="Excluir ${esc(entry.name)}"><span class="icon">delete</span></button></div></article>`).join(''):'<p class="panel-tip">Ainda não há projetos salvos.</p>';
+  list.querySelectorAll('[data-project-action]').forEach(button=>button.onclick=()=>{
+   const id=button.closest('[data-project-id]').dataset.projectId;
+   const fn={open:openInternalProject,duplicate:duplicateInternalProject,rename:renameInternalProject,delete:deleteInternalProject}[button.dataset.projectAction];
+   Promise.resolve(fn(id)).catch(error=>notify(error.message));
+  });
+ }catch(error){if(token!==projectListToken)return;list.innerHTML='<p class="panel-tip">Não foi possível listar os projetos locais.</p>';notify(error.message)}
+}
 function checkpoint(){history.push(serialize());if(history.length>60)history.shift();future=[]}
 function commit(mutator,{refresh=true}={}){checkpoint();mutator();persist();if(refresh)render();else updateHistory()}
 function updateHistory(){$('#undo').disabled=!history.length;$('#redo').disabled=!future.length}
@@ -171,7 +263,7 @@ function makeBoard(p){
  const imageCount=(project.imageNodes||[]).filter(n=>n.targets.some(t=>t.page===p.id)).length;
  const titleMeta=p.collapsed?`Seção recolhida · ${imageCount} imagens`:`${source} · ${p.width}px${p.imageNodesCollapsed?` · ${imageCount} imagens recolhidas`:''}`;
  const board=document.createElement('section');board.className='artboard section-node'+(p.id===active?' active':'')+(p.muted?' muted':'')+(p.collapsed?' collapsed':'')+(p.imageNodesCollapsed?' images-collapsed':'');board.dataset.page=p.id;board.dataset.section=p.blocks[0]?.id||'';board.style.cssText=`left:${p.x}px;top:${p.y}px;width:${p.width}px`;
- const title=document.createElement('div');title.className='artboard-title';title.innerHTML=`<button class="section-socket section-socket-in" data-socket="sequence-in" title="Entrada da sequência" aria-label="Entrada da sequência"></button><span class="icon">view_agenda</span><div class="section-title-copy"><strong>${esc(label)}</strong><small>${esc(titleMeta)}</small></div><div class="node-actions" aria-label="Ações da seção"><button data-node-action="output" class="${project.prototypeOutput===p.id?'active':''}" title="Definir como Prototype Output" aria-label="Definir como Prototype Output"><span class="icon">output</span></button><button data-node-action="home" class="${project.home===p.id?'active':''}" title="Definir como início" aria-label="Definir como início"><span class="icon">home</span></button><button data-node-action="mute" class="${p.muted?'active':''}" title="Mute" aria-label="Mute"><span class="icon">${p.muted?'visibility_off':'visibility'}</span></button><button data-node-action="collapse-images" class="image-group-collapse ${p.imageNodesCollapsed?'active':''}" title="${p.imageNodesCollapsed?'Expandir nodes de imagem':'Recolher apenas nodes de imagem'}" aria-label="${p.imageNodesCollapsed?'Expandir nodes de imagem desta seção':'Recolher somente os nodes de imagem dentro desta seção'}"><span class="icon">${p.imageNodesCollapsed?'folder':'folder_open'}</span></button><button data-node-action="collapse-section" class="section-collapse ${p.collapsed?'active':''}" title="${p.collapsed?'Expandir seção inteira':'Recolher seção inteira'}" aria-label="${p.collapsed?'Expandir toda a seção':'Recolher toda a seção'}"><span class="icon">${p.collapsed?'unfold_more':'unfold_less'}</span></button><button data-node-action="duplicate" title="Duplicar seção" aria-label="Duplicar seção"><span class="icon">content_copy</span></button><button data-node-action="settings" title="Propriedades da seção" aria-label="Propriedades da seção"><span class="icon">tune</span></button><button data-node-action="delete" class="danger" title="Excluir seção" aria-label="Excluir seção"><span class="icon">delete</span></button></div><div class="node-properties" hidden><label>Nome da seção<input data-node-name value="${esc(p.name)}"></label><div class="two"><label>Arquivo/rota<input data-node-slug value="${esc(p.slug)}" ${p.id===project.home?'disabled':''}></label><label>Largura<input data-node-width readonly title="Desktop padrão no canvas" type="number" min="320" max="1920" step="1" value="${p.width}"></label></div></div>`;
+ const title=document.createElement('div');title.className='artboard-title';title.innerHTML=`<button class="section-socket section-socket-in" data-socket="sequence-in" title="Entrada da sequência" aria-label="Entrada da sequência"></button><span class="icon">view_agenda</span><div class="section-title-copy"><strong>${esc(label)}</strong><small>${esc(titleMeta)}</small></div><div class="node-actions" aria-label="Ações da seção"><button data-node-action="output" class="${project.prototypeOutput===p.id?'active':''}" title="Definir como Prototype Output" aria-label="Definir como Prototype Output"><span class="icon">output</span></button><button data-node-action="home" class="${project.home===p.id?'active':''}" title="Definir como início" aria-label="Definir como início"><span class="icon">home</span></button><button data-node-action="mute" class="${p.muted?'active':''}" title="Mute" aria-label="Mute"><span class="icon">${p.muted?'visibility_off':'visibility'}</span></button><button data-node-action="collapse-images" class="image-group-collapse ${p.imageNodesCollapsed?'active':''}" title="${p.imageNodesCollapsed?'Expandir nodes de imagem':'Recolher apenas nodes de imagem'}" aria-label="${p.imageNodesCollapsed?'Expandir nodes de imagem desta seção':'Recolher somente os nodes de imagem dentro desta seção'}"><span class="icon">${p.imageNodesCollapsed?'folder':'folder_open'}</span></button><button data-node-action="collapse-section" class="section-collapse ${p.collapsed?'active':''}" title="${p.collapsed?'Expandir seção inteira':'Recolher seção inteira'}" aria-label="${p.collapsed?'Expandir toda a seção':'Recolher toda a seção'}"><span class="icon">${p.collapsed?'unfold_more':'unfold_less'}</span></button><button data-node-action="duplicate" title="Duplicar seção" aria-label="Duplicar seção"><span class="icon">content_copy</span></button>${hasNext?'<button data-node-action="disconnect-sequence" title="Desconectar próxima seção" aria-label="Desconectar próxima seção"><span class="icon">link_off</span></button>':''}<button data-node-action="settings" title="Propriedades da seção" aria-label="Propriedades da seção"><span class="icon">tune</span></button><button data-node-action="delete" class="danger" title="Excluir seção" aria-label="Excluir seção"><span class="icon">delete</span></button></div><div class="node-properties" hidden><label>Nome da seção<input data-node-name value="${esc(p.name)}"></label><div class="two"><label>Arquivo/rota<input data-node-slug value="${esc(p.slug)}" ${p.id===project.home?'disabled':''}></label><label>Largura<input data-node-width readonly title="Desktop padrão no canvas" type="number" min="320" max="1920" step="1" value="${p.width}"></label></div></div>`;
  const frame=document.createElement('iframe');frame.loading='eager';frame.title='Seção '+label;frame.setAttribute('sandbox','allow-scripts');frame.style.height=(metrics.get(p.id)?.height||900)+'px';frame.srcdoc=buildDocument(project,p,catalog,{base:new URL('.',location.href).href,editor:true,bridge:bridgeSource(p.id,mode),mode});
  const footer=document.createElement('div');footer.className='board-sequence';footer.innerHTML=`<button class="sequence-port" title="Arraste para conectar esta seção" aria-label="Conectar próxima seção de ${esc(label)}"><span class="icon">conversion_path</span></button><span>Saída da seção</span><button class="sequence-add" title="Criar próxima seção" aria-label="Criar próxima seção"><span class="icon">add</span></button>${hasNext?'<button class="sequence-disconnect" title="Desconectar próxima seção" aria-label="Desconectar próxima seção"><span class="icon">link_off</span></button>':''}`;
  board.append(title,frame,footer);addTypedSockets(board,p);const incoming=(project.sequences||[]).find(edge=>edge.to===p.id),sequenceInput=title.querySelector('.section-socket-in');if(incoming&&sequenceInput)bindWire(sequenceInput,()=>({page:incoming.from}),'sequence',true);const pop=sectionProperties(title,p);
@@ -182,6 +274,7 @@ function makeBoard(p){
  title.querySelector('[data-node-action="collapse-images"]').onclick=()=>toggleCollapseImageNodes(p);
  title.querySelector('[data-node-action="collapse-section"]').onclick=()=>toggleCollapseSection(p);
  title.querySelector('[data-node-action="duplicate"]').onclick=()=>duplicateSectionNode(p);
+ title.querySelector('[data-node-action="disconnect-sequence"]')?.addEventListener('click',()=>connectSequence(p.id,''));
  title.querySelector('[data-node-action="settings"]').onclick=e=>{e.stopPropagation();$$('.node-properties').forEach(x=>{if(x!==pop)x.hidden=true});pop.hidden=!pop.hidden};
  title.querySelector('[data-node-action="delete"]').onclick=()=>deleteSectionNode(p);
  footer.onpointerdown=e=>{if(e.target.closest('button'))e.stopPropagation()};
@@ -192,8 +285,8 @@ function makeBoard(p){
 function outputPosition(){const viewer=project.prototypeViewer;if(!viewer)return null;return{x:viewer.x,y:viewer.y}}
 function renderPrototypeOutputNode(){
  const layer=$('#prototype-output-layer');layer.innerHTML='';const pos=outputPosition();if(!pos)return;const target=project.pages.find(p=>p.id===project.prototypeOutput),node=document.createElement('section');node.className='prototype-output-node';node.id='prototype-output-node';node.style.left=pos.x+'px';node.style.top=pos.y+'px';
- node.innerHTML=`<button class="prototype-output-socket" aria-label="Entrada do Prototype Preview" title="Arraste uma saída de seção até aqui"></button><div class="prototype-output-head"><span class="icon">play_circle</span><div><strong>Prototype Preview</strong><small>${target?esc(sectionLabel(target)):'Sem entrada'}</small></div><button data-play title="Testar esta saída" aria-label="Testar Prototype Preview" ${target?'':'disabled'}><span class="icon">play_arrow</span></button><button data-remove class="danger" title="Remover Viewer" aria-label="Remover Prototype Preview"><span class="icon">delete</span></button></div>`;layer.append(node);
- node.querySelector('[data-play]').onclick=()=>target&&showPreview(target.id);node.querySelector('[data-remove]').onclick=removePrototypeViewer;bindOutputWire(node.querySelector('.prototype-output-socket'));
+ node.innerHTML=`<button class="prototype-output-socket" aria-label="Entrada do Prototype Preview" title="Arraste uma saída de seção até aqui"></button><div class="prototype-output-head"><span class="icon">play_circle</span><div><strong>Prototype Preview</strong><small>${target?esc(sectionLabel(target)):'Sem entrada'}</small></div><button data-play title="Testar esta saída" aria-label="Testar Prototype Preview" ${target?'':'disabled'}><span class="icon">play_arrow</span></button>${target?'<button data-disconnect title="Desconectar saída" aria-label="Desconectar a seção do Prototype Preview"><span class="icon">link_off</span></button>':''}<button data-remove class="danger" title="Remover Viewer" aria-label="Remover Prototype Preview"><span class="icon">delete</span></button></div>`;layer.append(node);
+ node.querySelector('[data-play]').onclick=()=>target&&showPreview(target.id);node.querySelector('[data-disconnect]')?.addEventListener('click',()=>commit(()=>{project.prototypeOutput=null}));node.querySelector('[data-remove]').onclick=removePrototypeViewer;bindOutputWire(node.querySelector('.prototype-output-socket'));
  const head=node.querySelector('.prototype-output-head');head.onpointerdown=e=>{if(e.button!==0||e.target.closest('button'))return;e.preventDefault();e.stopPropagation();const start={x:e.clientX,y:e.clientY,px:project.prototypeViewer.x,py:project.prototypeViewer.y};let moved=false;head.setPointerCapture?.(e.pointerId);head.onpointermove=ev=>{if(!moved&&Math.hypot(ev.clientX-start.x,ev.clientY-start.y)>4){checkpoint();moved=true}if(!moved)return;project.prototypeViewer.x=start.px+(ev.clientX-start.x)/zoom;project.prototypeViewer.y=start.py+(ev.clientY-start.y)/zoom;node.style.left=project.prototypeViewer.x+'px';node.style.top=project.prototypeViewer.y+'px';drawConnections()};const end=()=>{head.onpointermove=null;head.onpointerup=null;head.onpointercancel=null;if(moved){persist();updateHistory()}};head.onpointerup=end;head.onpointercancel=end};
 }
 function bindOutputWire(handle,source=null){handle.onpointerdown=e=>{if(e.button!==0)return;e.preventDefault();e.stopPropagation();if(source&&!project.prototypeViewer){notify('Adicione Prototype Preview pelo Shift+A e tente novamente.');return}handle.setPointerCapture?.(e.pointerId);dragLink=true;const line=document.createElementNS('http://www.w3.org/2000/svg','path');line.classList.add('prototype-output-line');$('#connections').append(line);const viewer=outputPosition(),pos=source?{x:source.x+(source.collapsed?430:source.width)+18,y:source.y+30}:{x:(viewer?.x||0)-18,y:(viewer?.y||0)+28};let moved=false;handle.onpointermove=ev=>{moved=true;const r=$('#scene').getBoundingClientRect();line.setAttribute('d',`M${pos.x},${pos.y} L${(ev.clientX-r.left)/zoom},${(ev.clientY-r.top)/zoom}`)};const end=ev=>{handle.onpointermove=null;handle.onpointerup=null;handle.onpointercancel=null;dragLink=null;line.remove();if(ev.type==='pointercancel'||!moved){drawConnections();return}if(source){const viewerNode=$('#prototype-output-node'),r=viewerNode?.getBoundingClientRect();if(r&&ev.clientX>=r.left-40&&ev.clientX<=r.right+20&&ev.clientY>=r.top-30&&ev.clientY<=r.bottom+30)commit(()=>{project.prototypeOutput=source.id});else if(project.prototypeOutput===source.id)commit(()=>{project.prototypeOutput=null});else drawConnections()}else{const target=wireTargetAt(ev.clientX,ev.clientY,'sequence',{page:''});commit(()=>{project.prototypeOutput=target?.dataset?.page||null})}};handle.onpointerup=end;handle.onpointercancel=end}}
@@ -335,48 +428,43 @@ $$('[data-preview-device]').forEach(el=>el.onchange=()=>setPreviewDevice(el.chec
 function focusSections(){const w=$('#workspace'),rects=project.pages.filter(p=>!p.hidden).map(p=>({x:p.x,y:p.y,width:p.collapsed?430:p.width,height:p.collapsed?100:(metrics.get(p.id)?.height||900)+130}));for(const node of project.imageNodes||[]){if(imageNodeGrouped(project,node))continue;rects.push({x:node.x,y:node.y,width:IMAGE_NODE_LAYOUT.width,height:IMAGE_NODE_LAYOUT.height})}const result=fitSections(rects,w.clientWidth,w.clientHeight);if(!result){notify('Não há seções abertas para centralizar.');return}zoom=result.zoom;camera=result.camera;applyZoom()}
 
 $('#add-page')?.addEventListener('click',()=>{const r=$('#add-page').getBoundingClientRect();openAddMenu({clientX:r.right+8,clientY:r.top})});$('#project-name').onchange=e=>commit(()=>project.name=e.target.value.trim()||'Meu site');
-function tab(name){$$('[data-tab]').forEach(b=>b.classList.toggle('active',b.dataset.tab===name));$('#pages-tab').hidden=name!=='pages';$('#blocks-tab').hidden=name!=='blocks'}
+function tab(name){$$('[data-tab]').forEach(b=>b.classList.toggle('active',b.dataset.tab===name));$('#pages-tab').hidden=name!=='pages';$('#blocks-tab').hidden=name!=='blocks';$('#projects-tab').hidden=name!=='projects';if(name==='projects')void renderProjectList()}
 $$('[data-tab]').forEach(b=>b.onclick=()=>tab(b.dataset.tab));$('#add-block').onclick=()=>tab('blocks');$('#search').oninput=renderLibrary;$('#category').onchange=renderLibrary;$('#source').onchange=renderLibrary;
 $('#add-menu-search').oninput=renderAddMenu;$('#workspace').addEventListener('pointermove',e=>{lastPointer={x:e.clientX,y:e.clientY};if(mode==='prototype'&&prototypeHover&&!e.target.closest('#connector-left,#connector')&&!boardAt(e.clientX,e.clientY)){prototypeHover=null;drawConnections()}});document.addEventListener('pointerdown',e=>{if(!$('#add-menu').hidden&&!e.target.closest('#add-menu')&&!e.target.closest('[data-node-action=\"add\"],.sequence-add'))closeAddMenu()},true);
-async function saveProject({saveAs=false}={}){
- const button=$('#save');if(button.disabled)return;
- button.disabled=true;
+// Save is local by default. JSON is an explicit backup/import option only.
+async function saveProject(){
+ const button=$('#save');if(button.disabled)return;button.disabled=true;
+ try{await saveProjectInternal()}catch{}finally{button.disabled=false}
+}
+function exportProjectBackup(){
  try{
-  // Validate before writing. The file contains the entire editable project,
-  // including image nodes, their data URLs, masks, CSS, pages and connections.
   validateProject(project,new Set(catalog.blocks.map(block=>block.id)));
-  const filename=slugify(project.name)+'.forma.json';
-  const blob=new Blob([JSON.stringify(project,null,2)],{type:'application/json'});
-  const canPick=typeof window.showSaveFilePicker==='function'&&window.isSecureContext;
-  if(canPick){
-   let handle=saveAs?null:projectFileHandle;
-   if(!handle){
-    try{handle=await window.showSaveFilePicker({suggestedName:filename,types:[{description:'Projeto Forma Studio (JSON)',accept:{'application/json':['.json']}}]})}
-    catch(error){
-     if(error.name==='AbortError')return;
-     // Some embedding hosts deny access to the native file picker.
-     if(error.name!=='SecurityError'&&error.name!=='NotAllowedError')throw error;
-     download(blob,filename);notify('Download do projeto iniciado. Importe o arquivo em Abrir projeto para continuar.');return;
-    }
-   }
-   const writer=await handle.createWritable();
-   try{await writer.write(blob);await writer.close()}catch(error){try{await writer.abort()}catch{}throw error}
-   projectFileHandle=handle;
-   $('#save-status').textContent='Projeto salvo em arquivo';
-   notify('Projeto salvo em '+(handle.name||filename)+'.');
-  }else{
-   download(blob,filename);
-   $('#save-status').textContent='Download do projeto iniciado';
-   notify('Download do projeto iniciado. Arquivo: '+filename);
-  }
- }catch(error){notify('Não foi possível salvar o projeto: '+error.message)}
- finally{button.disabled=false}
+  download(new Blob([JSON.stringify(project,null,2)],{type:'application/json'}),slugify(project.name)+'.forma.json');
+  notify('Backup JSON exportado.');
+ }catch(error){notify('Erro ao exportar backup: '+error.message)}
 }
 $('#save').onclick=()=>saveProject();
-$('#load').onclick=()=>$('#project-file').click();$('#project-file').onchange=async e=>{const file=e.target.files[0];if(!file)return;try{if(file.size>300*1024*1024)throw Error('Arquivo muito grande (máximo 300 MB).');const next=validateProject(JSON.parse(await file.text()),new Set(catalog.blocks.map(b=>b.id)));next.pages.forEach(p=>p.blocks.forEach(b=>b.html=normalize(b.html)));commit(()=>{project=next;projectFileHandle=null;separateEmbeddedHeaders(project,catalog,uid);migrateToSectionNodes();migrateFolioManifestoProjects();migrateImageNodeColumns();active=project.home;selection=null});notify('Projeto aberto.')}catch(error){notify(error.message)}e.target.value=''};
+$('#project-save-local').onclick=()=>saveProject();
+$('#project-new').onclick=()=>createInternalProject().catch(error=>notify(error.message));
+$('#project-export').onclick=exportProjectBackup;
+$('#project-import').onclick=()=>$('#project-file').click();
+$('#load').onclick=()=>$('#project-file').click();
+$('#project-file').onchange=async e=>{
+ const file=e.target.files[0];if(!file)return;
+ try{
+  if(file.size>300*1024*1024)throw Error('Arquivo muito grande (máximo 300 MB).');
+  const next=validateProject(JSON.parse(await file.text()),new Set(catalog.blocks.map(b=>b.id)));
+  await flushProject();
+  next.pages.forEach(page=>page.blocks.forEach(block=>block.html=normalize(block.html)));
+  const record=projectRecord(next);await putProject(record);selectProjectRecord(record);
+  tab('projects');await renderProjectList();notify('Projeto importado e salvo na biblioteca interna.');
+ }catch(error){notify('Não foi possível importar: '+error.message)}
+ e.target.value='';
+};
 $('#image-file').onchange=async e=>{const file=e.target.files[0];if(!file)return;if(file.size>5000000){notify('Escolha uma imagem de até 5 MB.');return}if(!/^image\/(png|jpeg|webp|gif|avif)$/.test(file.type)){notify('Use PNG, JPEG, WebP, GIF ou AVIF.');return}const reader=new FileReader();reader.onload=()=>updateNode(el=>{if(el.tagName==='IMG')el.setAttribute('src',reader.result);else el.style.backgroundImage='url('+JSON.stringify(reader.result)+')'});reader.readAsDataURL(file);e.target.value=''};
 $('#preview').onclick=()=>project.prototypeViewer&&project.prototypeOutput?showPreview(project.prototypeOutput):notify('Adicione Prototype Preview pelo Shift+A e conecte uma seção ao Viewer.');$('#preview-close').onclick=()=>$('#preview-dialog').close();$('#preview-page').onchange=e=>showPreview(e.target.value);$('#export').onclick=exportSite;
-document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('#add-menu').hidden){e.preventDefault();closeAddMenu();return}if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='s'){e.preventDefault();e.target.blur?.();saveProject({saveAs:e.shiftKey});return}if(e.target.matches('input,textarea,select,[contenteditable]'))return;if((e.key==='Delete'||e.key==='Backspace')&&!e.ctrlKey&&!e.metaKey&&!e.altKey&&!e.shiftKey){if(e.target.closest?.('.navigation-endpoint,.sequence-endpoint,.css-endpoint,.image-endpoint,.css-node,.image-node'))return;const page=current();if(page){e.preventDefault();deleteSectionNode(page)}return}if(e.shiftKey&&e.key.toLowerCase()==='a'){e.preventDefault();const board=boardAt(lastPointer.x,lastPointer.y),scene=$('#scene').getBoundingClientRect();openAddMenu({clientX:lastPointer.x,clientY:lastPointer.y,pageId:board?.dataset.page||null,position:board?null:{x:(lastPointer.x-scene.left)/zoom,y:(lastPointer.y-scene.top)/zoom}});return}if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='z'){e.preventDefault();e.shiftKey?redo():undo()}if(e.key==='Escape'){selection=null;renderPanels();drawConnections()}});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('#add-menu').hidden){e.preventDefault();closeAddMenu();return}if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='s'){e.preventDefault();e.target.blur?.();if(e.shiftKey)exportProjectBackup();else void saveProject();return}if(e.target.matches('input,textarea,select,[contenteditable]'))return;if((e.key==='Delete'||e.key==='Backspace')&&!e.ctrlKey&&!e.metaKey&&!e.altKey&&!e.shiftKey){if(e.target.closest?.('.navigation-endpoint,.sequence-endpoint,.css-endpoint,.image-endpoint,.css-node,.image-node'))return;const page=current();if(page){e.preventDefault();deleteSectionNode(page)}return}if(e.shiftKey&&e.key.toLowerCase()==='a'){e.preventDefault();const board=boardAt(lastPointer.x,lastPointer.y),scene=$('#scene').getBoundingClientRect();openAddMenu({clientX:lastPointer.x,clientY:lastPointer.y,pageId:board?.dataset.page||null,position:board?null:{x:(lastPointer.x-scene.left)/zoom,y:(lastPointer.y-scene.top)/zoom}});return}if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='z'){e.preventDefault();e.shiftKey?redo():undo()}if(e.key==='Escape'){selection=null;renderPanels();drawConnections()}});
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden'&&storeReady&&activeProjectId)void saveProjectInternal({quiet:true}).catch(()=>{})});
 // Space/middle-drag pans the workspace; wheel/trackpad zooms around the pointer.
 function setZoomAt(nextZoom,clientX,clientY){
  const r=$('#workspace').getBoundingClientRect(),next=Math.max(.01,Math.min(1.1,nextZoom));
@@ -396,14 +484,28 @@ $('#workspace').addEventListener('pointerdown',beginCanvasPan,true);
 
 
 async function floatingProject(){const pages=[];for(let i=0;i<catalog.blocks.length;i++){const def=catalog.blocks[i],page=await makePage(null,i);page.name=def.name.slice(0,64);page.slug=def.id;page.hidden=false;page.blocks=[await instance(def.id)];pages.push(page)}return{version:VERSION,name:'Biblioteca · Seções flutuantes',home:pages[0].id,pages,links:[],sequences:[]}}
-$('#all-blocks')?.addEventListener('click',async()=>{try{const next=await floatingProject();commit(()=>{project=next;separateEmbeddedHeaders(project,catalog,uid);migrateToSectionNodes();migrateFolioManifestoProjects();active=project.home;selection=null});focusPage()}catch(e){notify(e.message)}});
+$('#all-blocks')?.addEventListener('click',async()=>{try{await flushProject();const next=await floatingProject(),record=projectRecord(next);await putProject(record);selectProjectRecord(record);migrateToSectionNodes();migrateFolioManifestoProjects();persist();focusPage();await renderProjectList()}catch(e){notify(e.message)}});
 
 async function start(){
  initTheme();
  if(location.protocol==='file:')throw Error('Execute npm run dev e abra http://localhost:4173. O editor também funciona no GitHub Pages.');
  [catalog,imageUpgrades,textUpgrades]=await Promise.all(['catalog.json','assets/image-upgrades.json','assets/text-upgrades.json'].map(async path=>(await request(path)).json()));$('#source').innerHTML='<option value="">Todas as referências</option>'+[...new Set(catalog.blocks.map(b=>b.source))].sort((a,b)=>a.localeCompare(b)).map(source=>`<option value="${esc(source)}">${esc(source)}</option>`).join('');$('#block-count').textContent=catalog.blocks.length;
- let saved=null;try{saved=localStorage.getItem(STORAGE)}catch{}if(saved){try{project=validateProject(JSON.parse(saved),new Set(catalog.blocks.map(b=>b.id)));project.pages.forEach(p=>p.blocks.forEach(b=>b.html=normalize(b.html)))}catch{notify('Não foi possível restaurar o rascunho. Abra o JSON salvo para recuperar o projeto.')}}
- if(!project)project=await floatingProject();
+ let initialRecord=null;
+ try{
+  const savedId=localStorage.getItem(CURRENT_PROJECT_KEY);
+  if(savedId)initialRecord=await getProject(savedId);
+  if(!initialRecord){const records=await listProjects();if(records.length)initialRecord=await getProject(records[0].id)}
+  if(!initialRecord){
+   let oldDraft=null;try{oldDraft=localStorage.getItem(STORAGE)}catch{}
+   if(oldDraft){
+    try{const restored=validateProject(JSON.parse(oldDraft),new Set(catalog.blocks.map(block=>block.id)));initialRecord=projectRecord(restored);await putProject(initialRecord)}
+    catch{notify('O rascunho antigo não pôde ser migrado. Ele continua no armazenamento antigo para recuperação.')}
+   }
+  }
+  storeReady=true;
+ }catch(error){$('#save-status').textContent='Armazenamento local indisponível';throw Error('Não foi possível acessar os projetos locais: '+error.message)}
+ if(initialRecord){project=validateProject(JSON.parse(initialRecord.data),new Set(catalog.blocks.map(block=>block.id)));activeProjectId=initialRecord.id;projectCreatedAt=initialRecord.createdAt||Date.now();try{localStorage.setItem(CURRENT_PROJECT_KEY,activeProjectId)}catch{}}
+ else{project=await floatingProject();const record=projectRecord(project);await putProject(record);activeProjectId=record.id;projectCreatedAt=record.createdAt;try{localStorage.setItem(CURRENT_PROJECT_KEY,activeProjectId)}catch{}}
  if(!project.catalogUpgrades?.includes('footers-v1')){
   const existing=new Set(project.pages.flatMap(p=>p.blocks.map(b=>b.blockId)));const missing=catalog.blocks.filter(b=>b.category==='footer'&&!existing.has(b.id));
   const baseY=Math.max(130,...project.pages.map(p=>p.y))+2600;
@@ -417,7 +519,7 @@ async function start(){
  }
  if(!project.uiMigrations?.includes('canvas-nodes-v1')){project.pages.forEach(p=>p.hidden=false);project.uiMigrations=[...(project.uiMigrations||[]),'canvas-nodes-v1']}
  separateEmbeddedHeaders(project,catalog,uid);migrateToSectionNodes();migrateFolioManifestoProjects();migrateImageNodeColumns();
- if(!project.uiMigrations?.includes('prototype-viewer-explicit-v2')){if(project.prototypeViewer===undefined)project.prototypeViewer=null;delete project.prototypeOutputX;delete project.prototypeOutputY;project.uiMigrations=[...(project.uiMigrations||[]),'prototype-viewer-explicit-v2']}project.prototypeOutput=project.prototypeViewer&&project.pages.some(p=>p.id===project.prototypeOutput)?project.prototypeOutput:null;for(const node of project.styleNodes||[])ensureStyleAPI(node);active=project.home;render();renderLibrary();persist();
+ if(!project.uiMigrations?.includes('prototype-viewer-explicit-v2')){if(project.prototypeViewer===undefined)project.prototypeViewer=null;delete project.prototypeOutputX;delete project.prototypeOutputY;project.uiMigrations=[...(project.uiMigrations||[]),'prototype-viewer-explicit-v2']}project.prototypeOutput=project.prototypeViewer&&project.pages.some(p=>p.id===project.prototypeOutput)?project.prototypeOutput:null;for(const node of project.styleNodes||[])ensureStyleAPI(node);active=project.home;render();renderLibrary();persist();void renderProjectList();
 }
 start().catch(e=>{notify(e.message);$('#save-status').textContent='Não foi possível iniciar';$('#inspector').textContent=e.message});
 
@@ -494,8 +596,8 @@ function styleWire(handle,node,previous=''){
 function renderStyleNodes(){
  const layer=$('#style-nodes');layer.innerHTML='';
  for(const node of project.styleNodes||[]){const api=ensureStyleAPI(node),roles={background:'Fundo',surface:'Superfície',text:'Texto',primary:'Primária',accent:'Acento'},el=document.createElement('section');el.className='css-node css-api-node';el.style.left=node.x+'px';el.style.top=node.y+'px';
- el.innerHTML=`<header><span class="icon">palette</span><div><strong>${esc(node.name||'CSS · Estilos')}</strong><small>Google Fonts + Huemint</small></div><button data-delete aria-label="Excluir node CSS">×</button><button data-wire title="Arraste até a entrada CSS de uma seção" aria-label="Conectar estilo">●</button></header><section class="style-api-section"><div class="style-section-title"><strong>Google Fonts</strong><small>CSS2 + Webfonts API</small></div><label>Títulos<input data-style-font="heading" list="google-font-options-${node.id}" value="${esc(api.headingFont)}"></label><label>Texto<input data-style-font="body" list="google-font-options-${node.id}" value="${esc(api.bodyFont)}"></label><datalist id="google-font-options-${node.id}">${googleFontOptions()}</datalist><details class="style-api-advanced"><summary>Catálogo completo</summary><label>Chave da Webfonts API<input data-google-fonts-key type="password" autocomplete="off" value="${esc(googleFontsApiKey)}" placeholder="AIza…"></label><button data-fonts class="wide">Carregar catálogo</button><small>A chave fica apenas nesta sessão do editor.</small></details></section><section class="style-api-section"><div class="style-section-title"><strong>Huemint</strong><small>paleta por IA</small></div><div class="style-palette">${STYLE_ROLES.map(role=>`<label class="style-swatch"><input type="color" data-style-color="${role}" value="${esc(api.palette[role])}"><span>${roles[role]}</span><button type="button" data-style-lock="${role}" class="${api.locks?.[role]?'active':''}" title="${api.locks?.[role]?'Destravar cor':'Travar cor'}"><span class="icon">${api.locks?.[role]?'lock':'lock_open'}</span></button></label>`).join('')}</div><div class="style-huemint-controls"><label>Modelo<select data-huemint-mode><option value="transformer" ${api.huemintMode==='transformer'?'selected':''}>Transformer</option><option value="diffusion" ${api.huemintMode==='diffusion'?'selected':''}>Diffusion</option><option value="random" ${api.huemintMode==='random'?'selected':''}>Random</option></select></label><label>Criatividade <output>${Number(api.temperature||1.2).toFixed(1)}</output><input data-huemint-temperature type="range" min="0" max="2.4" step="0.1" value="${Number(api.temperature||1.2)}"></label></div><button data-huemint class="primary wide">Gerar paleta com Huemint</button><small class="style-api-note">As cores e fontes sobrescrevem a seção e toda a sequência conectada. Um novo CSS conectado à mesma sequência substitui o anterior. Huemint informa que a API pública é destinada a usos não comerciais.</small></section><div class="css-targets">${node.targets.map(id=>`<button data-unlink="${esc(id)}" title="Desconectar">${esc(project.pages.find(p=>p.id===id)?.name||'Seção')} ×</button>`).join('')}</div>`;
- layer.append(el);el.onpointerdown=e=>e.stopPropagation();dragBoard(el.querySelector('header'),el,node);styleWire(el.querySelector('[data-wire]'),node);el.querySelector('[data-delete]').onclick=()=>commit(()=>{project.styleNodes=project.styleNodes.filter(n=>n.id!==node.id)});el.querySelector('[data-google-fonts-key]').oninput=e=>googleFontsApiKey=e.target.value;el.querySelector('[data-fonts]').onclick=e=>loadGoogleFontsCatalog(e.currentTarget);el.querySelectorAll('[data-style-font]').forEach(input=>input.onchange=e=>commit(()=>{const a=ensureStyleAPI(node);a[e.target.dataset.styleFont==='heading'?'headingFont':'bodyFont']=e.target.value.trim()||'Inter';syncStyleValues(node)}));el.querySelectorAll('[data-style-color]').forEach(input=>input.oninput=e=>{const role=e.target.dataset.styleColor;commit(()=>{ensureStyleAPI(node).palette[role]=e.target.value;syncStyleValues(node)})});el.querySelectorAll('[data-style-lock]').forEach(button=>button.onclick=()=>commit(()=>{const a=ensureStyleAPI(node),role=button.dataset.styleLock;a.locks[role]=!a.locks[role]}));el.querySelector('[data-huemint-mode]').onchange=e=>commit(()=>ensureStyleAPI(node).huemintMode=e.target.value);const temp=el.querySelector('[data-huemint-temperature]'),out=temp.previousElementSibling;temp.oninput=e=>out.textContent=Number(e.target.value).toFixed(1);temp.onchange=e=>commit(()=>ensureStyleAPI(node).temperature=Number(e.target.value));el.querySelector('[data-huemint]').onclick=e=>generateHuemintPalette(node,e.currentTarget);el.querySelectorAll('[data-unlink]').forEach(b=>b.onclick=()=>styleConnect(node,null,b.dataset.unlink));
+ el.innerHTML=`<header><span class="icon">palette</span><div><strong>${esc(node.name||'CSS · Estilos')}</strong><small>Google Fonts + Huemint</small></div>${node.targets.length?'<button data-unlink-all class="node-unlink-button" title="Desconectar CSS de todas as seções" aria-label="Desconectar todas as conexões CSS"><span class="icon">link_off</span></button>':''}<button data-delete aria-label="Excluir node CSS">×</button><button data-wire title="Arraste até a entrada CSS de uma seção" aria-label="Conectar estilo">●</button></header><section class="style-api-section"><div class="style-section-title"><strong>Google Fonts</strong><small>CSS2 + Webfonts API</small></div><label>Títulos<input data-style-font="heading" list="google-font-options-${node.id}" value="${esc(api.headingFont)}"></label><label>Texto<input data-style-font="body" list="google-font-options-${node.id}" value="${esc(api.bodyFont)}"></label><datalist id="google-font-options-${node.id}">${googleFontOptions()}</datalist><details class="style-api-advanced"><summary>Catálogo completo</summary><label>Chave da Webfonts API<input data-google-fonts-key type="password" autocomplete="off" value="${esc(googleFontsApiKey)}" placeholder="AIza…"></label><button data-fonts class="wide">Carregar catálogo</button><small>A chave fica apenas nesta sessão do editor.</small></details></section><section class="style-api-section"><div class="style-section-title"><strong>Huemint</strong><small>paleta por IA</small></div><div class="style-palette">${STYLE_ROLES.map(role=>`<label class="style-swatch"><input type="color" data-style-color="${role}" value="${esc(api.palette[role])}"><span>${roles[role]}</span><button type="button" data-style-lock="${role}" class="${api.locks?.[role]?'active':''}" title="${api.locks?.[role]?'Destravar cor':'Travar cor'}"><span class="icon">${api.locks?.[role]?'lock':'lock_open'}</span></button></label>`).join('')}</div><div class="style-huemint-controls"><label>Modelo<select data-huemint-mode><option value="transformer" ${api.huemintMode==='transformer'?'selected':''}>Transformer</option><option value="diffusion" ${api.huemintMode==='diffusion'?'selected':''}>Diffusion</option><option value="random" ${api.huemintMode==='random'?'selected':''}>Random</option></select></label><label>Criatividade <output>${Number(api.temperature||1.2).toFixed(1)}</output><input data-huemint-temperature type="range" min="0" max="2.4" step="0.1" value="${Number(api.temperature||1.2)}"></label></div><button data-huemint class="primary wide">Gerar paleta com Huemint</button><small class="style-api-note">As cores e fontes sobrescrevem a seção e toda a sequência conectada. Um novo CSS conectado à mesma sequência substitui o anterior. Huemint informa que a API pública é destinada a usos não comerciais.</small></section><div class="css-targets">${node.targets.map(id=>`<button data-unlink="${esc(id)}" title="Desconectar">${esc(project.pages.find(p=>p.id===id)?.name||'Seção')} ×</button>`).join('')}</div>`;
+ layer.append(el);el.onpointerdown=e=>e.stopPropagation();dragBoard(el.querySelector('header'),el,node);styleWire(el.querySelector('[data-wire]'),node);el.querySelector('[data-unlink-all]')?.addEventListener('click',e=>{e.stopPropagation();commit(()=>{node.targets=[]});notify('Conexões CSS removidas.')});el.querySelector('[data-delete]').onclick=()=>commit(()=>{project.styleNodes=project.styleNodes.filter(n=>n.id!==node.id)});el.querySelector('[data-google-fonts-key]').oninput=e=>googleFontsApiKey=e.target.value;el.querySelector('[data-fonts]').onclick=e=>loadGoogleFontsCatalog(e.currentTarget);el.querySelectorAll('[data-style-font]').forEach(input=>input.onchange=e=>commit(()=>{const a=ensureStyleAPI(node);a[e.target.dataset.styleFont==='heading'?'headingFont':'bodyFont']=e.target.value.trim()||'Inter';syncStyleValues(node)}));el.querySelectorAll('[data-style-color]').forEach(input=>input.oninput=e=>{const role=e.target.dataset.styleColor;commit(()=>{ensureStyleAPI(node).palette[role]=e.target.value;syncStyleValues(node)})});el.querySelectorAll('[data-style-lock]').forEach(button=>button.onclick=()=>commit(()=>{const a=ensureStyleAPI(node),role=button.dataset.styleLock;a.locks[role]=!a.locks[role]}));el.querySelector('[data-huemint-mode]').onchange=e=>commit(()=>ensureStyleAPI(node).huemintMode=e.target.value);const temp=el.querySelector('[data-huemint-temperature]'),out=temp.previousElementSibling;temp.oninput=e=>out.textContent=Number(e.target.value).toFixed(1);temp.onchange=e=>commit(()=>ensureStyleAPI(node).temperature=Number(e.target.value));el.querySelector('[data-huemint]').onclick=e=>generateHuemintPalette(node,e.currentTarget);el.querySelectorAll('[data-unlink]').forEach(b=>b.onclick=()=>styleConnect(node,null,b.dataset.unlink));
  }
 }
 function drawStyleConnections(svg){for(const node of project.styleNodes||[])for(const id of node.targets){const page=project.pages.find(p=>p.id===id);if(!page||page.hidden)continue;const board=$$('.artboard').find(b=>b.dataset.page===id),socket=board?.querySelector('.css-socket'),a={x:node.x+392,y:node.y+30};let b={x:page.x-18,y:page.y+82};if(socket){const r=socket.getBoundingClientRect(),scene=$('#scene').getBoundingClientRect();b={x:(r.left+r.width/2-scene.left)/zoom,y:(r.top+r.height/2-scene.top)/zoom}}const path=document.createElementNS('http://www.w3.org/2000/svg','path');path.classList.add('css-wire');path.setAttribute('d',`M${a.x},${a.y} C${a.x+180},${a.y} ${b.x-180},${b.y} ${b.x},${b.y}`);svg.append(path)}}
@@ -514,6 +616,7 @@ function focusImageNode(node){camera={x:$('#workspace').clientWidth/2-(node.x+12
 function typedTargetAt(kind,x,y){for(const el of $$('[data-socket="'+kind+'"]')){const r=el.getBoundingClientRect();if(Math.hypot(x-(r.left+r.width/2),y-(r.top+r.height/2))<=Math.max(18,r.width/2))return el.dataset.targetPage}return null}
 function imageConnect(node,page,slot,previous=null){commit(()=>{const detached=[];if(previous)node.targets=node.targets.filter(t=>!(t.page===previous.page&&t.slot===previous.slot));if(page&&slot){for(const n of project.imageNodes||[]){if(n===node)continue;const had=n.targets.some(t=>t.page===page&&t.slot===slot);n.targets=n.targets.filter(t=>!(t.page===page&&t.slot===slot));if(had&&!n.targets.length)detached.push(n)}node.targets.push({page,slot})}if(previous?.page)alignImageNodes(project,previous.page);if(page)alignImageNodes(project,page);for(const n of detached)n.x-=IMAGE_NODE_LAYOUT.width+80;if(!page&&previous&&!node.targets.length)node.x-=IMAGE_NODE_LAYOUT.width+80})}
 function imageWire(handle,node,previous=null){handle.onpointerdown=e=>{if(e.button!==0)return;e.preventDefault();e.stopPropagation();handle.setPointerCapture(e.pointerId);dragLink=true;let moved=false;const line=document.createElementNS('http://www.w3.org/2000/svg','path');line.classList.add('image-wire');$('#connections').append(line);handle.onpointermove=ev=>{moved=true;const r=$('#scene').getBoundingClientRect();line.setAttribute('d',`M${node.x+252},${node.y+30} L${(ev.clientX-r.left)/zoom},${(ev.clientY-r.top)/zoom}`)};const end=ev=>{handle.onpointermove=null;handle.onpointerup=null;handle.onpointercancel=null;dragLink=null;line.remove();if(ev.type==='pointercancel'||!moved){drawConnections();return}const target=imageTargetAt(ev.clientX,ev.clientY);if(target)imageConnect(node,target.page,target.slot,previous);else if(previous)imageConnect(node,null,null,previous);else drawConnections()};handle.onpointerup=end;handle.onpointercancel=end}}
+function unlinkImageNode(node){if(!node.targets.length)return;commit(()=>{const pages=[...new Set(node.targets.map(t=>t.page))];node.targets=[];pages.forEach(id=>alignImageNodes(project,id));node.x-=IMAGE_NODE_LAYOUT.width+80});notify('Imagem desconectada. O espaço da seção voltou ao placeholder.')}
 function openImageSlotChoice(node,page,previous){const dialog=document.createElement('dialog');dialog.className='image-slot-dialog';dialog.innerHTML=`<form method="dialog"><h3>Escolher espaço de imagem</h3><p>${esc(project.pages.find(p=>p.id===page)?.name||'Seção')}</p><select>${(imageSlots.get(page)||[]).map(s=>`<option value="${esc(s.slot)}">${esc(s.label)}</option>`).join('')}</select><button value="cancel">Cancelar</button><button value="connect">Conectar</button></form>`;document.body.append(dialog);dialog.onclose=()=>{if(dialog.returnValue==='connect')imageConnect(node,page,dialog.querySelector('select').value,previous);dialog.remove()};dialog.showModal()}
 $('#add-image-node').onclick=()=>commit(()=>{(project.imageNodes??=[]).push({id:uid(),name:'Imagem',x:(180-camera.x)/zoom,y:(180-camera.y)/zoom,src:'',targets:[]})});
 function pickNodeImage(node){const input=document.createElement('input');input.type='file';input.accept='image/png,image/jpeg,image/webp,image/gif,image/avif';input.onchange=()=>{const file=input.files[0];if(!file)return;if(file.size>8*1024*1024){notify('Use uma imagem de até 8 MB.');return}const reader=new FileReader();reader.onload=()=>{if(!validImageURL(reader.result)){notify('Formato não suportado.');return}commit(()=>{node.src=reader.result;node.exampleInitialized=true})};reader.readAsDataURL(file)};input.click()}
@@ -526,7 +629,7 @@ function deleteImageNode(node){
  notify('Node de imagem excluído. Use Ctrl+Z para desfazer.');
 }
 function imageNodeOptions(node){const dialog=document.createElement('dialog');dialog.className='image-slot-dialog';dialog.innerHTML=`<form method="dialog"><h3>Imagem</h3><label>Nome<input data-name value="${esc(node.name)}"></label><label>URL<input data-url value="${esc(node.src.startsWith('data:')?'':node.src)}" placeholder="https://…"></label><button value="delete">Excluir node</button><button value="cancel">Cancelar</button><button value="save">Salvar</button></form>`;document.body.append(dialog);dialog.onclose=()=>{if(dialog.returnValue==='delete')deleteImageNode(node);if(dialog.returnValue==='save'){const src=dialog.querySelector('[data-url]').value.trim(),name=dialog.querySelector('[data-name]').value.trim();if(src&&!validImageURL(src))notify('URL de imagem inválida.');else commit(()=>{node.name=name||'Imagem';if(src)node.src=src;node.exampleInitialized=true})}dialog.remove()};dialog.showModal()}
-function renderImageNodes(){const layer=$('#image-nodes');layer.innerHTML='';if(mode==='prototype')return;for(const node of project.imageNodes||[]){if(imageNodeGrouped(project,node))continue;const el=document.createElement('section');el.className='css-node image-node';el.dataset.imageNode=node.id;el.style.left=node.x+'px';el.style.top=node.y+'px';el.innerHTML=`<header><strong title="${esc(node.name)}">${esc(node.name)}</strong><div class="node-actions image-node-actions" aria-label="Ações da imagem"><button type="button" data-image-action="settings" title="Propriedades da imagem" aria-label="Propriedades da imagem"><span class="icon">tune</span></button><button type="button" data-image-action="delete" class="danger" title="Excluir node de imagem" aria-label="Excluir node de imagem"><span class="icon">delete</span></button></div><button data-image-wire aria-label="Conectar imagem" title="Arraste até um conector de imagem">●</button></header><button class="image-node-preview" title="Clique para trocar a imagem" aria-label="Trocar ${esc(node.name)}">${node.src?`<img src="${esc(node.src)}" alt="${esc(node.name)}">`:'<span>Escolher imagem</span>'}</button>`;layer.append(el);el.onpointerdown=e=>e.stopPropagation();dragBoard(el.querySelector('header'),el,node);imageWire(el.querySelector('[data-image-wire]'),node);el.querySelector('.image-node-preview').onclick=()=>pickNodeImage(node);el.querySelector('[data-image-action="settings"]').onclick=e=>{e.stopPropagation();imageNodeOptions(node)};el.querySelector('[data-image-action="delete"]').onclick=e=>{e.stopPropagation();deleteImageNode(node)};el.oncontextmenu=e=>{e.preventDefault();imageNodeOptions(node)};el.querySelector('strong').ondblclick=()=>imageNodeOptions(node)}}
+function renderImageNodes(){const layer=$('#image-nodes');layer.innerHTML='';if(mode==='prototype')return;for(const node of project.imageNodes||[]){if(imageNodeGrouped(project,node))continue;const el=document.createElement('section');el.className='css-node image-node';el.dataset.imageNode=node.id;el.style.left=node.x+'px';el.style.top=node.y+'px';el.innerHTML=`<header><strong title="${esc(node.name)}">${esc(node.name)}</strong><div class="node-actions image-node-actions" aria-label="Ações da imagem">${node.targets.length?'<button type="button" data-image-action="disconnect" title="Desconectar imagem das seções" aria-label="Desconectar imagem das seções"><span class="icon">link_off</span></button>':''}<button type="button" data-image-action="settings" title="Propriedades da imagem" aria-label="Propriedades da imagem"><span class="icon">tune</span></button><button type="button" data-image-action="delete" class="danger" title="Excluir node de imagem" aria-label="Excluir node de imagem"><span class="icon">delete</span></button></div><button data-image-wire aria-label="Conectar imagem" title="Arraste até um conector de imagem">●</button></header><button class="image-node-preview" title="Clique para trocar a imagem" aria-label="Trocar ${esc(node.name)}">${node.src?`<img src="${esc(node.src)}" alt="${esc(node.name)}">`:'<span>Escolher imagem</span>'}</button><p class="image-node-connection-status">${node.targets.length?`${node.targets.length} conexão${node.targets.length!==1?'ões':''} · <span>use <span class="icon">link_off</span> para desconectar</span>`:'Sem conexão · arraste a saída para uma seção'}</p>`;layer.append(el);el.onpointerdown=e=>e.stopPropagation();dragBoard(el.querySelector('header'),el,node);imageWire(el.querySelector('[data-image-wire]'),node);el.querySelector('.image-node-preview').onclick=()=>pickNodeImage(node);el.querySelector('[data-image-action="disconnect"]')?.addEventListener('click',e=>{e.stopPropagation();unlinkImageNode(node)});el.querySelector('[data-image-action="settings"]').onclick=e=>{e.stopPropagation();imageNodeOptions(node)};el.querySelector('[data-image-action="delete"]').onclick=e=>{e.stopPropagation();deleteImageNode(node)};el.oncontextmenu=e=>{e.preventDefault();imageNodeOptions(node)};el.querySelector('strong').ondblclick=()=>imageNodeOptions(node)}}
 function drawImageConnections(svg){if(mode==='prototype')return;for(const node of project.imageNodes||[]){if(imageNodeGrouped(project,node))continue;for(const target of node.targets){const page=project.pages.find(p=>p.id===target.page);if(!page||page.hidden||page.collapsed||page.imageNodesCollapsed)continue;const index=sectionImageSlots(page).findIndex(s=>s.slot===target.slot);if(index<0)continue;const y=page.y+124+index*34;const path=document.createElementNS('http://www.w3.org/2000/svg','path');path.classList.add('image-wire');path.setAttribute('d',`M${node.x+252},${node.y+30} C${node.x+350},${node.y+30} ${page.x-170},${y} ${page.x-18},${y}`);svg.append(path)}}}
 
 let imageNodeRenderTimer;

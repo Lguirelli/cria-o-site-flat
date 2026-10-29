@@ -35,14 +35,15 @@ test('removing a connected image only removes its bindings, retains the mask and
  assert.match(script,/block:1/);
 });
 
-test('editable project save and reopen controls and keyboard shortcuts are present',()=>{
+test('project save is internal, with explicit backup and import only',()=>{
  assert.match(html,/id="save"/);
  assert.match(html,/id="load"/);
  assert.match(html,/id="project-file"/);
- assert.match(editor,/window\.showSaveFilePicker/);
- assert.match(editor,/download\(blob,filename\)/);
- assert.match(editor,/JSON\.stringify\(project,null,2\)/);
- assert.match(editor,/saveProject\(\{saveAs:e\.shiftKey\}\)/);
+ assert.match(editor,/saveProjectInternal/);
+ assert.match(editor,/putProject\(record\)/);
+ assert.match(editor,/function exportProjectBackup\(\)/);
+ assert.match(editor,/download\(new Blob\(\[JSON\.stringify\(project,null,2\)\]/);
+ assert.match(editor,/if\(e\.shiftKey\)exportProjectBackup\(\);else void saveProject\(\)/);
  assert.match(editor,/validateProject\(JSON\.parse\(await file\.text\(\)\)/);
 });
 
